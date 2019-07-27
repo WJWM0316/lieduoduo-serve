@@ -6,7 +6,10 @@ router.get('/index', function(req, res, next) {
   // res.render('index', { title: 'Express' });
   res.sendfile('./dist/index.html')
 });
-
+router.get('/index1', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+  res.sendfile('./view/index1.html')
+});
 
 router.get('/getuser', function(req, res) {
   let url = 'https://admin-api.lieduoduo.com/label/field'
