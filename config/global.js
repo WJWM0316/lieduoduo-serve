@@ -1,10 +1,10 @@
 var Node_Env = process.env.Node_Env;
 console.log(Node_Env)
-var webapi = "";
+var webapi = "",;
 switch (Node_Env) {
     case 'test':
         console.log("测试环境")
-        webapi = "测试api"
+        webapi = "https://node.lieduoduo.ziwork.com"
         break;
     case "preview":
         console.log("预发环境")
@@ -16,7 +16,7 @@ switch (Node_Env) {
         break
     default:
         console.log("默认参数")
-        webapi = "本地api"
+        webapi = "https://node.lieduoduo.ziwork.com"
 }
 var GLOBALcONFIG = {
     webapi: webapi

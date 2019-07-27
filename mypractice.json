@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "练习",
+            "name": "node_demo",
             "script": "./bin/www",
             "cwd": "./",
             "watch": [
@@ -19,7 +19,8 @@
                 "NODE_ENV": "local"
             },
             "env_test": {
-                "NODE_ENV": "test"
+                "NODE_ENV": "test",
+                "PORT": 3000
             }
         }
     ]
