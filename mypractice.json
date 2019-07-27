@@ -13,8 +13,6 @@
                 "config"
             ],
             "log_date_format": "YYYY-MM-DD HH:mm Z",
-            "error_file": "/data/logs/electronic-err.log",
-            "out_file": "/data/logs/electronic-out.log",
             "env_local": {
                 "NODE_ENV": "local"
             },
