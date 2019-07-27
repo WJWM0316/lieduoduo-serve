@@ -8,7 +8,7 @@ router.get('/index', function(req, res, next) {
 });
 router.get('/index1', function(req, res, next) {
   // res.render('index', { title: 'Express' });
-  res.sendfile('./view/index1.html')
+  res.sendfile('./views/index1.html')
 });
 
 router.get('/getuser', function(req, res) {
