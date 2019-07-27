@@ -17,8 +17,7 @@
                 "NODE_ENV": "local"
             },
             "env_test": {
-                "NODE_ENV": "test",
-                "PORT": 3000
+                "NODE_ENV": "test"
             }
         }
     ]
