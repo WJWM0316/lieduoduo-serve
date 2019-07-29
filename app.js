@@ -15,15 +15,14 @@ var app = express();
 
 // app.use(history());
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist')));
-
+app.use('/static', express.static('public'));
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
