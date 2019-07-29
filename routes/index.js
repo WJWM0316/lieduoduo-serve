@@ -4,7 +4,7 @@ const request = require('request');
 /* GET home page. */
 router.get('/index', function(req, res, next) {
   // res.render('index', { title: 'Express' });
-  res.sendfile('./dist/index.html')
+  res.sendfile('./views/index.html')
 });
 router.get('/index1', function(req, res, next) {
   // res.render('index', { title: 'Express' });
