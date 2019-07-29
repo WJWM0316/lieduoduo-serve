@@ -4,14 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var history = require('connect-history-api-fallback');
+var compression = require('compression');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const cors = require('cors');
+// const cors = require('cors');
 
 
 var app = express();
 
+// 启用gzip
+app.use(compression());
 
 app.use(history());
 // view engine setup
@@ -50,11 +54,11 @@ app.all('*', function (req, res, next) {
   next();
 });
 
-app.use(cors({
-	origin: ['http://localhost:3000'],
-	methods: ['GET', 'POST'],
-	alloweHeaders: ['Conten-Type', 'Authorization']
-}))
+// app.use(cors({
+// 	origin: ['http://localhost:3000'],
+// 	methods: ['GET', 'POST'],
+// 	alloweHeaders: ['Conten-Type', 'Authorization']
+// }))
 
 
 module.exports = app;
