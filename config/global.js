@@ -1,25 +1,39 @@
 var Node_Env = process.env.Node_Env;
 console.log(Node_Env)
-var webapi = "",;
+var nodeApi = "", // nodeJs 代理转发的域名
+    qzApi   = "", // 求职端的域名
+    zpApi   = "", // 招聘端的域名
+    pubApi  = ""  // pub公共端域名
 switch (Node_Env) {
-    case 'test':
-        console.log("测试环境")
-        webapi = "https://node.lieduoduo.ziwork.com"
+    case 'test': // 测试
+        nodeApi = "https://node.lieduoduo.ziwork.com"
+        qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
+        zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
+        pubApi  = "https://pub-api.lieduoduo.ziwork.com"
         break;
-    case "preview":
-        console.log("预发环境")
-        webapi = "预发api"
+    case "preview": // 预发布
+        nodeApi = "https://node.lieduoduo.com"
+        qzApi   = "https://qiuzhi-api.lieduoduo.com"
+        zpApi   = "https://zhaopin-api.lieduoduo.com"
+        pubApi  = "https://pub-api.lieduoduo.com"
         break
-    case "product":
-        console.log("生产环境")
-        webapi = "生产api"
+    case "product": // 正式
+        nodeApi = "https://node.lieduoduo.com"
+        qzApi    = "https://qiuzhi-api.lieduoduo.com"
+        zpApi   = "https://zhaopin-api.lieduoduo.com"
+        pubApi  = "https://pub-api.lieduoduo.com"
         break
-    default:
-        console.log("默认参数")
-        webapi = "https://node.lieduoduo.ziwork.com"
+    default: // 开发环境默认测试环境
+        nodeApi = "https://node.lieduoduo.ziwork.com"
+        qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
+        zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
+        pubApi  = "https://pub-api.lieduoduo.ziwork.com"
 }
 var GLOBALcONFIG = {
-    webapi: webapi
+    nodeApi,
+    qzApi,
+    zpApi,
+    pubApi
 }
 
 module.exports = GLOBALcONFIG;
