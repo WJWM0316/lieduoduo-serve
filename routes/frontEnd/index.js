@@ -17,7 +17,7 @@ router.get('/specialJob', function(req, res, next) {
 	}  
 	if (req.headers) {
 		for (var i in req.headers) {
-			headers[`${titleCase(i)}`] = req.headers[i]
+			if (i !== 'host') headers[`${titleCase(i)}`] = req.headers[i]
 		}
 	}
 	request({
