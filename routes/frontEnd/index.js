@@ -26,8 +26,8 @@ router.get('/specialJob', function(req, res, next) {
 			// headers: headers,
 			form: {count: 20, page: 1}
 		}, function (err, response, body) {
-			// var data = JSON.parse(body)
-			res.send([err, response, body])
+			var data = JSON.parse(body)
+			//res.send([err, response, body])
 			res.json(data)
 			console.log(err, 111)
 			console.log(response, 222)
