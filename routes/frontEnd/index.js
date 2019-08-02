@@ -1,38 +1,107 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
-
 var httpRequest = require('../../config/httpRequest.js')
-/* GET home page. */
-router.get('/specialJob', function(req, res, next) {
-	//let data = await httpRequest('qzApi', 'GET', '/position/list', {count: 20, page: 1})
-	// console.log(JSON.parse(req.headers), 111)
-	let headers = {}
-	function titleCase(str) {
-	  let strArr = str.split(' ');
-	  for(let i=0;i<strArr.length;i++){
-	    strArr[i] = strArr[i].substring(0,1).toUpperCase()+strArr[i].toLowerCase().substring(1)
-	  } 
-	  return strArr.join(' ');
-	}  
-	if (req.headers) {
-		for (var i in req.headers) {
-			if (i !== 'host') headers[`${titleCase(i)}`] = req.headers[i]
-		}
-	}
-	request({
-			url: 'https://qiuzhi-api.lieduoduo.ziwork.com/position/list',
-			method: 'GET',
-			headers: headers,
-			form: {count: 20, page: 1}
-		}, function (err, response, body) {
-			// res.send([err, response, body])
-			var data = JSON.parse(body)
-			res.json(data)
-			console.log(err, 111)
-			console.log(response, 222)
-			console.log(body, 333)
-		})
-  
+var pocessor = require('../../util/timePocessor.js')
+
+// 限时抢购
+router.get('/surface/rapidly', async function(req, res, next) {
+	let data = await httpRequest({
+		hostType: 'qzApi', 
+		method: 'GET', 
+		url: '/surface/rapidly', 
+		data: req.query, 
+		req,
+		res,
+		next
+	})
+	let getData = data.data,
+			output = {
+				buttons: getData.buttons,
+				joinUserTotal: getData.joinUserTotal,
+				toastTips: getData.toastTips,
+				joinUserAvatars: [],
+				items: []
+			}
+	getData.joinUserAvatars.forEach((item) => {
+		output.joinUserAvatars.push({smallUrl: item.smallUrl})
+	})
+	getData.items.forEach((item) => {
+		let restTime = pocessor.restTime(new Date(item.endTime).getTime())
+		output.items.push(
+			{
+				id: item.id,
+				logo: item.companyInfo.logoInfo.smallUrl,
+				companyShortname: item.companyInfo.companyShortname,
+				oneSentenceIntro: item.companyInfo.oneSentenceIntro || '暂没有设置',
+				employeesInfo: item.companyInfo.employeesInfo,
+				industry: item.companyInfo.industry,
+				financingInfo: item.companyInfo.financingInfo,				
+				positionName: item.positionName,
+				city: item.city,
+				district: item.district,
+				workExperienceName: item.workExperienceName,
+				educationName: item.educationName,
+				applyNum: item.applyNum,
+				seatsNum: item.seatsNum,
+				annualSalary: item.annualSalary,
+				salary: `${item.emolumentMin}~${item.emolumentMax}K`,
+				endTime: item.endTime,
+				day: restTime.day,
+				hour: restTime.hour,
+				minute: restTime.minute,
+				second: restTime.second,
+			})
+	})
+	data.data = output
+	res.json(data)
+});
+
+
+
+// 近期精选
+router.get('/surface/recent', async function(req, res, next) {
+	let data = await httpRequest({
+		hostType: 'qzApi', 
+		method: 'GET', 
+		url: '/surface/recent', 
+		data: req.query,
+		req,
+		res,
+		next
+	})
+	let getData = data.data,
+			output = []
+	getData.forEach((item) => {
+		let restTime = pocessor.restTime(new Date(item.endTime).getTime())
+		output.push(
+			{
+				id: item.id,
+				logo: item.companyInfo.logoInfo.smallUrl,
+				companyShortname: item.companyInfo.companyShortname,
+				oneSentenceIntro: item.companyInfo.oneSentenceIntro || '暂没有设置',
+				employeesInfo: item.companyInfo.employeesInfo,
+				industry: item.companyInfo.industry,
+				financingInfo: item.companyInfo.financingInfo,				
+				positionName: item.positionName,
+				city: item.city,
+				district: item.district,
+				workExperienceName: item.workExperienceName,
+				educationName: item.educationName,
+				applyNum: item.applyNum,
+				seatsNum: item.seatsNum,
+				annualSalary: item.annualSalary,
+				salary: `${item.emolumentMin}~${item.emolumentMax}K`,
+				endTime: item.endTime,
+				day: restTime.day,
+				hour: restTime.hour,
+				minute: restTime.minute,
+				second: restTime.second,
+			})
+	})
+	data.data = output
+	res.json(data)
 });
 module.exports = router;
+
+
+

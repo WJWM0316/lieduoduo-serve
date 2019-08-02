@@ -1,5 +1,4 @@
 var Node_Env = process.env.Node_Env;
-console.log(Node_Env)
 var nodeApi = "", // nodeJs 代理转发的域名
     qzApi   = "", // 求职端的域名
     zpApi   = "", // 招聘端的域名
