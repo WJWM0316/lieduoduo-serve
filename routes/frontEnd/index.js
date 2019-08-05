@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var httpRequest = require('../../config/httpRequest.js')
-var pocessor = require('../../util/timePocessor.js')
+var pocessor = require('../../utils/timePocessor.js')
 
 // 限时抢购
 router.get('/surface/rapidly', async function(req, res, next) {
