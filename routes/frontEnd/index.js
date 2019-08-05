@@ -1,7 +1,8 @@
 var express = require('express');
+var canvas = require('canvas');
 var router = express.Router();
 var httpRequest = require('../../config/httpRequest.js')
-var pocessor = require('../../util/timePocessor.js')
+var pocessor = require('../../utils/timePocessor.js')
 
 // 限时抢购
 router.get('/surface/rapidly', async function(req, res, next) {
@@ -101,6 +102,8 @@ router.get('/surface/recent', async function(req, res, next) {
 	data.data = output
 	res.json(data)
 });
+
+
 module.exports = router;
 
 

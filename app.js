@@ -3,10 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var frontEndRoute = require('./routes/frontEnd/index.js');
 var usersRouter = require('./routes/users');
-
+var canvasRoute = require('./routes/canvas/index.js');
 var app = express();
 
 // view engine setup
@@ -19,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/poster', canvasRoute);
 app.use('/frontEnd', frontEndRoute);
 app.use('/users', usersRouter);
 
