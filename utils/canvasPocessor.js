@@ -12,8 +12,8 @@ class canvasPocessor {
 				if (i < text.length - 1) nextString = curString + text[i+1]
 				if (ctx.measureText(nextString).width >= (width - ellipsisWidth)) {
 					curString = curString + '...'
-					nextPositionX = x + width - ellipsisWidth
-					if (bgObject) nextPositionX = addBorder({ctx, text:curString, bgObject})
+					nextPositionX = x + width - ellipsisWidth + 20
+					if (bgObject) nextPositionX = this.addBorder({ctx, text:curString, bgObject})
 					ctx.fillStyle = color
 	        ctx.fillText(curString, x, y)
 	        return nextPositionX
@@ -21,7 +21,7 @@ class canvasPocessor {
 			}
 		} else {
 			if (bgObject) {
-				nextPositionX = addBorder({ctx, text, bgObject})
+				nextPositionX = this.addBorder({ctx, text, bgObject})
 			}
 			ctx.fillStyle = color
 			ctx.fillText(text, x, y)
