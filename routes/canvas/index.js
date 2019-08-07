@@ -10,7 +10,6 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	const canvas = createCanvas(750, 1334);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-	req.headers['Authorization'] = '1fd633e3f20f3db96c79c7dbe2607d63'
 
 	// 画背景
 	let imgUrl = await loadImage('https://attach.lieduoduo.ziwork.com/poster/specialJobBg.png')
@@ -26,6 +25,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 		res,
 		next
 	})
+
 	let list = data.data.items,
 			curY = 500,
 			curX = 121
