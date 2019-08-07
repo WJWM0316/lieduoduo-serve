@@ -37,13 +37,13 @@ router.get('/rapidlyViwe', async function(req, res, next) {
   	} else {
   		curX = 409
   	}
-  	ctx.font = 'normal 38px Sans';
+  	ctx.font = 'normal 38px PingFangSC';
     let nextPositionX = pocessor.ellipsis(ctx, item.positionName, 160, curX, curY, "#282828") + 10
-    ctx.font = 'normal 22px Sans';
+    ctx.font = 'normal 22px PingFangSC';
     pocessor.ellipsis(ctx, item.city, 80, nextPositionX + 5, curY + 8, '#8452A7', {x: nextPositionX, y: curY + 3, padding: 5, height: 30, color: '#EFE9F4'})
     let txt = `${item.emolumentMin}~${item.emolumentMax}K`
     if (item.annualSalary > 12) txt = `${txt}·${item.annualSalary}薪`
-    ctx.font = 'bold 32px Sans';
+    ctx.font = 'bold 32px PingFangSC';
     ctx.fillStyle = '#FF7F4C'
     ctx.fillText(txt, curX, curY + 50)
   })
