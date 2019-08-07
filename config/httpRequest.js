@@ -18,6 +18,13 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 			break
 	}
 	var requestUrl = host + url;
+	if (method === 'GET' && JSON.stringify(data) !== "{}") {
+		requestUrl = `${requestUrl}?`
+		for (var i in data) {
+			requestUrl = `${requestUrl}&${i}=${data[i]}`
+		}
+	}
+
 	return new Promise(function (resolve, reject) {
 		request({
 			url: requestUrl,
@@ -26,8 +33,8 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 			form: data
 		}, function (err, response, body) {
 			if (!err && response) {
-				var data = JSON.parse(body)
-				resolve(data);
+				var putData = JSON.parse(body)
+				resolve(putData);
 			} else {
 				res.send([err, response, body, '兄嘚接口報錯了'])
 			}			
