@@ -7,7 +7,7 @@ var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/canvasPocessor.js')
 
 router.get('/rapidlyViwe', async function(req, res, next) {
-	const canvas = createCanvas(750, 1334);
+	const canvas = createCanvas(750, 1300);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
 	if (req.headers['authorization-app']) {
@@ -15,7 +15,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	}
 	// 画背景
 	let imgUrl = await loadImage('https://attach.lieduoduo.ziwork.com/poster/specialJobBg.png')
-	ctx.drawImage(imgUrl, 0, 0, 750, 1334);
+	ctx.drawImage(imgUrl, 0, 0, 750, 1300);
 
 	// 请求数据
 	let data = await httpRequest({
