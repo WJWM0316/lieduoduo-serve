@@ -10,7 +10,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	const canvas = createCanvas(750, 1334);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-
+	req.headers['Authorization'] = 'a88c9e5fe79e85b58891ab79244ff94c'
 	// 画背景
 	let imgUrl = await loadImage('https://attach.lieduoduo.ziwork.com/poster/specialJobBg.png')
 	ctx.drawImage(imgUrl, 0, 0, 750, 1334);
