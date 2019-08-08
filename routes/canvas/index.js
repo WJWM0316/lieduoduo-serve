@@ -10,7 +10,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	const canvas = createCanvas(750, 1334);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-	if (req.headers['Authorization-App']) {
+	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['Authorization-App']
 	}
 	// 画背景
