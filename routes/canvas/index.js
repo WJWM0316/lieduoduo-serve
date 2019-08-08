@@ -32,7 +32,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 			curY = 500,
 			curX = 121
   list.forEach((item, index) => {
-  	if (index > 4) return
+  	if (index > 5) return
   	if (index % 2 === 0) {
   		curX = 121
   		if (index > 0) curY += 156
