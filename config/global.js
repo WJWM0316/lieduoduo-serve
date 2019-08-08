@@ -23,10 +23,10 @@ switch (Node_Env) {
         pubApi  = "https://pub-api.lieduoduo.com"
         break
     default: // 开发环境默认测试环境
-        nodeApi = "https://node.lieduoduo.com"
-        qzApi   = "https://qiuzhi-api.lieduoduo.com"
-        zpApi   = "https://zhaopin-api.lieduoduo.com"
-        pubApi  = "https://pub-api.lieduoduo.com"
+        nodeApi = "https://node.lieduoduo.ziwork.com"
+        qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
+        zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
+        pubApi  = "https://pub-api.lieduoduo.ziwork.com"
 }
 var GLOBALcONFIG = {
     nodeApi,
