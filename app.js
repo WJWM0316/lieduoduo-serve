@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var morgan = require('morgan');
 var path = require('path');
 var fs = require('fs');
 var cookieParser = require('cookie-parser');
@@ -9,11 +8,6 @@ var frontEndRoute = require('./routes/frontEnd/index.js');
 var usersRouter = require('./routes/users');
 var canvasRoute = require('./routes/canvas/index.js');
 var app = express();
-
-
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-
-app.use(morgan('combined', { stream: accessLogStream }))
 
 app.get('/to-stdout', function(req, res, next) {
     res.send('done.');
