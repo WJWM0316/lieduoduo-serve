@@ -29,7 +29,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	})
 
 	let list = data.data.items,
-			curY = 500,
+			curY = 500 - 34,
 			curX = 121
   list.forEach((item, index) => {
   	if (index > 5) return
@@ -62,7 +62,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 
 	
 	ctx.beginPath();
-	ctx.arc(105 + 94, 1100 + 94, 94, 0, Math.PI * 2);
+	ctx.arc(105 + 94, 1100 + 94 - 34, 94, 0, Math.PI * 2);
 	ctx.clip();
 	let qrcodeUrl = await loadImage(qrcode.data.qrcodeUrl)
 	ctx.drawImage(qrcodeUrl, 105, 1100, 195, 195);
