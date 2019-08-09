@@ -52,10 +52,10 @@ router.get('/position', async function(req, res, next) {
 
   // 主要内容
   ctx.textAlign = 'center'
-  ctx.font = '46px PingFangSC-bold';
+  ctx.font = 'bold 46px PingFangSC-bold';
   pocessor.ellipsis(ctx, info.positionName, 500, 375, 244)
   ctx.fillText(`${info.emolumentMin}~${info.emolumentMax}K`, 375, 317)
-  ctx.font = '24px PingFangSC-light';
+  ctx.font = 'normal 24px PingFangSC-light';
   ctx.textAlign = 'left'
   let cityWidth = ctx.measureText(info.city).width
   let edWidth = ctx.measureText(info.educationName).width
