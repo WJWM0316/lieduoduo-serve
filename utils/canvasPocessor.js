@@ -81,7 +81,7 @@ class canvasPocessor {
 			  curHeight += 48
 			  if (curHeight > 2120) {
 			  	ctx.textAlign = 'center'
-		    	ctx.font = 'bold 28px PingFangSC-light';
+		    	ctx.font = 'light 28px PingFangSC-light';
 		    	ctx.fillStyle = '#652791'
 		    	if (bgUrl) ctx.drawImage(bgUrl, 0, curHeight, bgW, bgH)
 			  	ctx.fillText('长按识别查看完整职位详情', 375, curHeight)
