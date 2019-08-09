@@ -23,7 +23,7 @@ switch (NODE_ENV) {
         pubApi  = "https://pub-api.lieduoduo.com"
         break
     default: // 开发环境默认测试环境
-        nodeApi = "https://node.lieduoduo.ziwork.com"
+        nodeApi = "http://localhost:3000"
         qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
         zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         pubApi  = "https://pub-api.lieduoduo.ziwork.com"

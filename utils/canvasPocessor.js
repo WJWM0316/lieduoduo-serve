@@ -45,5 +45,53 @@ class canvasPocessor {
 	    return bgObject.x + metricsW + 2*bgObject.padding
 	  }
 	}
+	lineFeed (ctx, text, width, x, y, bgUrl, bgW = 750, bgH = 90) {
+		bgH = 150
+		text = text.replace(/[\r\n]/g, '<newLine>')
+		let textArray = text.split('<newLine>')
+		let curHeight = y
+		for (let j = 0; j < textArray.length; j++) {
+			let item = textArray[j].trim()
+			if (!item.match(/^[ ]+$/)) {
+				let descString = ''
+				let nextDescString = ''
+				let nextDescWidth = 0
+				if (ctx.measureText(item).width > width + 35) {
+			    let iIndex = 0 // 最后一行的第一个字的索引
+			    for (let i = 0; i < item.length - 1; i++) {
+			      descString = descString + item[i]
+			      nextDescString = descString + item[i+1]
+			      nextDescWidth = ctx.measureText(nextDescString).width
+			      if (nextDescWidth > width + 35) {
+			      	if (bgUrl) ctx.drawImage(bgUrl, 0, curHeight, bgW, bgH)
+			        ctx.fillText(descString, 80, curHeight - 28)
+			        iIndex = i
+			        descString = ''
+			        curHeight += 48
+			      }
+			    }
+			    if (iIndex !== item.length - 1) {
+			    	if (bgUrl) ctx.drawImage(bgUrl, 0, curHeight, bgW, bgH)
+			    	ctx.fillText(item.slice(iIndex + 1, item.length), 80, curHeight - 28)
+			    }
+			  } else {
+			    if (bgUrl) ctx.drawImage(bgUrl, 0, curHeight, bgW, bgH)
+			    ctx.fillText(item, x, curHeight - 28)
+			  }
+			  curHeight += 48
+			  if (curHeight > 2120) {
+			  	ctx.textAlign = 'center'
+		    	ctx.font = 'normal 28px PingFangSC';
+		    	ctx.fillStyle = '#652791'
+		    	if (bgUrl) ctx.drawImage(bgUrl, 0, curHeight, bgW, bgH)
+			  	ctx.fillText('长按识别查看完整职位详情', 375, curHeight)
+			  	curHeight += 40
+			  	ctx.textAlign = 'left'
+			  	return curHeight
+			  }
+			}
+		}
+	  return curHeight
+	}
 }
 module.exports = new canvasPocessor()
