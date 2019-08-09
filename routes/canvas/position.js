@@ -4,9 +4,9 @@ var path = require('path');
 var public = path.resolve('./public')
 var {createCanvas, loadImage, registerFont} = require('canvas');
 
-registerFont(public + '/font/PingFangSC.ttf', { family: 'PingFangSC' })
+registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC' })
 registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
-registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light' })
+registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-light' })
 
 var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/canvasPocessor.js')
@@ -103,7 +103,7 @@ router.get('/position', async function(req, res, next) {
     }
     
     let metricsW = ctx.measureText(item).width // 文本宽度
-    ctx.fillText(item, position.x + r, position.y + r - 17)
+    ctx.fillText(item, position.x + r, position.y + r - 18)
 
     ctx.beginPath()
     ctx.moveTo(position.x + r, position.y)
