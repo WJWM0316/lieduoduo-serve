@@ -44,17 +44,17 @@ router.get('/position', async function(req, res, next) {
 
   // 个人资料
   ctx.fillStyle = '#ffffff'
-  ctx.font = 'normal 28px PingFangSC';
+  ctx.font = 'light 28px PingFangSC';
   pocessor.ellipsis(ctx, `${info.recruiterInfo.name} | ${info.recruiterInfo.position}`, 360, 212, 57)
-  ctx.font = 'normal 22px PingFangSC';
+  ctx.font = 'light 22px PingFangSC';
   ctx.fillText(randomCopy.agreedTxtB(), 212, 97)
 
   // 主要内容
   ctx.textAlign = 'center'
-  ctx.font = 'normal 46px PingFangSC';
+  ctx.font = 'light 46px PingFangSC';
   pocessor.ellipsis(ctx, info.positionName, 500, 375, 244)
   ctx.fillText(`${info.emolumentMin}~${info.emolumentMax}K`, 375, 317)
-  ctx.font = 'normal 24px PingFangSC';
+  ctx.font = 'light 24px PingFangSC';
   ctx.textAlign = 'left'
   let cityWidth = ctx.measureText(info.city).width
   let edWidth = ctx.measureText(info.educationName).width
@@ -87,7 +87,7 @@ router.get('/position', async function(req, res, next) {
     x: 59,
     y: curHeight
   }
-  ctx.font = 'normal 26px PingFangSC';
+  ctx.font = 'light 26px PingFangSC';
   ctx.fillStyle = '#ffffff'
   ctx.strokeStyle = '#ffffff'
   ctx.lineWidth = 1
@@ -162,11 +162,11 @@ router.get('/position', async function(req, res, next) {
   ctx.getImageData
   let bg2 = await loadImage(public + '/images/position2.png')
   ctx.drawImage(bg2, 38, curHeight, 674, 166)
-  ctx.font = 'normal 32px PingFangSC';
+  ctx.font = 'light 32px PingFangSC';
   let companyName = companyInfo.companyShortname
   // 需要省略号
   pocessor.ellipsis(ctx, companyName, 456, 210, curHeight + 43)
-	ctx.font = 'normal 26px PingFangSC';
+	ctx.font = 'light 26px PingFangSC';
   // 需要省略号
   let desc = `${companyInfo.industry} · ${companyInfo.financingInfo} · ${companyInfo.employeesInfo}`
   pocessor.ellipsis(ctx, desc, 456, 210, curHeight + 89)
@@ -185,7 +185,7 @@ router.get('/position', async function(req, res, next) {
     x: 80,
     y: curHeight
   }
-  ctx.font = 'normal 24px PingFangSC';
+  ctx.font = 'light 24px PingFangSC';
   info.skillsLabel.map((item, index) => {
     addTeamLabel(item, index)
   })
@@ -215,7 +215,7 @@ router.get('/position', async function(req, res, next) {
   let descIndex = 0
   
   curHeight = curHeight + 90
-  ctx.font = 'normal 28px PingFangSC';
+  ctx.font = 'light 28px PingFangSC';
   ctx.fillStyle = '#282828'
   if (!info.describe) info.describe = '你还未填写职位详情，快去填写吧~'
   curHeight = pocessor.lineFeed(ctx, info.describe, 570, 80, curHeight, bg4, 750, 100)
@@ -235,10 +235,10 @@ router.get('/position', async function(req, res, next) {
   ctx.drawImage(qrCodeUrl, 75, curHeight + 88, 170, 170)
   let bg5 = await loadImage(public + '/images/position5.png')
   ctx.drawImage(bg5, 0, curHeight + 10, 750, 287)
-  ctx.font = 'normal 30px PingFangSC';
+  ctx.font = 'light 30px PingFangSC';
   ctx.fillStyle = '#fff'
   ctx.fillText('长按打开小程序与Ta约面吧！', 276, curHeight + 130)
-  ctx.font = 'normal 24px PingFangSC';
+  ctx.font = 'light 24px PingFangSC';
   ctx.fillText(`Ta还有${info.recruiterInfo.positionNum}个职位在招！`, 276, curHeight + 181)
   curHeight = curHeight + 287
 
