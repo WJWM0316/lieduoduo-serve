@@ -5,8 +5,8 @@ var public = path.resolve('./public')
 var {createCanvas, loadImage, registerFont} = require('canvas');
 
 registerFont(public + '/font/PingFangSC.ttf', { family: 'PingFangSC' })
-// registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
-// registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-light' })
+registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
+registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light' })
 
 var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/canvasPocessor.js')
@@ -52,10 +52,10 @@ router.get('/position', async function(req, res, next) {
 
   // 主要内容
   ctx.textAlign = 'center'
-  ctx.font = 'bold 46px PingFangSC';
+  ctx.font = 'bold 46px PingFangSC-bold';
   pocessor.ellipsis(ctx, info.positionName, 500, 375, 244)
   ctx.fillText(`${info.emolumentMin}~${info.emolumentMax}K`, 375, 317)
-  ctx.font = '24px PingFangSC';
+  ctx.font = 'light 24px PingFangSC-light';
   ctx.textAlign = 'left'
   let cityWidth = ctx.measureText(info.city).width
   let edWidth = ctx.measureText(info.educationName).width
@@ -88,7 +88,7 @@ router.get('/position', async function(req, res, next) {
     x: 59,
     y: curHeight
   }
-  ctx.font = '26px PingFangSC';
+  ctx.font = 'light 26px PingFangSC-light';
   ctx.fillStyle = '#ffffff'
   ctx.strokeStyle = '#ffffff'
   ctx.lineWidth = 1
@@ -163,11 +163,11 @@ router.get('/position', async function(req, res, next) {
   ctx.getImageData
   let bg2 = await loadImage(public + '/images/position2.png')
   ctx.drawImage(bg2, 38, curHeight, 674, 166)
-  ctx.font = 'bold 32px PingFangSC';
+  ctx.font = 'bold 32px PingFangSC-bold';
   let companyName = companyInfo.companyShortname
   // 需要省略号
   pocessor.ellipsis(ctx, companyName, 456, 210, curHeight + 43)
-	ctx.font = '26px PingFangSC';
+	ctx.font = 'light 26px PingFangSC-light';
   // 需要省略号
   let desc = `${companyInfo.industry} · ${companyInfo.financingInfo} · ${companyInfo.employeesInfo}`
   pocessor.ellipsis(ctx, desc, 456, 210, curHeight + 89)
@@ -216,7 +216,7 @@ router.get('/position', async function(req, res, next) {
   let descIndex = 0
   
   curHeight = curHeight + 90
-  ctx.font = '28px PingFangSC';
+  ctx.font = 'light 28px PingFangSC-light';
   ctx.fillStyle = '#282828'
   if (!info.describe) info.describe = '你还未填写职位详情，快去填写吧~'
   curHeight = pocessor.lineFeed(ctx, info.describe, 570, 80, curHeight, bg4, 750, 100)
@@ -239,7 +239,7 @@ router.get('/position', async function(req, res, next) {
   ctx.font = '30px PingFangSC';
   ctx.fillStyle = '#fff'
   ctx.fillText('长按打开小程序与Ta约面吧！', 276, curHeight + 130)
-  ctx.font = 'light 24px PingFangSC';
+  ctx.font = 'light 24px PingFangSC-light';
   ctx.fillText(`Ta还有${info.recruiterInfo.positionNum}个职位在招！`, 276, curHeight + 181)
   curHeight = curHeight + 287
 
