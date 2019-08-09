@@ -103,7 +103,7 @@ router.get('/position', async function(req, res, next) {
     }
     
     let metricsW = ctx.measureText(item).width // 文本宽度
-    ctx.fillText(item, position.x + r, position.y + r - 13)
+    ctx.fillText(item, position.x + r, position.y + r - 10)
 
     ctx.beginPath()
     ctx.moveTo(position.x + r, position.y)
