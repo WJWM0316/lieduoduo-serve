@@ -4,8 +4,9 @@ var path = require('path');
 var public = path.resolve('./public')
 var {createCanvas, loadImage, registerFont} = require('canvas');
 
-registerFont(public + '/font/PingFangSC-hei.ttf', { family: 'PingFangSC' })
-
+registerFont(public + '/font/PingFangSC.ttf', { family: 'PingFangSC' })
+registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
+registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light' })
 
 var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/canvasPocessor.js')
