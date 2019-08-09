@@ -163,7 +163,7 @@ router.get('/position', async function(req, res, next) {
   ctx.getImageData
   let bg2 = await loadImage(public + '/images/position2.png')
   ctx.drawImage(bg2, 38, curHeight, 674, 166)
-  ctx.font = '32px PingFangSC-bold';
+  ctx.font = 'bold 32px PingFangSC-bold';
   let companyName = companyInfo.companyShortname
   // 需要省略号
   pocessor.ellipsis(ctx, companyName, 456, 210, curHeight + 43)
