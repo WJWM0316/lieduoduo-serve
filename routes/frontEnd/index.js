@@ -119,7 +119,7 @@ router.get('/surface/city/list', async function(req, res, next) {
 		next
 	})
 	res.json(data)
-}
+});
 
 module.exports = router;
 
