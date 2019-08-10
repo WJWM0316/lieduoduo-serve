@@ -16,7 +16,6 @@ router.get('/resume', async function(req, res, next) {
 	const canvas = createCanvas(750, 5000);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-	req.headers['Authorization'] = 'cd62d5ec0139fba30dd57c6aaae98d33'
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
 	}
@@ -456,12 +455,12 @@ router.get('/resume', async function(req, res, next) {
 				url: jpeg
 			}
 		}
-		// res.json(data)
-	 	res.render('index',{
-	 		 title:'study book' ,
-	 		 jpeg:jpeg,
-	 		 description:'照片墙'
-	 	})
+		res.json(data)
+	 	// res.render('index',{
+	 	// 	 title:'study book' ,
+	 	// 	 jpeg:jpeg,
+	 	// 	 description:'照片墙'
+	 	// })
 	});
 })
 

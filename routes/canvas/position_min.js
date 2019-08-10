@@ -16,7 +16,6 @@ router.get('/position_min', async function(req, res, next) {
 	const canvas = createCanvas(750, 1180);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-	req.headers['Authorization'] = '37366e3cbdc1969a72af09f6d29dd6bb'
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
 	}
@@ -180,12 +179,12 @@ router.get('/position_min', async function(req, res, next) {
 				url: jpeg
 			}
 		}
-		// res.json(data)
-	 	res.render('index',{
-	 		 title:'study book' ,
-	 		 jpeg:jpeg,
-	 		 description:'照片墙'
-	 	})
+		res.json(data)
+	 	// res.render('index',{
+	 	// 	 title:'study book' ,
+	 	// 	 jpeg:jpeg,
+	 	// 	 description:'照片墙'
+	 	// })
 	});
 })
 
