@@ -93,5 +93,23 @@ class canvasPocessor {
 		}
 	  return curHeight
 	}
+	ellipsisText (ctx, text, width) {
+		let ellipsisWidth = ctx.measureText('...').width
+		let textWidth = ctx.measureText(text).width
+		let curString = ''
+		let nextString = ''
+		if (textWidth > width) {
+			for(let i = 0; i < text.length; i++) {
+				curString = curString + text[i]
+				if (i < text.length - 1) nextString = curString + text[i+1]
+				if (ctx.measureText(nextString).width >= (width - ellipsisWidth)) {
+					curString = curString + '...'
+					return curString
+				}
+			}
+		} else {
+			return text
+		}
+	}
 }
 module.exports = new canvasPocessor()
