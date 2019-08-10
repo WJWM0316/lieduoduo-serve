@@ -171,7 +171,7 @@ router.get('/position_min', async function(req, res, next) {
       }
     })
     let string = `Ta还有${pocessor.ellipsisText(ctx, types, 275)}等${info.recruiterInfo.positionNum}个职位在招 !`
-    pocessor.ellipsis(ctx, string, 554, 375, 1071, '#FFFFFF', {color: '#ffffff', r:21, y:1066, maxWidth: 750, opacity: 0.3})
+    pocessor.ellipsis(ctx, string, 554, 375, 1071, '#FFFFFF', {color: '#ffffff', r:21, y:1066, maxWidth: 750, height: 42, opacity: 0.3})
   }
 	canvas.toDataURL('image/png', (err, jpeg) => {
 		let data = {

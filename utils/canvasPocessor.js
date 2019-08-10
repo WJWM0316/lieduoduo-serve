@@ -37,11 +37,15 @@ class canvasPocessor {
 			ctx.beginPath()
 			ctx.fillStyle = bgObject.color
 	    if (bgObject.r) {
-	    ctx.arc(bgObject.x + bgObject.r, bgObject.y + bgObject.r, bgObject.r, 0.5*Math.PI, 1.5*Math.PI)
-	    ctx.arc(bgObject.x + metricsW + bgObject.r, bgObject.y + bgObject.r, bgObject.r, 1.5*Math.PI, 0.5*Math.PI)
+		    ctx.arc(bgObject.x + bgObject.r, bgObject.y + bgObject.r, bgObject.r, 0.5*Math.PI, 1.5*Math.PI)
+		    ctx.arc(bgObject.x + metricsW + bgObject.r, bgObject.y + bgObject.r, bgObject.r, 1.5*Math.PI, 0.5*Math.PI)
 	  	} else {
 	  		ctx.fillRect(bgObject.x, bgObject.y, metricsW+2*bgObject.padding, bgObject.height)
 	  	}
+	  	if (bgObject.opacity) {
+	  		ctx.globalAlpha = bgObject.opacity
+	  	}
+	    ctx.fill()	    	
 	    return bgObject.x + metricsW + 2*bgObject.padding
 	  }
 	}
