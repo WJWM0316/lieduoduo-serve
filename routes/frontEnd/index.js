@@ -107,6 +107,19 @@ router.get('/surface/recent', async function(req, res, next) {
 	res.json(data)
 });
 
+// 急速约面城市列表
+router.get('/surface/city/list', async function(req, res, next) {
+	let data = await httpRequest({
+		hostType: 'qzApi', 
+		method: 'GET', 
+		url: '/surface/city/list', 
+		data: req.query, 
+		req,
+		res,
+		next
+	})
+	res.json(data)
+}
 
 module.exports = router;
 

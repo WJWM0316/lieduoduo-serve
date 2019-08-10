@@ -27,8 +27,8 @@ router.get('/position', async function(req, res, next) {
 	let data = await httpRequest({
 		hostType: 'qzApi', 
 		method: 'GET', 
-		url: `/position/1687`, 
-		data: {id: 1687}, 
+		url: `/position/${req.query.id}`, 
+		data: req.query, 
 		req,
 		res,
 		next

@@ -78,12 +78,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 				url: jpeg
 			}
 		}
-		// res.json(data)
-	 	res.render('index',{
-	 		 title:'study book' ,
-	 		 jpeg:jpeg,
-	 		 description:'照片墙'
-	 	})
+		res.json(data)
 	});
 })
 
