@@ -219,7 +219,8 @@ router.get('/position', async function(req, res, next) {
   ctx.fillStyle = '#282828'
   if (!info.describe) info.describe = '你还未填写职位详情，快去填写吧~'
   curHeight = pocessor.lineFeed(ctx, info.describe, 570, 80, curHeight, bg4, 750, 100)
-
+  let position6 = await loadImage(public + '/images/position6.png')
+  ctx.drawImage(position6, 0, curHeight - 200, 74, 92)
   
   // 请求数据
 	let qrCode = await httpRequest({

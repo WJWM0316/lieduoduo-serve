@@ -41,6 +41,12 @@ router.get('/recruiter', async function(req, res, next) {
   let recruiter1 = await loadImage(public + '/images/recruiter1.png')
   ctx.drawImage(recruiter1, 0, 0, 750, 515)
 
+  // vip
+  if (info.companyInfo.id) {
+    let recruiter1 = await loadImage(public + '/images/recruiter5.png')
+    ctx.drawImage(recruiter5, 410, 190, 46, 46)
+  }
+
   // 个人资料
   ctx.fillStyle = '#fff'
   ctx.font = '46px PingFangSC';
