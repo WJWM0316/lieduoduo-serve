@@ -33,11 +33,13 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 			form: data
 		}, function (err, response, body) {
 			if (!err && response) {
-				console.log(body)
-				var putData = JSON.parse(body)
-				console.log(11111111111111111)
-				console.log(putData)
-				resolve(putData)
+				try {
+				  var putData = JSON.parse(body)
+					resolve(putData)
+				}
+				catch(err) {
+				  res.send([err, response, body, '兄嘚接口報錯了'])
+				}
 			} else {
 				res.send([err, response, body, '兄嘚接口報錯了'])
 			}			
