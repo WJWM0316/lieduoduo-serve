@@ -16,7 +16,6 @@ router.get('/recruiter', async function(req, res, next) {
 	const canvas = createCanvas(750, 5000);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
-  req.headers['Authorization'] = '4a870f0df7161097d952a819b5f5ad79'
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
 	}
