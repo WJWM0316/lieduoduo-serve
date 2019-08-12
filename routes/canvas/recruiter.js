@@ -43,7 +43,7 @@ router.get('/recruiter', async function(req, res, next) {
 
   // vip
   if (info.companyInfo.id) {
-    let recruiter1 = await loadImage(public + '/images/recruiter5.png')
+    let recruiter5 = await loadImage(public + '/images/recruiter5.png')
     ctx.drawImage(recruiter5, 410, 190, 46, 46)
   }
 
