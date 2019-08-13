@@ -45,9 +45,9 @@ router.get('/rapidlyViwe', async function(req, res, next) {
   		curX = 409
   	}
   	ctx.font = 'bold 30px PingFangSC';
-    let nextPositionX = pocessor.ellipsis(ctx, item.positionName, 160, curX, curY, "#282828") + 10
-    ctx.font = 'normal 22px PingFangSC';
-    pocessor.ellipsis(ctx, item.city, 80, nextPositionX + 5, curY + 5, '#8452A7', {x: nextPositionX, y: curY, padding: 5, height: 30, color: '#EFE9F4'})
+    let nextPositionX = pocessor.ellipsis(ctx, item.positionName, 220, curX, curY, "#282828") + 10
+    // ctx.font = 'normal 22px PingFangSC';
+    // pocessor.ellipsis(ctx, item.city, 80, nextPositionX + 5, curY + 5, '#8452A7', {x: nextPositionX, y: curY, padding: 5, height: 30, color: '#EFE9F4'})
     let txt = `${item.emolumentMin}~${item.emolumentMax}K`
     if (item.annualSalary > 12) txt = `${txt}·${item.annualSalary}薪`
     ctx.font = 'bold 32px PingFangSC';
