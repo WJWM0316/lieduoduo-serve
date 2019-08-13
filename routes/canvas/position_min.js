@@ -16,6 +16,7 @@ router.get('/position_min', async function(req, res, next) {
 	const canvas = createCanvas(750, 1180);
 	const ctx = canvas.getContext('2d');
 	ctx.textBaseline = "top"
+  if (req.query.token) req.headers['Authorization'] = req.query.token
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
 	}

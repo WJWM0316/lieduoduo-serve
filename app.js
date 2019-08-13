@@ -9,10 +9,6 @@ var usersRouter = require('./routes/users');
 var canvasRoute = require('./routes/canvas/index.js');
 var app = express();
 
-app.get('/to-stdout', function(req, res, next) {
-    res.send('done.');
-})
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

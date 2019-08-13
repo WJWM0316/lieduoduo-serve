@@ -1,5 +1,4 @@
 var express = require('express');
-var canvas = require('canvas');
 var router = express.Router();
 var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/timePocessor.js')

@@ -3,6 +3,7 @@
         {
             "name": "node_demo",
             "script": "./bin/www",
+            "dev":"./bin/www",
             "cwd": "./",
             "watch": [
                 "bin",
