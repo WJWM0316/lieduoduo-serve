@@ -52,7 +52,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
     if (item.annualSalary > 12) txt = `${txt}·${item.annualSalary}薪`
     ctx.font = 'bold 32px PingFangSC';
     ctx.fillStyle = '#FF7F4C'
-    ctx.fillText(txt, curX, curY + 50)
+    ctx.fillText(txt, curX, curY + 54)
   })
 
 	let qrcode = await httpRequest({
