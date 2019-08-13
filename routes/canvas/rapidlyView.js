@@ -34,7 +34,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 		next
 	})
 	let list = data.data.items,
-			curY = 500 - 20,
+			curY = 488,
 			curX = 121
   list.forEach((item, index) => {
   	if (index > 5) return
