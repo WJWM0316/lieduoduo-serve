@@ -177,7 +177,8 @@ router.get('/position_min', async function(req, res, next) {
 		let data = {
 			httpStatus: 200,
 			data: {
-				url: jpeg
+				url: jpeg,
+        posterData: info
 			}
 		}
 		res.json(data)
