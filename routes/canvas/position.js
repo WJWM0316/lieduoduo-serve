@@ -25,7 +25,7 @@ router.get('/position', async function(req, res, next) {
 
 	// 请求数据
 	let data = await httpRequest({
-		hostType: 'qzApi', 
+		hostType: 'qzApi',
 		method: 'GET', 
 		url: `/position/${req.query.id}`, 
 		data: req.query, 
@@ -253,7 +253,8 @@ router.get('/position', async function(req, res, next) {
 		let data = {
 			httpStatus: 200,
 			data: {
-				url: jpeg
+				url: jpeg,
+        posterData: info
 			}
 		}
 		res.json(data)
