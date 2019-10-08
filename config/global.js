@@ -9,24 +9,28 @@ switch (NODE_ENV) {
         qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
         zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         pubApi  = "https://pub-api.lieduoduo.ziwork.com"
+        webHost = "https://h5.lieduoduo.ziwork.com"
         break;
     case 'pre': // 预发布
         nodeApi = "https://node.lieduoduo.com"
         qzApi   = "https://qiuzhi-api.lieduoduo.com"
         zpApi   = "https://zhaopin-api.lieduoduo.com"
         pubApi  = "https://pub-api.lieduoduo.com"
+        webHost = "https://h5.lieduoduo.com"
         break
     case 'pro': // 正式
         nodeApi = "https://node.lieduoduo.com"
         qzApi    = "https://qiuzhi-api.lieduoduo.com"
         zpApi   = "https://zhaopin-api.lieduoduo.com"
         pubApi  = "https://pub-api.lieduoduo.com"
+        webHost = "https://h5.lieduoduo.com"
         break
     default: // 开发环境默认测试环境
         nodeApi = "http://localhost:3000"
         qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
         zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         pubApi  = "https://pub-api.lieduoduo.ziwork.com"
+        webHost = "https://h5.lieduoduo.ziwork.com"
 }
 var GLOBALcONFIG = {
     nodeApi,
