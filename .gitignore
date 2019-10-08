@@ -1,8 +1,10 @@
 .DS_Store
+yarn.lock
+access.log
+yarn-error.log
 /node_modules
-/yarn.lock
 /dist
-/access.log
+
 # local env files
 
 # Log files
