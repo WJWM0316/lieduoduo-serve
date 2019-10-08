@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
-var QRCode = require('qrcode');
+// var QRCode = require('qrcode');
 var public = path.resolve('./public')
 var {createCanvas, loadImage, registerFont} = require('canvas');
 var Global = require("../../config/global.js"); //根据环境变量，获取对应的IP
@@ -58,16 +58,16 @@ router.get('/wantYou', async function(req, res, next) {
   ctx.fillText(info.name, 375, 598)
   ctx.font = '24px PingFangSC';
   ctx.fillText(info.position, 375, 652)
-  const qrcodeCanvas = createCanvas(185, 185);
+  // const qrcodeCanvas = createCanvas(185, 185);
 
-  let p = `${Global.webHost}wantYou_b?vkey=sdfcxfe&uid=${req.query.uid}`
-  let path = `page/common/pages/webView/webView?type=1&p=${encodeURIComponent(p)}`
-  QRCode.toCanvas(qrcodeCanvas, path, function (err, jpeg) {
-    console.log(err, jpeg, 'success!');
-    ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
-    ctx.clip();
-    ctx.drawImage(jpeg, 495, 1004, 185, 185);
-  })
+  // let p = `${Global.webHost}wantYou_b?vkey=sdfcxfe&uid=${req.query.uid}`
+  // let path = `page/common/pages/webView/webView?type=1&p=${encodeURIComponent(p)}`
+  // QRCode.toCanvas(qrcodeCanvas, path, function (err, jpeg) {
+  //   console.log(err, jpeg, 'success!');
+  //   ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
+  //   ctx.clip();
+  //   ctx.drawImage(jpeg, 495, 1004, 185, 185);
+  // })
 
   canvas.toDataURL('image/png', (err, jpeg) => {
     let data = {
