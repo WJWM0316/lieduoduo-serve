@@ -26,10 +26,21 @@ router.get('/wantYou', async function(req, res, next) {
   let imgUrl = await loadImage(public + '/images/wantYouBg.jpg')
   ctx.drawImage(imgUrl, 0, 0, 750, 1334);
 
-  let data = await httpRequest({
+  let data = req.query.uid ? 
+  await httpRequest({
     hostType: 'pubApi', 
     method: 'GET', 
     url: `/recruiter/detail/uid/${req.query.uid}`, 
+    data: req.query, 
+    req,
+    res,
+    next
+  })
+  :
+  await httpRequest({
+    hostType: 'zhappin', 
+    method: 'GET', 
+    url: `/recruiter/detail`, 
     data: req.query, 
     req,
     res,
