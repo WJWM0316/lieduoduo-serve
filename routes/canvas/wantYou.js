@@ -38,7 +38,7 @@ router.get('/wantYou', async function(req, res, next) {
   })
   :
   await httpRequest({
-    hostType: 'zhappin', 
+    hostType: 'zpApi', 
     method: 'GET', 
     url: `/recruiter/detail`, 
     data: req.query, 
