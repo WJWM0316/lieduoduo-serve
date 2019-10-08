@@ -84,7 +84,8 @@ router.get('/wantYou', async function(req, res, next) {
     let data = {
       httpStatus: 200,
       data: {
-        url: jpeg
+        url: jpeg,
+        detail: info
       }
     }
     res.json(data)
