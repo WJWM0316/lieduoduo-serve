@@ -80,11 +80,14 @@ router.get('/wantYou', async function(req, res, next) {
     res,
     next
   })
-  console.log(qrCodeData, 22, Global, `p=${encodeURIComponent(p)}`)
+  console.log(qrCodeData, 1111)
   ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
   ctx.clip();
-  let qrCode = await loadImage(qrCodeData.data.url)
-  ctx.drawImage(qrCode, 495, 1004, 185, 185);
+  if (qrCodeData.data.url) {
+    let qrCode = await loadImage(qrCodeData.data.url)
+    ctx.drawImage(qrCode, 495, 1004, 185, 185);
+  }
+  
   
 
   canvas.toDataURL('image/png', (err, jpeg) => {
@@ -95,7 +98,7 @@ router.get('/wantYou', async function(req, res, next) {
         detail: info
       }
     }
-    //res.json(data)
+    // res.json(data)
     res.render('index',{
         title:'study book' ,
         jpeg:jpeg,
