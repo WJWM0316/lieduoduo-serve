@@ -36,7 +36,8 @@ var GLOBALcONFIG = {
     nodeApi,
     qzApi,
     zpApi,
-    pubApi
+    pubApi,
+    webHost
 }
 
 module.exports = GLOBALcONFIG;

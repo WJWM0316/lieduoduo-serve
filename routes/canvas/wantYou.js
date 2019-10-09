@@ -69,16 +69,23 @@ router.get('/wantYou', async function(req, res, next) {
   ctx.fillText(info.name, 375, 598)
   ctx.font = '24px PingFangSC';
   ctx.fillText(info.position, 375, 652)
-  // const qrcodeCanvas = createCanvas(185, 185);
 
-  // let p = `${Global.webHost}wantYou_b?vkey=sdfcxfe&uid=${req.query.uid}`
-  // let path = `page/common/pages/webView/webView?type=1&p=${encodeURIComponent(p)}`
-  // QRCode.toCanvas(qrcodeCanvas, path, function (err, jpeg) {
-  //   console.log(err, jpeg, 'success!');
-  //   ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
-  //   ctx.clip();
-  //   ctx.drawImage(jpeg, 495, 1004, 185, 185);
-  // })
+  let p = `${Global.webHost}/wantYou_b?vkey=sdfcxfe&uid=${req.query.uid}`
+  let qrCodeData = await httpRequest({
+    hostType: 'pubApi', 
+    method: 'POST', 
+    url: `/share/mini/program/qr/code`, 
+    data: {path: 'page/common/pages/webView/webView', params: `p=${encodeURIComponent(p)}`}, 
+    req,
+    res,
+    next
+  })
+  console.log(qrCodeData, 22, Global, `p=${encodeURIComponent(p)}`)
+  ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
+  ctx.clip();
+  let qrCode = await loadImage(qrCodeData.data.url)
+  ctx.drawImage(qrCode, 495, 1004, 185, 185);
+  
 
   canvas.toDataURL('image/png', (err, jpeg) => {
     let data = {
@@ -88,12 +95,12 @@ router.get('/wantYou', async function(req, res, next) {
         detail: info
       }
     }
-    res.json(data)
-    // res.render('index',{
-    //     title:'study book' ,
-    //     jpeg:jpeg,
-    //     description:'照片墙'
-    //  })
+    //res.json(data)
+    res.render('index',{
+        title:'study book' ,
+        jpeg:jpeg,
+        description:'照片墙'
+     })
   });
 })
 
