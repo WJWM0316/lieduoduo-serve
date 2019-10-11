@@ -85,7 +85,7 @@ router.get('/wantYou', async function(req, res, next) {
     hostType: 'pubApi', 
     method: 'POST', 
     url: `/share/mini/program/qr/code`, 
-    data: {path: 'page/common/pages/webView/webView', params: `p=${encodeURIComponent(p)}`}, 
+    data: {path: 'page/common/pages/webView/webView', params: `p=${encodeURIComponent(p)}`, type: 'want_you_activity'}, 
     req,
     res,
     next

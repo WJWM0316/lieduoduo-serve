@@ -38,10 +38,10 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 					resolve(putData)
 				}
 				catch(err) {
-				  res.send([err, response, body, '兄嘚接口報錯了'])
+				  res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 				}
 			} else {
-				res.send([err, response, body, '兄嘚接口報錯了'])
+				res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 			}			
 		})
 	})
