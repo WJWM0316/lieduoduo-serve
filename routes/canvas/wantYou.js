@@ -26,7 +26,6 @@ router.get('/wantYou', async function(req, res, next) {
   let imgUrl = await loadImage(public + '/images/wantYouBg.jpg')
   ctx.drawImage(imgUrl, 0, 0, 750, 1334);
 
-
   let data = await httpRequest({
     hostType: 'zpApi', 
     method: 'GET', 
@@ -56,7 +55,8 @@ router.get('/wantYou', async function(req, res, next) {
       companyShortname: ''
     }
     info.avatar.smallUrl = 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
-    info.name = data1.data.realName
+    info.name = data1.data.companyInfo.realName
+    info.position = data1.data.companyInfo.userPosition
     info.companyShortname = data1.data.companyInfo.companyShortname
   }
   // 头像
@@ -107,12 +107,12 @@ router.get('/wantYou', async function(req, res, next) {
         detail: info
       }
     }
-    res.json(data)
-    // res.render('index',{
-    //     title:'study book' ,
-    //     jpeg:jpeg,
-    //     description:'照片墙'
-    //  })
+    // res.json(data)
+    res.render('index',{
+        title:'study book' ,
+        jpeg:jpeg,
+        description:'照片墙'
+     })
   });
 })
 
