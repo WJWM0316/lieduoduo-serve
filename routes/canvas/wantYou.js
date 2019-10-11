@@ -107,12 +107,12 @@ router.get('/wantYou', async function(req, res, next) {
         detail: info
       }
     }
-    // res.json(data)
-    res.render('index',{
-        title:'study book' ,
-        jpeg:jpeg,
-        description:'照片墙'
-     })
+    res.json(data)
+    // res.render('index',{
+    //     title:'study book' ,
+    //     jpeg:jpeg,
+    //     description:'照片墙'
+    //  })
   });
 })
 
