@@ -26,18 +26,8 @@ router.get('/wantYou', async function(req, res, next) {
   let imgUrl = await loadImage(public + '/images/wantYouBg.jpg')
   ctx.drawImage(imgUrl, 0, 0, 750, 1334);
 
-  let data = req.query.uid ? 
-  await httpRequest({
-    hostType: 'pubApi', 
-    method: 'GET', 
-    url: `/recruiter/detail/uid/${req.query.uid}`, 
-    data: req.query, 
-    req,
-    res,
-    next
-  })
-  :
-  await httpRequest({
+
+  let data = await httpRequest({
     hostType: 'zpApi', 
     method: 'GET', 
     url: `/recruiter/detail`, 
@@ -47,8 +37,30 @@ router.get('/wantYou', async function(req, res, next) {
     next
   })
 
-  let info = data.data
-
+  let info = data.data || {}
+  if (!info.uid) {
+    let data1 = await httpRequest({
+      hostType: 'zpApi', 
+      method: 'GET', 
+      url: `/cur/user_info`, 
+      data: req.query, 
+      req,
+      res,
+      next
+    })
+    info.avatar.smallUrl = data1.data.avatarInfo.smallUrl || 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
+    info.name = data1.data.nickname
+    let data2 = await httpRequest({
+      hostType: 'zpApi', 
+      method: 'GET', 
+      url: `/company/identity`, 
+      data: req.query, 
+      req,
+      res,
+      next
+    })
+    info.companyShortname = data2.data.companyInfo.companyShortname
+  }
   // 头像
   ctx.save();
   ctx.arc(298 + 78, 407 + 78, 78, 0, Math.PI * 2);
@@ -80,7 +92,6 @@ router.get('/wantYou', async function(req, res, next) {
     res,
     next
   })
-  console.log(qrCodeData, 1111)
   ctx.arc(495 + 92, 1004 + 92,  92, 0, Math.PI * 2);
   ctx.clip();
   if (qrCodeData.data.url) {
