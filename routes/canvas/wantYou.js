@@ -42,24 +42,22 @@ router.get('/wantYou', async function(req, res, next) {
     let data1 = await httpRequest({
       hostType: 'zpApi', 
       method: 'GET', 
-      url: `/cur/user_info`, 
-      data: req.query, 
-      req,
-      res,
-      next
-    })
-    info.avatar.smallUrl = data1.data.avatarInfo.smallUrl || 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
-    info.name = data1.data.nickname
-    let data2 = await httpRequest({
-      hostType: 'zpApi', 
-      method: 'GET', 
       url: `/company/identity`, 
       data: req.query, 
       req,
       res,
       next
     })
-    info.companyShortname = data2.data.companyInfo.companyShortname
+    info = {
+      avatar: {
+        smallUrl: ''
+      },
+      name: '',
+      companyShortname: ''
+    }
+    info.avatar.smallUrl = 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
+    info.name = data1.data.realName
+    info.companyShortname = data1.data.companyInfo.companyShortname
   }
   // 头像
   ctx.save();
