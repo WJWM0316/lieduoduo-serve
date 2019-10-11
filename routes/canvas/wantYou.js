@@ -47,13 +47,24 @@ router.get('/wantYou', async function(req, res, next) {
       res,
       next
     })
+    let data2 = await httpRequest({
+      hostType: 'zpApi', 
+      method: 'GET', 
+      url: `/cur/user_info`, 
+      data: req.query, 
+      req,
+      res,
+      next
+    })
     info = {
+      uid: 0,
       avatar: {
         smallUrl: ''
       },
       name: '',
       companyShortname: ''
     }
+    info.uid = data2.data.id
     info.avatar.smallUrl = 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
     info.name = data1.data.companyInfo.realName || '神秘星人'
     info.position = data1.data.companyInfo.userPosition || '金牌HR'
