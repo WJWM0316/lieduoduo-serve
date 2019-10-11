@@ -69,7 +69,6 @@ router.get('/wantYou', async function(req, res, next) {
     info.name = data1.data.companyInfo.realName || '神秘星人'
     info.position = data1.data.companyInfo.userPosition || '金牌HR'
     info.companyShortname = data1.data.companyInfo.companyShortname || data1.data.companyInfo.companyName
-    console.log(data1, data2, info, 333333333)
   }
   // 头像
   ctx.save();
