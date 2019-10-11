@@ -55,8 +55,8 @@ router.get('/wantYou', async function(req, res, next) {
       companyShortname: ''
     }
     info.avatar.smallUrl = 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
-    info.name = data1.data.companyInfo.realName
-    info.position = data1.data.companyInfo.userPosition
+    info.name = data1.data.companyInfo.realName || '神秘星人'
+    info.position = data1.data.companyInfo.userPosition || '金牌HR'
     info.companyShortname = data1.data.companyInfo.companyShortname
   }
   // 头像
