@@ -187,6 +187,7 @@ router.get('/resume', async function(req, res, next) {
     curHeight = curHeight + 36
     ctx.fillText('尚未完善', 375, curHeight - 28)
   }
+  
   function expectsItem(item, index) {
     ctx.drawImage(resume2, 0, curHeight, 750, 150)
     let title = `${item.position} | ${item.city}`
