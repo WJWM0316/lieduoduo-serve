@@ -36,8 +36,8 @@ router.get('/wantYou', async function(req, res, next) {
     next
   })
 
-  let info = data.data || {}
-  if (!info.uid) {
+  let info = data.data || null
+  if (!info) {
     let data1 = await httpRequest({
       hostType: 'zpApi', 
       method: 'GET', 
@@ -47,6 +47,7 @@ router.get('/wantYou', async function(req, res, next) {
       res,
       next
     })
+
     let data2 = await httpRequest({
       hostType: 'zpApi', 
       method: 'GET', 
@@ -70,6 +71,8 @@ router.get('/wantYou', async function(req, res, next) {
     info.position = data1.data.companyInfo.userPosition || '金牌HR'
     info.companyShortname = data1.data.companyInfo.companyShortname || data1.data.companyInfo.companyName
   }
+  
+
   // 头像
   ctx.save();
   ctx.arc(298 + 78, 407 + 78, 78, 0, Math.PI * 2);
