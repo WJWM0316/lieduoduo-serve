@@ -35,43 +35,15 @@ router.get('/wantYou', async function(req, res, next) {
     res,
     next
   })
-
   let info = data.data || null
-  if (!info) {
-    let data1 = await httpRequest({
-      hostType: 'zpApi', 
-      method: 'GET', 
-      url: `/company/identity`, 
-      data: req.query, 
-      req,
-      res,
-      next
-    })
-
-    let data2 = await httpRequest({
-      hostType: 'zpApi', 
-      method: 'GET', 
-      url: `/cur/user_info`, 
-      data: req.query, 
-      req,
-      res,
-      next
-    })
-    info = {
-      uid: 0,
-      avatar: {
-        smallUrl: ''
-      },
-      name: '',
-      companyShortname: ''
+  if (!info.avatar) {
+    info.avatar = {
+      smallUrl: 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
     }
-    info.uid = data2.data.id
-    info.avatar.smallUrl = 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
-    info.name = data1.data.companyInfo.realName || '神秘星人'
-    info.position = data1.data.companyInfo.userPosition || '金牌HR'
-    info.companyShortname = data1.data.companyInfo.companyShortname || data1.data.companyInfo.companyName
   }
-  
+  if (!info.name) info.name = '神秘星人'
+  if (!info.position) info.position = '金牌HR'
+  if (!info.companyShortname) info.companyShortname = info.companyInfo.companyShortname || info.companyInfo.companyName
 
   // 头像
   ctx.save();
