@@ -36,11 +36,6 @@ router.get('/wantYou', async function(req, res, next) {
     next
   })
   let info = data.data || null
-  if (!info.avatar) {
-    info.avatar = {
-      smallUrl: 'https://attach.lieduoduo.ziwork.com/avatar/2019/0130/11/5c5114dd36286.png!130xauto'
-    }
-  }
   
   if (!info.id) {
     let data2 = await httpRequest({
@@ -53,12 +48,22 @@ router.get('/wantYou', async function(req, res, next) {
       next
     })
     info.uid = data2.data.id
+    info.avatar = {
+      smallUrl: date2.data.avatarInfo.smallUrl
+    }
+    let data3 =  = await httpRequest({
+      hostType: 'zpApi', 
+      method: 'GET', 
+      url: `/company/identity`, 
+      data: req.query, 
+      req,
+      res,
+      next
+    })
+    info.position = data3.data.companyInfo.userPosition
+    info.name = data3.data.companyInfo.realName
+    info.companyShortname = data3.data.companyInfo.companyShortname || data3.data.companyInfo.companyName
   }
-  
-  if (!info.name) info.name = '神秘星人'
-  if (!info.position) info.position = '金牌HR'
-  if (!info.companyShortname) info.companyShortname = info.companyInfo.companyShortname || info.companyInfo.companyName
-  console.log(info.uid, info.id, 2222222222222)
   // 头像
   ctx.save();
   ctx.arc(298 + 78, 407 + 78, 78, 0, Math.PI * 2);
