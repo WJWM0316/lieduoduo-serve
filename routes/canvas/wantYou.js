@@ -51,7 +51,7 @@ router.get('/wantYou', async function(req, res, next) {
     info.avatar = {
       smallUrl: date2.data.avatarInfo.smallUrl
     }
-    let data3 =  = await httpRequest({
+    let data3 = await httpRequest({
       hostType: 'zpApi', 
       method: 'GET', 
       url: `/company/identity`, 
