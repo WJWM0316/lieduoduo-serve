@@ -49,7 +49,7 @@ router.get('/wantYou', async function(req, res, next) {
     })
     info.uid = data2.data.id
     info.avatar = {
-      smallUrl: date2.data.avatarInfo.smallUrl
+      smallUrl: data2.data.avatarInfo.smallUrl
     }
     let data3 = await httpRequest({
       hostType: 'zpApi', 
