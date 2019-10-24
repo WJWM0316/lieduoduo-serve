@@ -44,7 +44,6 @@ app.all('*', function(req, res, next) {
     req.setHeader("Access-Control-Allow-Origin", "*");
     req.setHeader("Access-Control-Allow-Credentials", "true");
     req.setHeader("Access-Control-Allow-Methods", "*");
-    req.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
     req.setHeader("Access-Control-Expose-Headers", "*");
     next();
 });
