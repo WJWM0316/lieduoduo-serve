@@ -41,12 +41,11 @@ app.use(function(err, req, res, next) {
 
 //拦截器允许跨域
 app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");  
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");  
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
-    res.header("X-Powered-By",' 3.2.1')  
-    res.header("Content-Type", "application/json;charset=utf-8");
-    res.header("Access-Control-Allow-Credentials", "true")
+    req.setHeader("Access-Control-Allow-Origin", "*");
+    req.setHeader("Access-Control-Allow-Credentials", "true");
+    req.setHeader("Access-Control-Allow-Methods", "*");
+    req.setHeader("Access-Control-Allow-Headers", "Content-Type,Access-Token");
+    req.setHeader("Access-Control-Expose-Headers", "*");
     next();
 });
 
