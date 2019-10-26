@@ -713,8 +713,8 @@ router.get('/position_min/3', async function(req, res, next) {
   let qrCode = await httpRequest({
     hostType: 'pubApi', 
     method: 'GET', 
-    url: `/share/position_share`, 
-    data: {positionId : req.query.id, type: 'qrpe'}, 
+    url: `/share/position_share?type=qrpe`, 
+    data: {positionId : req.query.id}, 
     req,
     res,
     next
