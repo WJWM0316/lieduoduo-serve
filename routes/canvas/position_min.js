@@ -43,7 +43,7 @@ router.get('/position_min', async function(req, res, next) {
     hostType: 'pubApi', 
     method: 'GET', 
     url: `/share/position_share`, 
-    data: {positionId : req.query.id}, 
+    data: {positionId : req.query.id, type: qrpe}, 
     req,
     res,
     next
@@ -256,7 +256,7 @@ router.get('/position_min/1', async function(req, res, next) {
     hostType: 'pubApi', 
     method: 'GET', 
     url: `/share/position_share`, 
-    data: {positionId : req.query.id}, 
+    data: {positionId : req.query.id, type: qrpe}, 
     req,
     res,
     next
@@ -475,7 +475,7 @@ router.get('/position_min/2', async function(req, res, next) {
     hostType: 'pubApi', 
     method: 'GET', 
     url: `/share/position_share`, 
-    data: {positionId : req.query.id}, 
+    data: {positionId : req.query.id, type: qrpe}, 
     req,
     res,
     next
@@ -713,8 +713,8 @@ router.get('/position_min/3', async function(req, res, next) {
   let qrCode = await httpRequest({
     hostType: 'pubApi', 
     method: 'GET', 
-    url: `/share/position_share?type=qrpe`, 
-    data: {positionId : req.query.id}, 
+    url: `/share/position_share`, 
+    data: {positionId : req.query.id, type: qrpe}, 
     req,
     res,
     next
