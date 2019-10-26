@@ -228,7 +228,7 @@ router.get('/position', async function(req, res, next) {
 		hostType: 'pubApi', 
 		method: 'GET', 
 		url: `/share/position_share`, 
-		data: {positionId : req.query.id}, 
+		data: {positionId : req.query.id, type: 'qrpl'}, 
 		req,
 		res,
 		next
