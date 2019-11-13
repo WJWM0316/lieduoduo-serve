@@ -67,10 +67,10 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	})
 	
 	ctx.beginPath();
-	ctx.arc(110 + 90, 1100 + 94 - 28, 94, 0, Math.PI * 2);
+	ctx.arc(105 + 94, 1033 + 94 + 33, 94, 0, Math.PI * 2);
 	ctx.clip();
 	let qrcodeUrl = await loadImage(qrcode.data.positionQrCodeUrl)
-	ctx.drawImage(qrcodeUrl, 102, 1100 - 36, 195, 195);
+	ctx.drawImage(qrcodeUrl, 106, 1033 + 36, 186, 186);
 
 	canvas.toDataURL('image/png', (err, jpeg) => {
 		let data = {
