@@ -34,10 +34,10 @@ router.get('/position_min', async function(req, res, next) {
 		next
 	})
 	let info = data.data
-
   // 头像
   let avatarUrl = await loadImage(info.recruiterInfo.avatar.smallUrl)
   ctx.drawImage(avatarUrl, 300, 131, 150, 150)
+  
   // 二维码
   let qrCode = await httpRequest({
     hostType: 'pubApi', 

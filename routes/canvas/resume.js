@@ -258,7 +258,7 @@ router.get('/resume', async function(req, res, next) {
       careersItem(item, index)
     })
   } else {
-    ctx.setTextAlign('center')
+    ctx.textAlign = 'center'
     ctx.drawImage(resume2, 0, curHeight, 750, 100)
     ctx.fillText('尚未完善', 375, curHeight + 36)
     curHeight = curHeight + 76
