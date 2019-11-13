@@ -70,7 +70,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 	ctx.arc(110 + 90, 1100 + 94 - 28, 94, 0, Math.PI * 2);
 	ctx.clip();
 	let qrcodeUrl = await loadImage(qrcode.data.positionQrCodeUrl)
-	ctx.drawImage(qrcodeUrl, 102, 1100 - 28, 195, 195);
+	ctx.drawImage(qrcodeUrl, 102, 1100 - 36, 195, 195);
 
 	canvas.toDataURL('image/png', (err, jpeg) => {
 		let data = {
@@ -79,12 +79,12 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 				url: jpeg
 			}
 		}
-		res.json(data)
-		// res.render('index',{
-	 // 		 title:'study book' ,
-	 // 		 jpeg:jpeg,
-	 // 		 description:'照片墙'
-	 // 	})
+		// res.json(data)
+		res.render('index',{
+	 		 title:'study book' ,
+	 		 jpeg:jpeg,
+	 		 description:'照片墙'
+	 	})
 	});
 })
 
