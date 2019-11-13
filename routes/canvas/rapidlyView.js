@@ -35,7 +35,7 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 		next
 	})
 	let list = data.data.items,
-			curY = 488,
+			curY = 464,
 			curX = 121
   list.forEach((item, index) => {
   	if (index > 5) return
@@ -79,12 +79,12 @@ router.get('/rapidlyViwe', async function(req, res, next) {
 				url: jpeg
 			}
 		}
-		res.json(data)
-		// res.render('index',{
-	 // 		 title:'study book' ,
-	 // 		 jpeg:jpeg,
-	 // 		 description:'照片墙'
-	 // 	})
+		// res.json(data)
+		res.render('index',{
+	 		 title:'study book' ,
+	 		 jpeg:jpeg,
+	 		 description:'照片墙'
+	 	})
 	});
 })
 
