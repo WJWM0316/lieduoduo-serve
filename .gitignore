@@ -4,7 +4,7 @@ access.log
 yarn-error.log
 /node_modules
 /dist
-
+/public/files
 # local env files
 
 # Log files
