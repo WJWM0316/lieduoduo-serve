@@ -17,9 +17,10 @@ var normal = require(public + '/font/NotoSansCJKjp.js')
 var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
 var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
 const jsPDF = require('../../utils/jspdf.node.debug.js')
-
-
-router.get('/pdf', async function(req, res, next) {
+var bodyParser = require('body-parser');
+var app = express();
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+router.post('/pdf', urlencodedParser, async function(req, res, next) {
   // 支持参数登录
   if (req.query.token) req.headers['Authorization'] = req.query.token
   if (req.headers['authorization-app']) {
@@ -36,6 +37,7 @@ router.get('/pdf', async function(req, res, next) {
     res,
     next
   })
+
   let info   = data.data,
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
@@ -48,7 +50,7 @@ router.get('/pdf', async function(req, res, next) {
   // new 一个pdf对象
   var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [1240, 1754], putOnlyUsedFonts: true}),
 			ctx    = doc.context2d;
-			
+	
   // 设置字体 支持中文
   doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
   doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
@@ -372,8 +374,7 @@ router.get('/pdf', async function(req, res, next) {
 	// })
 
 
-  res.json(111111111111)
-
+	res.end(11111);
 });
 
 module.exports = router;
