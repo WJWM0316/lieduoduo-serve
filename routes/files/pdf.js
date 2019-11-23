@@ -367,9 +367,9 @@ router.get('/pdf', async function(req, res, next) {
 	
 	
 	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
-  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.query}).then(() => {
-		fs.unlinkSync(`${public}/files/${info.name}.pdf`);
-	})
+ //  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.query}).then(() => {
+	// 	fs.unlinkSync(`${public}/files/${info.name}.pdf`);
+	// })
 
 
   res.json(111111111111)
