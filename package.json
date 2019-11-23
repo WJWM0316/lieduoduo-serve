@@ -6,6 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "ali-oss": "^6.2.0",
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "canvas": "^2.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -13,7 +16,9 @@
     "fs": "^0.0.1-security",
     "http-errors": "^1.7.3",
     "jade": "~1.11.0",
+    "jspdf": "^1.5.3",
     "morgan": "^1.9.1",
+    "officegen": "^0.6.3",
     "qrcode": "^1.4.2",
     "request": "^2.88.0"
   }
