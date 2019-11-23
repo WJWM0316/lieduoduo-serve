@@ -5,7 +5,7 @@ var nodeApi = "", // nodeJs 代理转发的域名
     pubApi  = ""  // pub公共端域名
 switch (NODE_ENV) {
     case 'dev': // 测试
-        nodeApi = "https://node.lieduoduo.ziwork.com"
+        nodeApi = "http://192.168.5.159:3000"
         qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
         zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         pubApi  = "https://pub-api.lieduoduo.ziwork.com"
@@ -26,7 +26,7 @@ switch (NODE_ENV) {
         webHost = "https://h5.lieduoduo.com"
         break
     default: // 开发环境默认测试环境
-        nodeApi = "http://localhost:3000"
+        nodeApi = "http://192.168.5.159:3000"
         qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
         zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         pubApi  = "https://pub-api.lieduoduo.ziwork.com"

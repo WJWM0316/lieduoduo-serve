@@ -17,6 +17,9 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 		case 'pubApi':
 			host = Global.pubApi
 			break
+		case 'nodeApi':
+			host = Global.nodeApi
+			break
 	}
 	var requestUrl = host + url;
 	if (method === 'GET' && JSON.stringify(data) !== "{}") {

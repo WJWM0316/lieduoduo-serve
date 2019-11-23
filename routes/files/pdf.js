@@ -20,24 +20,32 @@ const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+router.get('/test', async function(req, res, next) {
+	let ceshi = await httpRequest({
+	  hostType: 'nodeApi', 
+	  method: 'POST', 
+	  url: `/frontEnd/pdf`, 
+	  data: {uid: 193, token: 'bae95998ab381f3330af8a8ae329341d'}, 
+	  req,
+	  res,
+	  next
+	})
+	res.json(1111111111111111111)
+})
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
   // 支持参数登录
-  if (req.query.token) req.headers['Authorization'] = req.query.token
-  if (req.headers['authorization-app']) {
-    req.headers['Authorization'] = req.headers['authorization-app']
-  }
 
   // 请求数据
   let data = await httpRequest({
     hostType: 'qzApi', 
     method: 'GET', 
     url: `/jobhunter/resume`, 
-    data: req.query, 
+    data: req.body, 
     req,
     res,
     next
   })
-
+	console.log(data, 333)
   let info   = data.data,
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
