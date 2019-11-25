@@ -351,13 +351,6 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		})
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
   ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.body}).then(res => {
 		res.json({
@@ -366,12 +359,10 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		})
 	}).catch(e => {
 		res.json({
-			httpStatus: 200,
+			httpStatus: 400,
 			data: e
 		})
 	})
-
-	
 });
 
 module.exports = router;
