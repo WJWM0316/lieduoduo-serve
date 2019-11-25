@@ -49,7 +49,7 @@ router.get('/word', async function(req, res, next) {
 		pObj.addImage(path, {cx: 100, cy: 100})
 	}
 	// addImage(info.avatar.smallUrl)
-	pObj.addImage(`${public}/files/${info.name}.jpg`, {cx: 0, cy: 0})
+	pObj.addImage(`${public}/files/${info.name}.jpg`, {cx: 54, cy: 54})
 	pObj.addText(info.name, h1)
 	pObj.addText(' with color', { color: '000088' })
 	pObj.addText(' and back color.', { color: '00ffff', back: '000088' })
