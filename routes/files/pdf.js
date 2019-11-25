@@ -25,14 +25,19 @@ router.get('/test', async function(req, res, next) {
 	  hostType: 'nodeApi', 
 	  method: 'POST', 
 	  url: `/frontEnd/pdf`, 
-	  data: {uid: 193, token: 'bae95998ab381f3330af8a8ae329341d'}, 
+	  data: {uid: 193, token: req.query.token}, 
 	  req,
 	  res,
 	  next
 	})
+	console.log(ceshi, 222222222222222)
 	res.json(1111111111111111111)
 })
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
+	
+	if (req.body.token) req.headers['Authorization'] = req.body.token
+	console.log(req.body, 22222222222)
+	
   // 支持参数登录
 
   // 请求数据
@@ -45,6 +50,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
     res,
     next
   })
+	
 	console.log(data, 333)
   let info   = data.data,
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
@@ -381,11 +387,11 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		fs.unlinkSync(`${public}/files/${info.name}.pdf`);
 	})
 
-	let data = {
+	let endData = {
 		httpStatus: 200,
 		data: {}
 	}
-	res.end(data);
+	res.end(endData);
 });
 
 module.exports = router;
