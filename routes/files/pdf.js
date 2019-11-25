@@ -23,7 +23,6 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
-	console.log(req.body)
   let info   = JSON.parse(req.body.resume),
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
@@ -353,11 +352,13 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 
 	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
   ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.body}).then(res => {
+		console.log(res, 2222)
 		res.json({
 			httpStatus: 200,
 			data: res
 		})
 	}).catch(e => {
+		console.log(e, 1111)
 		res.json({
 			httpStatus: 400,
 			data: e
