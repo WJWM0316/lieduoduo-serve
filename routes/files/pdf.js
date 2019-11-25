@@ -34,7 +34,7 @@ router.get('/test', async function(req, res, next) {
 })
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	console.log(req.body, 333)
-  let info   = req.body.resume
+  let info   = req.body.resume,
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
 			icon1  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/experience.jpg'),
