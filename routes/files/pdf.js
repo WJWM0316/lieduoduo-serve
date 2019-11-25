@@ -30,29 +30,11 @@ router.get('/test', async function(req, res, next) {
 	  res,
 	  next
 	})
-	console.log(ceshi, 222222222222222)
 	res.json(1111111111111111111)
 })
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
-	
-	if (req.body.token) req.headers['Authorization'] = req.body.token
-	console.log(req.body, 22222222222)
-	
-  // 支持参数登录
-
-  // 请求数据
-  let data = await httpRequest({
-    hostType: 'qzApi', 
-    method: 'GET', 
-    url: `/jobhunter/resume`, 
-    data: req.body, 
-    req,
-    res,
-    next
-  })
-	
-	console.log(data, 333)
-  let info   = data.data,
+	console.log(req.body, 333)
+  let info   = req.body.resume
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
 			icon1  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/experience.jpg'),
