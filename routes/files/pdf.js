@@ -383,15 +383,15 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	
 	
 	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
-  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.body}).then(() => {
-		fs.unlinkSync(`${public}/files/${info.name}.pdf`);
-	})
+ //  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.body}).then(() => {
+	// 	fs.unlinkSync(`${public}/files/${info.name}.pdf`);
+	// })
 
 	let endData = {
 		httpStatus: 200,
 		data: {}
 	}
-	res.end(endData);
+	res.json(endData)
 });
 
 module.exports = router;
