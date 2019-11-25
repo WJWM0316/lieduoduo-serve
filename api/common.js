@@ -1,9 +1,9 @@
-const oss = require('ali-oss');
+const OSS = require('ali-oss');
 let store = null,
 		options = null
 module.exports = ossPut = async function ({name, files, params}) {
 	if (params) {
-		store = oss({
+		store = new OSS({
 			//云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，部署在服务端使用RAM子账号或STS，部署在客户端使用STS。
 		  accessKeyId: params.accessKeyId,
 		  accessKeySecret: params.accessKeySecret,
@@ -15,12 +15,12 @@ module.exports = ossPut = async function ({name, files, params}) {
 		options = {
 		  callback: {
 		    // 您的回调服务器地址，如http://oss-demo.aliyuncs.com:23450或http://127.0.0.1:9090。
-		    url: params.url,
+		    url: params.callback.url,
 		    // 设置回调请求消息头中Host的值，如oss-cn-hangzhou.aliyuncs.com。
-		    host: params.host,
+		    host: params.callback.host,
 		    // 设置发起回调请求的Content-Type。
-		    body: params.body,
-		    contentType: params.contentType
+		    body: params.callback.body,
+		    contentType: 'application/x-www-form-urlencoded'
 		  }
 		}
 	}
