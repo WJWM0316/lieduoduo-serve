@@ -39,18 +39,18 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 			if (!err && response) {
 				try {
 				  var putData = JSON.parse(body)
-					if (putData.httpStatus !== 200) {
-						res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
-						return
-					}
+					// if (putData.httpStatus !== 200) {
+					// 	res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
+					// 	return
+					// }
 					resolve(putData)
 				}
 				catch(err) {
-					reject(err)
+					// reject(err)
 				  res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 				}
 			} else {
-				reject(err)
+				// reject(err)
 				res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 			}			
 		})
