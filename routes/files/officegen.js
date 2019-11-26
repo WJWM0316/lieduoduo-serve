@@ -159,13 +159,11 @@ router.post('/word', async function(req, res, next) {
 	})
 	
 	// Async call to generate the output file:
-	docx.generate(out)
-	docx.on('finalize', function(written) {
-	  ossPut({files: filePath, params: req.body}).then(result => {
-	  	res.json({httpStatus: 200,data: result})
-	  }).catch(err => {
-	  	res.json({httpStatus: 400,data: err})
-	  })
+	await docx.generate(out)
+	ossPut({files: filePath, params: req.body}).then(result => {
+		res.json({httpStatus: 200,data: result})
+	}).catch(err => {
+		res.json({httpStatus: 400,data: err})
 	})
 })
 
