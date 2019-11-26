@@ -1,7 +1,7 @@
 .DS_Store
-yarn.lock
-access.log
-yarn-error.log
+/yarn.lock
+/access.log
+/yarn-error.log
 /node_modules
 /dist
 /public/files
