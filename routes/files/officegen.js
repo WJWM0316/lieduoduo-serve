@@ -17,7 +17,6 @@ router.post('/word', async function(req, res, next) {
 	})
 
 	let info  = JSON.parse(req.body.resume)
-	console.log(req.body, 22222222)
 	// Officegen calling this function to report errors:
 	docx.on('error', function(err) {
 	  console.log(err)
@@ -153,22 +152,21 @@ router.post('/word', async function(req, res, next) {
 	}
 	
 	
-	
-	let out = fs.createWriteStream(`${public}/files/${info.name}.docx`)
+	let filePath = `${public}/files/${req.body.fileName}`
+	let out = fs.createWriteStream(filePath)
 	out.on('error', function(err) {
 	  console.log(err)
 	})
 	
 	// Async call to generate the output file:
 	docx.generate(out)
-	// docx.on('finalize', function(written) {
-	//   let filePath = `${public}/files/${req.body.fileName}`
-	//   ossPut({files: filePath, params: req.body}).then(result => {
-	//   	res.json({httpStatus: 200,data: result})
-	//   }).catch(err => {
-	//   	res.json({httpStatus: 400,data: err})
-	//   })
-	// })
+	docx.on('finalize', function(written) {
+	  ossPut({files: filePath, params: req.body}).then(result => {
+	  	res.json({httpStatus: 200,data: result})
+	  }).catch(err => {
+	  	res.json({httpStatus: 400,data: err})
+	  })
+	})
 })
 
 module.exports = router;
