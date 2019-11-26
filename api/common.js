@@ -36,7 +36,6 @@ module.exports = ossPut = function ({files, params}) {
 		return store.put(params.fileFullPath, files, options).then(result => {
 			//if (fs.existsSync(files)) fs.unlinkSync(files)
 			if (params.private === '1') store.putACL(params.fileFullPath, 'private');
-			console.log(result)
 			resolve(result)
 		}).catch(err => {
 			//if (fs.existsSync(files)) fs.unlinkSync(files)

@@ -21,7 +21,7 @@ router.post('/word', async function(req, res, next) {
 	docx.on('error', function(err) {
 	  console.log(err)
 	})
-	
+
 	let h1 = {color: '#333333', bold: true, font_size: 24},
 			h2 = {color: '#333333', bold: true, font_size: 14},
 			h3 = {color: '#333333', bold: true, font_size: 12},
@@ -32,7 +32,6 @@ router.post('/word', async function(req, res, next) {
 		if (!text) return
 		pObj.addText(text, parmas)
 	}
-	docx.setDocTitle('简历')
 	// Create a new paragraph:
 	let pObj = docx.createP()
 	
@@ -154,14 +153,17 @@ router.post('/word', async function(req, res, next) {
 	
 	let filePath = `${public}/files/${req.body.fileName}`
 	let out = fs.createWriteStream(filePath)
-	out.on('error', function(err) {
-	  console.log(err)
-	})
-	let resultDoc = await docx.generate(out)
-	ossPut({files: filePath, params: req.body}).then(result => {
-		res.json({httpStatus: 200, data: result})
-	}).catch(err => {
-		res.json({httpStatus: 400, data: err})
+
+	
+	docx.generate(out)
+	
+	out.on('close', function() {
+	  ossPut({files: filePath, params: req.body}).then(result => {
+			console.log(result)
+	  	res.json({httpStatus: 200, data: result})
+	  }).catch(err => {
+	  	res.json({httpStatus: 400, data: err})
+	  })
 	})
 
 })
