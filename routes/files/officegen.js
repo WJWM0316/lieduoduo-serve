@@ -17,7 +17,7 @@ router.post('/word', async function(req, res, next) {
 	})
 
 	let info  = JSON.parse(req.body.resume)
-
+	console.log(req.body, 22222222)
 	// Officegen calling this function to report errors:
 	docx.on('error', function(err) {
 	  console.log(err)
