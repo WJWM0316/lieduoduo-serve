@@ -15,17 +15,8 @@ router.get('/word', async function(req, res, next) {
 		type: 'docx',
 		pageMargins: {top: 700, bottom: 700, left: 700, right: 700}
 	})
-	// 请求数据
-	let data = await httpRequest({
-	  hostType: 'qzApi', 
-	  method: 'GET', 
-	  url: `/jobhunter/resume`, 
-	  data: req.query, 
-	  req,
-	  res,
-	  next
-	})
-	let info  = data.data
+
+	let info  = JSON.parse(req.body.resume)
 
 	// Officegen calling this function to report errors:
 	docx.on('error', function(err) {
