@@ -349,20 +349,12 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			pageHeight += addLongText(item.experience, x2, pageHeight, 24, 1.65, widthLimit) + 50
 		})
 	}
-
-	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
-  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.body}).then(res => {
-		console.log(res, 2222)
-		res.json({
-			httpStatus: 200,
-			data: res
-		})
-	}).catch(e => {
-		console.log(e, 1111)
-		res.json({
-			httpStatus: 400,
-			data: e
-		})
+	let filePath = `${public}/files/${req.body.fileName}`
+	fs.writeFileSync(filePath, doc.output(), 'ascii');
+  ossPut({files: filePath, params: req.body}).then(result => {
+		res.json({httpStatus: 200,data: result})
+	}).catch(err => {
+		res.json({httpStatus: 400,data: err})
 	})
 });
 
