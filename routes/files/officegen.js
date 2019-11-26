@@ -9,7 +9,7 @@ var filesPocessor = require('../../utils/filesPocessor.js')
 
 const officegen = require('officegen')
 
-router.get('/word', async function(req, res, next) {
+router.post('/word', async function(req, res, next) {
 	// Create an empty Word object:
 	let docx = officegen({
 		type: 'docx',
