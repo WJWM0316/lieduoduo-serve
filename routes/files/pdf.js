@@ -5,6 +5,7 @@ var path = require('path');
 var public = path.resolve('./public')
 var ossPut = require('../../api/common.js');
 var httpRequest = require('../../config/httpRequest.js')
+var Global = require("../../config/global"); //根据环境变量，获取对应的IP
 
 var filesPocessor = require('../../utils/filesPocessor.js')
 
@@ -20,25 +21,9 @@ const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
-  // 支持参数登录
-  if (req.query.token) req.headers['Authorization'] = req.query.token
-  if (req.headers['authorization-app']) {
-    req.headers['Authorization'] = req.headers['authorization-app']
-  }
-
-  // 请求数据
-  let data = await httpRequest({
-    hostType: 'qzApi', 
-    method: 'GET', 
-    url: `/jobhunter/resume`, 
-    data: req.query, 
-    req,
-    res,
-    next
-  })
-
-  let info   = data.data,
+  let info   = JSON.parse(req.body.resume),
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
 			icon1  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/experience.jpg'),
@@ -132,9 +117,9 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 							if (rowNum === crossPage) {
 								curString = item.slice(0, i)
 								nextString = item.slice(i, item.length - 1)
-								doc.text(curString, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
+								addText(curString, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
 								pageHeight = addPage()
-								doc.text(nextString, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
+								addText(nextString, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
 								pageHeight += lineHeight * (fontSize * 0.76)
 								break
 							}
@@ -146,7 +131,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			}
 			
 			if (!isSplit) {
-				doc.text(item, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
+				addText(item, x, pageHeight, {maxWidth: widthLimit, baseline: 'top', lineHeightFactor: lineHeight})
 				if (index <= textArray.length - 1) {
 					pageHeight += textH
 				}
@@ -205,7 +190,11 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		}
 	}
 	
-	
+	// 添加文本
+	function addText (txt, x, y, params) {
+		if (!txt) return
+		doc.text(txt, x, y, params)
+	}
   // // 版头
   doc.setFillColor('#652791');
 	doc.setDrawColor('#6D696E')			
@@ -222,22 +211,22 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	doc.addImage(avator, 'test', x1, pageHeight, 107, 107)  // 头像
 	doc.discardPath()
 	setFontType('h1')
-  doc.text(info.name, x2, pageHeight, {baseline: 'top'}) // 姓名
+  addText(info.name, x2, pageHeight, {baseline: 'top'}) // 姓名
 	setFontType('h3')
-  doc.text(info.lastCompanyName + '-' + info.lastPosition, x2, pageHeight + 50, {baseline: 'top'}); // 前公司前职位
+  addText(info.lastCompanyName + '-' + info.lastPosition, x2, pageHeight + 50, {baseline: 'top'}); // 前公司前职位
 	
 	// 工作经验、年龄、学历
   doc.addImage(icon1, 'test', x2, pageHeight + 87, 19, 19)
 	setFontType('p1')
-	doc.text(info.workAgeDesc, x2 + 19 + 10, pageHeight + 87, {baseline: 'top'})
+	addText(info.workAgeDesc, x2 + 19 + 10, pageHeight + 87, {baseline: 'top'})
 	let nextX = x2 + 19 + 10 + measureText(24, info.workAgeDesc) + 22
 	doc.addImage(icon2, 'test', nextX, pageHeight + 87, 19, 19)
 	nextX += (19 + 10)
-	doc.text(info.age + '岁', nextX, pageHeight + 87, {baseline: 'top'})
+	addText(info.age + '岁', nextX, pageHeight + 87, {baseline: 'top'})
   nextX += measureText(24, info.age + '岁') + 22
 	doc.addImage(icon3, 'test', nextX, pageHeight + 87, 19, 19)
 	nextX += (19 + 10)
-	doc.text(info.degreeDesc, nextX, pageHeight + 87, {baseline: 'top'})
+	addText(info.degreeDesc, nextX, pageHeight + 87, {baseline: 'top'})
 	nextX += measureText(24, info.degreeDesc)
   
 	// 联系方式
@@ -249,26 +238,26 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	doc.line(textX + 57, pageHeight + 44, textX + 57, pageHeight + 107, 'S')
 	let iconx = textX + 57 + 63
 	doc.addImage(icon4, 'test', iconx, pageHeight + 51, 19, 19)
-	doc.text(info.mobile, iconx + 19 + 13, pageHeight + 51, {baseline: 'top'})
+	addText(info.mobile, iconx + 19 + 13, pageHeight + 51, {baseline: 'top'})
 	if (info.wechat) {
 		doc.addImage(icon5, 'test', iconx, pageHeight + 85, 20, 18)
-		doc.text(info.wechat, iconx + 20 + 12, pageHeight + 85, {baseline: 'top'})
+		addText(info.wechat, iconx + 20 + 12, pageHeight + 85, {baseline: 'top'})
 	}
 	
 	// 自我描述
 	pageHeight += 167
 	setFontType('h2')
-	doc.text('自我描述', x1, pageHeight, {baseline: 'top'})
+	addText('自我描述', x1, pageHeight, {baseline: 'top'})
 	setFontType('p2')
 	pageHeight = addLongText(info.signature, x2, pageHeight, 24, 1.65, widthLimit) + 15
 	setFontType('c1')
 	doc.setDrawColor('#652791')
 	
-	if (info.personalizedLabels.length) {
+	if (info.personalizedLabels && info.personalizedLabels.length) {
 		let labelx = x2
 		info.personalizedLabels.map((item, index) => {
 			doc.roundedRect(labelx, pageHeight, measureText(24, item.labelName) + 30, 30, 15, 15 , 'S')
-			doc.text(item.labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
+			addText(item.labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
 			labelx += measureText(24, item.labelName) + 30 + 15
 		})
 	}
@@ -276,10 +265,10 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	addLine()
 	
 	// 求职意向
-	if (info.expects.length) {
+	if (info.expects && info.expects.length) {
 		pageHeight += (9 + 58)
 		setFontType('h2')
-		doc.text('求职意向', x1, pageHeight, {baseline: 'top'})
+		addText('求职意向', x1, pageHeight, {baseline: 'top'})
 		info.expects.map((item, index) => {
 			let desc = [],
 					txt  = ''
@@ -287,10 +276,10 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			desc = desc.join(' ')
 			txt  = `${item.position }\v\v|\v\v${ item.city }\v\v|\v\v${ desc}`
 			setFontType('p2')
-			doc.text(txt, x2, pageHeight, {maxWidth: widthLimit, baseline: 'top'})
+			addText(txt, x2, pageHeight, {maxWidth: widthLimit, baseline: 'top'})
 			let txtWidth = measureText(24, txt)
 			setFontType('c2')
-			doc.text(`${item.salaryFloor}-${item.salaryCeil}k`, x2 + txtWidth + 15, pageHeight, {baseline: 'top'})
+			addText(`${item.salaryFloor}-${item.salaryCeil}k`, x2 + txtWidth + 15, pageHeight, {baseline: 'top'})
 			pageHeight += 35
 		})
 		pageHeight -= 35
@@ -299,26 +288,26 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	}
 	
 	// 工作经历
-	if (info.careers.length) {
+	if (info.careers && info.careers.length) {
 			pageHeight += (58 + 9)
 			setFontType('h2')
-			doc.text('工作经历', x1, pageHeight, {baseline: 'top'})
+			addText('工作经历', x1, pageHeight, {baseline: 'top'})
 			info.careers.map((item, index) => {
 				setFontType('h3')
-				doc.text(`${item.company}\v\v|\v\v${item.position}`, x2, pageHeight, {baseline: 'top'})
+				addText(`${item.company}\v\v|\v\v${item.position}`, x2, pageHeight, {baseline: 'top'})
 				let time = item.startTimeDesc ? `${item.startTimeDesc}-${item.endTimeDesc}` : `${item.endTimeDesc}`
 				setFontType('p2')
-				doc.text(time, x3, pageHeight, {align: 'right', baseline: 'top'})
+				addText(time, x3, pageHeight, {align: 'right', baseline: 'top'})
 				pageHeight += 40
 				if (item.duty) pageHeight = addLongText(item.duty, x2, pageHeight, 24, 1.65, widthLimit)
-				if (item.technicalLabels.length) {
+				if (item.technicalLabels && item.technicalLabels.length) {
 					let labelx = x2
 					pageHeight += 15
 					item.technicalLabels.map((n, i) => {
 						setFontType('c1')
 						let labelName = `#\v${n.labelName}`
 						doc.roundedRect(labelx, pageHeight, measureText(24, labelName) + 30, 30, 15, 15 , 'S')
-						doc.text(labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
+						addText(labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
 						labelx += measureText(24, labelName) + 30 + 15
 					})
 					pageHeight += 30
@@ -329,16 +318,16 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		}
 
 	// 项目经历
-	if (info.projects.length) {
+	if (info.projects && info.projects.length) {
 		pageHeight += (58 + 9)
 		setFontType('h2')
-		doc.text('项目经历', x1, pageHeight, {baseline: 'top'})
+		addText('项目经历', x1, pageHeight, {baseline: 'top'})
 		info.projects.map((item, index) => {
 			setFontType('h3')
-			doc.text(`${item.name}\v\v|\v\v${item.role}`, x2, pageHeight, {baseline: 'top'})
+			addText(`${item.name}\v\v|\v\v${item.role}`, x2, pageHeight, {baseline: 'top'})
 			let time = item.startTimeDesc ? `${item.startTimeDesc}-${item.endTimeDesc}` : `${item.endTimeDesc}`
 			setFontType('p2')
-			doc.text(time, x3, pageHeight, {align: 'right', baseline: 'top'})
+			addText(time, x3, pageHeight, {align: 'right', baseline: 'top'})
 			pageHeight += 40
 			if (item.description) pageHeight = addLongText(item.description, x2, pageHeight, 24, 1.65, widthLimit) + 50
 		})
@@ -346,35 +335,27 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	}
 
 	// 教育经历
-	if (info.educations.length) {
+	if (info.educations && info.educations.length) {
 		pageHeight += (58 + 9)
 		setFontType('h2')
-		doc.text('教育经历', x1, pageHeight, {baseline: 'top'})
+		addText('教育经历', x1, pageHeight, {baseline: 'top'})
 		info.educations.map((item, index) => {
 			setFontType('h3')
-			doc.text(`${item.school}\v\v|\v\v${item.degreeDesc}\v\v|\v\v${item.major}`, x2, pageHeight, {baseline: 'top'})
+			addText(`${item.school}\v\v|\v\v${item.degreeDesc}\v\v|\v\v${item.major}`, x2, pageHeight, {baseline: 'top'})
 			let time = item.startTimeDesc ? `${item.startTimeDesc}-${item.endTimeDesc}` : `${item.endTimeDesc}`
 			setFontType('p2')
-			doc.text(time, x3, pageHeight, {align: 'right', baseline: 'top'})
+			addText(time, x3, pageHeight, {align: 'right', baseline: 'top'})
 			pageHeight += 40
 			pageHeight += addLongText(item.experience, x2, pageHeight, 24, 1.65, widthLimit) + 50
 		})
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	fs.writeFileSync(`${public}/files/${info.name}.pdf`, doc.output(), 'ascii');
- //  ossPut({name: `${info.name}.pdf`, files: `${public}/files/${info.name}.pdf`, params: req.query}).then(() => {
-	// 	fs.unlinkSync(`${public}/files/${info.name}.pdf`);
-	// })
-
-
-	res.end(11111);
+	let filePath = `${public}/files/${req.body.fileName}`
+	fs.writeFileSync(filePath, doc.output(), 'ascii');
+  ossPut({files: filePath, params: req.body}).then(result => {
+		res.json({httpStatus: 200,data: result})
+	}).catch(err => {
+		res.json({httpStatus: 400,data: err})
+	})
 });
 
 module.exports = router;

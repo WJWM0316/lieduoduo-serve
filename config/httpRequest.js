@@ -17,6 +17,9 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 		case 'pubApi':
 			host = Global.pubApi
 			break
+		case 'nodeApi':
+			host = Global.nodeApi
+			break
 	}
 	var requestUrl = host + url;
 	if (method === 'GET' && JSON.stringify(data) !== "{}") {
@@ -36,12 +39,18 @@ function httpRequest({hostType, method, url, data, req, res, next}) {
 			if (!err && response) {
 				try {
 				  var putData = JSON.parse(body)
+					// if (putData.httpStatus !== 200) {
+					// 	res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
+					// 	return
+					// }
 					resolve(putData)
 				}
 				catch(err) {
+					// reject(err)
 				  res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 				}
 			} else {
+				// reject(err)
 				res.send([requestUrl, err, response, body, '兄嘚接口報錯了'])
 			}			
 		})
