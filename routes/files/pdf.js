@@ -245,24 +245,26 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	}
 	
 	// 自我描述
-	pageHeight += 167
-	setFontType('h2')
-	addText('自我描述', x1, pageHeight, {baseline: 'top'})
-	setFontType('p2')
-	pageHeight = addLongText(info.signature, x2, pageHeight, 24, 1.65, widthLimit) + 15
-	setFontType('c1')
-	doc.setDrawColor('#652791')
-	
-	if (info.personalizedLabels && info.personalizedLabels.length) {
-		let labelx = x2
-		info.personalizedLabels.map((item, index) => {
-			doc.roundedRect(labelx, pageHeight, measureText(24, item.labelName) + 30, 30, 15, 15 , 'S')
-			addText(item.labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
-			labelx += measureText(24, item.labelName) + 30 + 15
-		})
+	if (info.signature) {
+		pageHeight += 167
+		setFontType('h2')
+		addText('自我描述', x1, pageHeight, {baseline: 'top'})
+		setFontType('p2')
+		pageHeight = addLongText(info.signature, x2, pageHeight, 24, 1.65, widthLimit) + 15
+		setFontType('c1')
+		doc.setDrawColor('#652791')
+		
+		if (info.personalizedLabels && info.personalizedLabels.length) {
+			let labelx = x2
+			info.personalizedLabels.map((item, index) => {
+				doc.roundedRect(labelx, pageHeight, measureText(24, item.labelName) + 30, 30, 15, 15 , 'S')
+				addText(item.labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
+				labelx += measureText(24, item.labelName) + 30 + 15
+			})
+		}
+		pageHeight += (30 + 58)
+		addLine()
 	}
-	pageHeight += (30 + 58)
-	addLine()
 	
 	// 求职意向
 	if (info.expects && info.expects.length) {
