@@ -67,15 +67,27 @@ router.post('/word', async function(req, res, next) {
 	pObj.addImage(public + '/images/wechat.jpg', {cx: 12, cy: 12})
 	addText(`  ${info.wechat}    `, p1)
 	pObj = docx.createP()
-	pObj = docx.createP()
-	addText('自我描述', h2)
-	pObj = docx.createP()
-	addText(info.signature, p1)
-	pObj = docx.createP()
-	pObj = docx.createP()
-	addText('求职意向', h2)
-	pObj = docx.createP()
+	
+	if (info.signature) {
+		pObj = docx.createP()
+		addText('自我描述', h2)
+		pObj = docx.createP()
+		addText(info.signature, p1)
+		pObj = docx.createP()
+		if (info.personalizedLabels && info.personalizedLabels.length) {
+			info.personalizedLabels.map((item, index) => {
+				let labelName = ` #${item.labelName} `
+				addText(labelName, l1)
+				addText('   ')
+			})
+		}
+	}
+
+	
 	if (info.expects && info.expects.length) {
+		pObj = docx.createP()
+		addText('求职意向', h2)
+		pObj = docx.createP()
 		info.expects.map((item, index) => {
 			if (index > 0) return
 			let desc = [],

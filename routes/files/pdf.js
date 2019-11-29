@@ -254,7 +254,6 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		pageHeight = addLongText(info.signature, x2, pageHeight, 24, 1.65, widthLimit) + 15
 		setFontType('c1')
 		doc.setDrawColor('#652791')
-		
 		if (info.personalizedLabels && info.personalizedLabels.length) {
 			let labelx = x2
 			info.personalizedLabels.map((item, index) => {
