@@ -73,8 +73,8 @@ router.post('/word', async function(req, res, next) {
 		addText('自我描述', h2)
 		pObj = docx.createP()
 		addText(info.signature, p1)
-		pObj = docx.createP()
 		if (info.personalizedLabels && info.personalizedLabels.length) {
+			pObj = docx.createP()
 			info.personalizedLabels.map((item, index) => {
 				let labelName = ` #${item.labelName} `
 				addText(labelName, l1)
