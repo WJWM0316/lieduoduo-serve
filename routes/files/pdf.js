@@ -244,9 +244,10 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		addText(info.wechat, iconx + 20 + 12, pageHeight + 85, {baseline: 'top'})
 	}
 	
+	pageHeight += 167
+	
 	// 自我描述
 	if (info.signature) {
-		pageHeight += 167
 		setFontType('h2')
 		addText('自我描述', x1, pageHeight, {baseline: 'top'})
 		setFontType('p2')
