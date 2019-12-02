@@ -5,14 +5,7 @@
             "script": "./bin/www",
             "dev":"./bin/www",
             "cwd": "./",
-            "watch": [
-                "bin",
-                "lib",
-                "public",
-                "routes",
-                "views",
-                "config"
-            ],
+            "watch": [],
             "log_date_format": "YYYY-MM-DD HH:mm Z",
             "env_pro": {
                 "NODE_ENV": "pro"
