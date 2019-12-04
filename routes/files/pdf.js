@@ -24,7 +24,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
   let info   = JSON.parse(req.body.resume),
-      avator = await filesPocessor.loadImageFile(info.avatar.smallUrl.replace('.png', '.png!png2jpg')),
+      avator = await filesPocessor.loadImageFile(info.avatar.smallUrl.replace('.png!130xauto', '.png!130xauto!png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
 			icon1  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/experience.jpg'),
 			icon2  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/age.jpg'),
@@ -243,6 +243,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		doc.addImage(icon5, 'test', iconx, pageHeight + 85, 20, 18)
 		addText(info.wechat, iconx + 20 + 12, pageHeight + 85, {baseline: 'top'})
 	}
+	
 	
 	pageHeight += 167
 	
