@@ -33,19 +33,19 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			icon5  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/wechat.jpg'),
 			line   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/line.jpg')
   // new 一个pdf对象
-  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [1240, 1754], putOnlyUsedFonts: true, compress: true}),
+  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [1240, 1754], putOnlyUsedFonts: true}),
 			ctx    = doc.context2d;
 	
   // 设置字体 支持中文
   doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
   doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
-	
-	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
-	doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
-	
-	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
-	doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
-	
+	// 
+	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
+	// doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
+	// 
+	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
+	// doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
+ doc.setFont('normal')
 	let docHeight  = 1754 - 40,
 			pageHeight = 66,
 			pageWidth  = 1240,
@@ -153,37 +153,37 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	function setFontType(type) {
 		switch(type) {
 			case 'h1':
-				doc.setFont('bold')
+				//doc.setFont('bold')
 				doc.setTextColor('#333333')
 				doc.setFontSize(52)
 				break
 			case 'h2':
-				doc.setFont('bold')
+				//doc.setFont('bold')
 				doc.setTextColor('#333333')
 				doc.setFontSize(32)
 				break
 			case 'h3':
-				doc.setFont('normal')
+				//doc.setFont('normal')
 				doc.setTextColor('#333333')
 				doc.setFontSize(26)
 				break
 			case 'p1':
-				doc.setFont('light')
+				//doc.setFont('light')
 				doc.setTextColor('#282828')
 				doc.setFontSize(24)
 				break
 			case 'p2':
-				doc.setFont('normal')
+				//doc.setFont('normal')
 				doc.setTextColor('#6D696E')
 				doc.setFontSize(24)
 				break
 			case 'c1':
-				doc.setFont('normal')
+				//doc.setFont('normal')
 				doc.setTextColor('#652791')
 				doc.setFontSize(24)
 				break
 			case 'c2':
-				doc.setFont('normal')
+				//doc.setFont('normal')
 				doc.setTextColor('#652791')
 				doc.setFontSize(24)
 				break
