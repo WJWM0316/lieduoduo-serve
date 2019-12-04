@@ -23,6 +23,7 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.post('/pdf', urlencodedParser, async function(req, res, next) {
+	try {
   let info   = JSON.parse(req.body.resume),
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!130png2jpg')),
 	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
@@ -359,6 +360,9 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	}).catch(err => {
 		res.json({httpStatus: 400,data: err})
 	})
+} catch (e) {
+	res.json({httpStatus: 400,data: e})
+}
 });
 
 module.exports = router;
