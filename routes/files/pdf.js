@@ -14,9 +14,9 @@ global.navigator = {};
 global.html2pdf = {};
 global.btoa = require('btoa')
 global.atob = require('atob')
-var normal = require(public + '/font/NotoSansCJKjp.js')
+//var normal = require(public + '/font/NotoSansCJKjp.js')
 var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
-var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
+//var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
 const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
 var app = express();
@@ -26,7 +26,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	try {
   let info   = JSON.parse(req.body.resume),
       avator = await filesPocessor.loadImageFile(info.avatar.url.replace('.png', '.png!130png2jpg')),
-	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg.jpg'),
+	    logo   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/pdfBg1.jpg'),
 			icon1  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/experience.jpg'),
 			icon2  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/age.jpg'),
 			icon3  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/education.jpg'),
@@ -38,16 +38,16 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			ctx    = doc.context2d;
 	
   // 设置字体 支持中文
-  doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
-  doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
-
-	// 
-	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
-	// doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
+  // doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
+  // doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
+// 
+	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
+	doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
 	// 
 	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
 	// doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
- doc.setFont('normal')
+  doc.setFont('bold')
+	
 	let docHeight  = 1754 - 40,
 			pageHeight = 66,
 			pageWidth  = 1240,
@@ -69,7 +69,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	// 计算文本宽度
 	function measureText(fontSize, string, x, y) {
 		if (!string) return 0
-		ctx.font = `${fontSize}px normal`
+		ctx.font = `${fontSize}px bold`
 		let Multiple = 0
 		switch (fontSize) {
 			case 24:
@@ -79,7 +79,6 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 				Multiple = 1.75
 				break	
 		}
-
 		return ctx.measureText(string).width / Multiple
 	}
 	
@@ -155,7 +154,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	function setFontType(type) {
 		switch(type) {
 			case 'h1':
-				// doc.setFont('bold')
+				//doc.setFont('bold')
 				doc.setTextColor('#333333')
 				doc.setFontSize(52)
 				break
@@ -170,23 +169,23 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 				doc.setFontSize(26)
 				break
 			case 'p1':
-				//doc.setFont('light')
+				//doc.setFont('normal')
 				doc.setTextColor('#282828')
 				doc.setFontSize(24)
 				break
 			case 'p2':
 				//doc.setFont('normal')
-				doc.setTextColor('#6D696E')
+				doc.setTextColor('#00c4cd')
 				doc.setFontSize(24)
 				break
 			case 'c1':
 				//doc.setFont('normal')
-				doc.setTextColor('#652791')
+				doc.setTextColor('#00c4cd')
 				doc.setFontSize(24)
 				break
 			case 'c2':
 				//doc.setFont('normal')
-				doc.setTextColor('#652791')
+				doc.setTextColor('#00c4cd')
 				doc.setFontSize(24)
 				break
 		}
@@ -198,10 +197,9 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		doc.text(txt, x, y, params)
 	}
   // // 版头
-  doc.setFillColor('#652791');
-	doc.setDrawColor('#6D696E')			
+  doc.setFillColor('#00c4cd');
+	doc.setDrawColor('#00c4cd')			
 	doc.setLineHeightFactor(1)
-  doc.setFont('normal')
   doc.addImage(logo, 'test', 0, 0, pageWidth, 66)
   
 	// 个人信息
@@ -209,9 +207,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
   doc.setLineHeightFactor('1.4')
 	doc.setFillColor('#fff')
 	doc.circle(x1 + 107 / 2, pageHeight + 107 / 2, 53.5, 'F')
-	doc.clip()
 	doc.addImage(avator, 'test', x1, pageHeight, 107, 107)  // 头像
-	doc.discardPath()
 	setFontType('h1')
   addText(info.name, x2, pageHeight, {baseline: 'top'}) // 姓名
 	setFontType('h3')
@@ -238,6 +234,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	}
 	
 	doc.line(textX + 57, pageHeight + 44, textX + 57, pageHeight + 107, 'S')
+	
 	let iconx = textX + 57 + 63
 	doc.addImage(icon4, 'test', iconx, pageHeight + 51, 19, 19)
 	addText(info.mobile, iconx + 19 + 13, pageHeight + 51, {baseline: 'top'})
@@ -260,7 +257,8 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		if (info.personalizedLabels && info.personalizedLabels.length) {
 			let labelx = x2
 			info.personalizedLabels.map((item, index) => {
-				doc.roundedRect(labelx, pageHeight, measureText(24, item.labelName) + 30, 30, 15, 15 , 'S')
+				doc.roundedRect(labelx, pageHeight, measureText(24, item.labelName) + 30, 30, 15, 15, 'S')
+				
 				addText(item.labelName, labelx + 15, pageHeight + 5, {baseline: 'top'})
 				labelx += measureText(24, item.labelName) + 30 + 15
 			})
@@ -268,7 +266,6 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		pageHeight += (30 + 58)
 		addLine()
 	}
-	
 	// 求职意向
 	if (info.expects && info.expects.length) {
 		pageHeight += (9 + 58)
