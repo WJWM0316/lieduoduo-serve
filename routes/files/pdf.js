@@ -33,7 +33,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			icon5  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/wechat.jpg'),
 			line   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/line.jpg')
   // new 一个pdf对象
-  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [1240 / 2, 1754 / 2], putOnlyUsedFonts: true}),
+  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [620, 877], putOnlyUsedFonts: true}), // 1240, 1754
 			ctx    = doc.context2d;
 	
   // 设置字体 支持中文
@@ -46,21 +46,21 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
 	doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
 	
-	let docHeight  = (1754 - 40) / 2,
-			pageHeight = 66 / 2,
-			pageWidth  = 1240 / 2,
+	let docHeight  = 1754 - 40,
+			pageHeight = 66,
+			pageWidth  = 1240,
 			pageNum    = 0,
-			widthLimit = 886 / 2,
-			linex      = 112 / 2,
-			x1         = 108 / 2,
-			x2				 = 244 / 2,
-			x3         = 1130 / 2
+			widthLimit = 886,
+			linex      = 112,
+			x1         = 108,
+			x2				 = 244,
+			x3         = 1130
 			
 	// 添加页数
 	function addPage () {
-		pageHeight = 66 / 2 + 69 / 2
+		pageHeight = 66 + 69
 		doc.addPage(1)
-		doc.addImage(logo, 'test', 0, 0, 0, 66 / 2)
+		doc.addImage(logo, 'test', 0, 0, 0, 66)
 		return pageHeight
 	}
 	
@@ -71,10 +71,10 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		let Multiple = 0
 		switch (fontSize) {
 			case 24:
-				Multiple = 1.8 / 2
+				Multiple = 1.8
 				break
 			case 26:
-				Multiple = 1.75 / 2
+				Multiple = 1.75
 				break	
 		}
 
@@ -146,7 +146,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	
 	// 添加虚线
 	function addLine () {
-		doc.addImage(line, 'test', x1, pageHeight, 1022 / 2, 9 / 2)
+		doc.addImage(line, 'test', x1, pageHeight, 1022, 9)
 	}
 	
 	// 设置字体
@@ -155,37 +155,37 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			case 'h1':
 				doc.setFont('bold')
 				doc.setTextColor('#333333')
-				doc.setFontSize(52 / 2)
+				doc.setFontSize(52)
 				break
 			case 'h2':
 				doc.setFont('bold')
 				doc.setTextColor('#333333')
-				doc.setFontSize(32 / 2)
+				doc.setFontSize(32)
 				break
 			case 'h3':
 				doc.setFont('normal')
 				doc.setTextColor('#333333')
-				doc.setFontSize(26 / 2)
+				doc.setFontSize(26)
 				break
 			case 'p1':
 				doc.setFont('light')
 				doc.setTextColor('#282828')
-				doc.setFontSize(24 / 2)
+				doc.setFontSize(24)
 				break
 			case 'p2':
 				doc.setFont('normal')
 				doc.setTextColor('#6D696E')
-				doc.setFontSize(24 / 2)
+				doc.setFontSize(24)
 				break
 			case 'c1':
 				doc.setFont('normal')
 				doc.setTextColor('#652791')
-				doc.setFontSize(24 / 2)
+				doc.setFontSize(24)
 				break
 			case 'c2':
 				doc.setFont('normal')
 				doc.setTextColor('#652791')
-				doc.setFontSize(24 / 2)
+				doc.setFontSize(24)
 				break
 		}
 	}
@@ -200,7 +200,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	doc.setDrawColor('#6D696E')			
 	doc.setLineHeightFactor(1)
   doc.setFont('normal')
-  doc.addImage(logo, 'test', 0, 0, pageWidth, 66 / 2)
+  doc.addImage(logo, 'test', 0, 0, pageWidth, 66)
   
 	// 个人信息
   pageHeight += 69
@@ -208,7 +208,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	doc.setFillColor('#fff')
 	doc.circle(x1 + 107 / 2, pageHeight + 107 / 2, 53.5, 'F')
 	doc.clip()
-	doc.addImage(avator, 'test', x1, pageHeight, 107 / 2, 107 / 2)  // 头像
+	doc.addImage(avator, 'test', x1, pageHeight, 107, 107)  // 头像
 	doc.discardPath()
 	setFontType('h1')
   addText(info.name, x2, pageHeight, {baseline: 'top'}) // 姓名
