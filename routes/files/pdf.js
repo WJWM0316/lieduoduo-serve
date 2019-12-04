@@ -40,6 +40,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
   // 设置字体 支持中文
   doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
   doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
+
 	// 
 	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
 	// doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
@@ -154,7 +155,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	function setFontType(type) {
 		switch(type) {
 			case 'h1':
-				//doc.setFont('bold')
+				// doc.setFont('bold')
 				doc.setTextColor('#333333')
 				doc.setFontSize(52)
 				break
