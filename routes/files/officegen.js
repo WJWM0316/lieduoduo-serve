@@ -173,7 +173,6 @@ router.post('/word', async function(req, res, next) {
 	
 	out.on('close', function() {
 	  ossPut({files: filePath, params: req.body}).then(result => {
-			console.log(result)
 	  	res.json({httpStatus: 200, data: result})
 	  }).catch(err => {
 	  	res.json({httpStatus: 400, data: err})
