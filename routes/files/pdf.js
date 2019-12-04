@@ -33,7 +33,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			icon5  = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/wechat.jpg'),
 			line   = await filesPocessor.loadImageFile('https://lieduoduo-uploads-test.oss-cn-shenzhen.aliyuncs.com/poster/line.jpg')
   // new 一个pdf对象
-  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [620, 877], putOnlyUsedFonts: false}), // 1240, 1754
+  var doc 	 = new jsPDF({orientation: 'p', unit: 'px', format: [1240, 1754], putOnlyUsedFonts: false, compress: true}),
 			ctx    = doc.context2d;
 	
   // 设置字体 支持中文
