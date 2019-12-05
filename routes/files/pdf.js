@@ -15,8 +15,8 @@ global.html2pdf = {};
 global.btoa = require('btoa')
 global.atob = require('atob')
 var normal = require(public + '/font/NotoSansCJKjp.js')
-var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
-var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
+//var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
+//var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
 const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
 var app = express();
@@ -46,7 +46,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	// 
 	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
 	// doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
-  doc.setFont('normal')
+  
 	
 	let docHeight  = 1754 - 40,
 			pageHeight = 66,
@@ -154,37 +154,37 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	function setFontType(type) {
 		switch(type) {
 			case 'h1':
-				//doc.setFont('bold')
+				doc.setFont('normal')
 				doc.setTextColor('#333333')
 				doc.setFontSize(52)
 				break
 			case 'h2':
-				//doc.setFont('bold')
+				doc.setFont('normal')
 				doc.setTextColor('#333333')
 				doc.setFontSize(32)
 				break
 			case 'h3':
-				//doc.setFont('normal')
+				doc.setFont('normal')
 				doc.setTextColor('#333333')
 				doc.setFontSize(26)
 				break
 			case 'p1':
-				//doc.setFont('normal')
+				doc.setFont('normal')
 				doc.setTextColor('#6D696E')
 				doc.setFontSize(24)
 				break
 			case 'p2':
-				//doc.setFont('normal')
+				doc.setFont('normal')
 				doc.setTextColor('#6D696E')
 				doc.setFontSize(24)
 				break
 			case 'c1':
-				//doc.setFont('normal')
+				doc.setFont('normal')
 				doc.setTextColor('#00c4cd')
 				doc.setFontSize(24)
 				break
 			case 'c2':
-				//doc.setFont('normal')
+				doc.setFont('normal')
 				doc.setTextColor('#00c4cd')
 				doc.setFontSize(24)
 				break
