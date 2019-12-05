@@ -34,12 +34,12 @@ module.exports = ossPut = function ({files, params}) {
 				day   = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
 				
 		return store.put(params.fileFullPath, files, options).then(result => {
-			// if (fs.existsSync(files)) fs.unlinkSync(files)
+			if (fs.existsSync(files)) fs.unlinkSync(files)
 			if (params.private === '1') store.putACL(params.fileFullPath, 'private');
 			console.log(result)
 			resolve(result)
 		}).catch(err => {
-			// if (fs.existsSync(files)) fs.unlinkSync(files)
+			if (fs.existsSync(files)) fs.unlinkSync(files)
 			console.log(err)
 			reject(err)
 		})
