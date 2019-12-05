@@ -6,6 +6,13 @@
             "dev":"./bin/www",
             "cwd": "./",
             "log_date_format": "YYYY-MM-DD HH:mm Z",
+						"watch": [
+							"bin",
+							"lib",
+							"routes",
+							"views",
+							"config"
+						],
             "env_pro": {
                 "NODE_ENV": "pro"
             },
