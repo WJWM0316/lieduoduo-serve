@@ -14,8 +14,8 @@ global.navigator = {};
 global.html2pdf = {};
 global.btoa = require('btoa')
 global.atob = require('atob')
-//var normal = require(public + '/font/NotoSansCJKjp.js')
-var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
+var normal = require(public + '/font/NotoSansCJKjp.js')
+// var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
 //var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
 const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
@@ -41,12 +41,12 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
   // doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
   // doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
 // 
-	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', bold);
-	doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'bold', 'normal');
+	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', normal);
+	doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'normal', 'normal');
 	// 
 	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
 	// doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
-  doc.setFont('bold')
+  doc.setFont('normal')
 	
 	let docHeight  = 1754 - 40,
 			pageHeight = 66,
@@ -69,7 +69,7 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 	// 计算文本宽度
 	function measureText(fontSize, string, x, y) {
 		if (!string) return 0
-		ctx.font = `${fontSize}px bold`
+		ctx.font = `${fontSize}px normal`
 		let Multiple = 0
 		switch (fontSize) {
 			case 24:
