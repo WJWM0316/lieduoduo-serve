@@ -170,12 +170,12 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 				break
 			case 'p1':
 				//doc.setFont('normal')
-				doc.setTextColor('#282828')
+				doc.setTextColor('#6D696E')
 				doc.setFontSize(24)
 				break
 			case 'p2':
 				//doc.setFont('normal')
-				doc.setTextColor('#00c4cd')
+				doc.setTextColor('#6D696E')
 				doc.setFontSize(24)
 				break
 			case 'c1':
@@ -253,7 +253,6 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 		setFontType('p2')
 		pageHeight = addLongText(info.signature, x2, pageHeight, 24, 1.65, widthLimit) + 15
 		setFontType('c1')
-		doc.setDrawColor('#652791')
 		if (info.personalizedLabels && info.personalizedLabels.length) {
 			let labelx = x2
 			info.personalizedLabels.map((item, index) => {
