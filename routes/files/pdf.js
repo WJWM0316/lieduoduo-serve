@@ -15,8 +15,8 @@ global.html2pdf = {};
 global.btoa = require('btoa')
 global.atob = require('atob')
 var normal = require(public + '/font/NotoSansCJKjp.js')
-// var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
-//var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
+var bold = require(public + '/font/NotoSansCJKtc-Medium-bold.js')
+var light = require(public + '/font/NotoSansCJKtc-Light-italic.js')
 const jsPDF = require('../../utils/jspdf.node.debug.js')
 var bodyParser = require('body-parser');
 var app = express();
@@ -38,11 +38,11 @@ router.post('/pdf', urlencodedParser, async function(req, res, next) {
 			ctx    = doc.context2d;
 	
   // 设置字体 支持中文
-  // doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
-  // doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
-// 
-	doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', normal);
-	doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'normal', 'normal');
+  doc.addFileToVFS(public + '/font/NotoSansCJKtc-Regular.ttf', normal);
+  doc.addFont(public + '/font/NotoSansCJKtc-Regular.ttf', 'normal', 'normal');
+
+	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Medium.ttf', normal);
+	// doc.addFont(public + '/font/NotoSansCJKtc-Medium.ttf', 'normal', 'normal');
 	// 
 	// doc.addFileToVFS(public + '/font/NotoSansCJKtc-Light-italic.ttf', light);
 	// doc.addFont(public + '/font/NotoSansCJKtc-Light-italic.ttf', 'light', 'normal');
