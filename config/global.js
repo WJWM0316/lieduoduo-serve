@@ -1,39 +1,32 @@
 var NODE_ENV = process.env.NODE_ENV;
-var nodeApi = "", // nodeJs 代理转发的域名
-    qzApi   = "", // 求职端的域名
-    zpApi   = "", // 招聘端的域名
-    pubApi  = ""  // pub公共端域名
+var GLOBALCONFIG = {
+	nodeApi : "", // nodeJs 代理转发的域名
+	qzApi   : "", // 求职端的域名
+	zpApi   : "", // 招聘端的域名
+	pubApi  : "", // pub公共端域名
+	webHost : "", // h5链接
+	cdnHost : "", // cdn
+	bucket  : ""  // oss bucket
+}		
 switch (NODE_ENV) {
     case 'dev': // 测试
-        nodeApi = "http://192.168.5.159:3000"
-        qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
-        zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
-        pubApi  = "https://pub-api.lieduoduo.ziwork.com"
-        webHost = "https://h5.lieduoduo.ziwork.com"
-				cdnHost = 'https://attach.lieduoduo.ziwork.com'
+        GLOBALCONFIG.nodeApi = "http://192.168.5.52:3000"
+        GLOBALCONFIG.qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
+        GLOBALCONFIG.zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
+        GLOBALCONFIG.pubApi  = "https://pub-api.lieduoduo.ziwork.com"
+        GLOBALCONFIG.webHost = "https://h5.lieduoduo.ziwork.com"
+				GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.ziwork.com'
+				GLOBALCONFIG.bucket  = 'lieduoduo-uploads-test'
         break;
     case 'pro': // 正式
-        nodeApi = "https://node.lieduoduo.com"
-        qzApi   = "https://qiuzhi-api.lieduoduo.com"
-        zpApi   = "https://zhaopin-api.lieduoduo.com"
-        pubApi  = "https://pub-api.lieduoduo.com"
-        webHost = "https://h5.lieduoduo.com"
-				cdnHost = 'https://attach.lieduoduo.com'
+        GLOBALCONFIG.nodeApi = "https://node.lieduoduo.com"
+        GLOBALCONFIG.qzApi   = "https://qiuzhi-api.lieduoduo.com"
+        GLOBALCONFIG.zpApi   = "https://zhaopin-api.lieduoduo.com"
+        GLOBALCONFIG.pubApi  = "https://pub-api.lieduoduo.com"
+        GLOBALCONFIG.webHost = "https://h5.lieduoduo.com"
+				GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.com'
+				GLOBALCONFIG.bucket  = 'lieduoduo-uploads-pro'
         break
-    default: // 开发环境默认测试环境
-        nodeApi = "http://192.168.5.159:3000"
-        qzApi   = "https://qiuzhi-api.lieduoduo.ziwork.com"
-        zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
-        pubApi  = "https://pub-api.lieduoduo.ziwork.com"
-        webHost = "https://h5.lieduoduo.ziwork.com"
-				cdnHost = 'https://attach.lieduoduo.ziwork.com'
-}
-var GLOBALcONFIG = {
-    nodeApi,
-    qzApi,
-    zpApi,
-    pubApi,
-    webHost
 }
 
-module.exports = GLOBALcONFIG;
+module.exports = GLOBALCONFIG;

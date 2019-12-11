@@ -46,4 +46,3 @@ module.exports = ossPut = function ({files, params}) {
 	})
 }
 
-
