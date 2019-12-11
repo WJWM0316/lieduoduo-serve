@@ -50,7 +50,7 @@ router.get('/delicate', async function(req, res, next) {
 			let data = {
 			  httpStatus: 200,
 			  data: {
-			    url: res0.url
+			    url: `${Global.cdnHost}/${res0.name}`
 			  }
 			}
 			res.json(data)
