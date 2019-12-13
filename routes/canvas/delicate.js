@@ -44,10 +44,11 @@ router.get('/delicate', async function(req, res, next) {
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
 		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
 		let dataBuffer = Buffer.from(base64Data, 'base64');
-		let path = `${public}/files/${req.query.vkey}.jpg`
+		let path = `${public}/files/${req.query.vkey}.jpg`,
+				fileName = `${req.query.vkey}_${new Date().getTime()}.jpg`
 		fs.writeFileSync(path, dataBuffer)
 		console.log('开始上传')
-		myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
+		myUpload({fileName, files: path}).then(res0 => {
 			let jsonData = {
 			  httpStatus: 200,
 			  data: {
