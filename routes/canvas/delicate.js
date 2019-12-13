@@ -56,7 +56,7 @@ router.post('/delicate', async function(req, res, next) {
 			}
 			res.json(jsonData)
 		}).catch(e => {
-			res.json(11111111111111)
+			res.json(e)
 			console.log(e, 33)
 		})
 			// res.render('index',{
