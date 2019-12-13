@@ -47,13 +47,15 @@ router.get('/delicate', async function(req, res, next) {
 		let path = `${public}/files/${req.query.vkey}.jpg`
 		fs.writeFileSync(path, dataBuffer)
 		myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
-			let data = {
+			let jsonData = {
 			  httpStatus: 200,
 			  data: {
 			    url: `${Global.cdnHost}/${res0.name}`
 			  }
 			}
-			res.json(data)
+			console.log(res0, 22222222222222)
+			console.log(jsonData, 111111111111111)
+			res.json(jsonData)
 		})
     // res.render('index',{
     //     title:'study book' ,
