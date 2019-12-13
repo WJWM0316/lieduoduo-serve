@@ -4,13 +4,13 @@ var path = require('path');
 var fs = require('fs');
 
 var public = path.resolve('./public')
-var {createCanvas, loadImage, registerFont} = require('canvas');
+var {createCanvas, loadImage} = require('canvas');
 var Global = require("../../config/global.js"); //根据环境变量，获取对应的IP
 var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
 router.get('/delicate', async function(req, res, next) {
-	res.json(1111111111111111111)
+
   const canvas = createCanvas(750, 1334);
   const ctx = canvas.getContext('2d');
   ctx.textBaseline = "top"
@@ -42,38 +42,29 @@ router.get('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
-    let data = {
-    	httpStatus: 200,
-    	data: {
-    		url: jpeg,
-        posterData: info
-    	}
-    }
-    
-		
-		// var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
-		// let dataBuffer = Buffer.from(base64Data, 'base64');
-		// let path = `${public}/files/${req.query.vkey}.jpg`
-		// fs.writeFileSync(path, dataBuffer)
-		// console.log('开始上传')
-		// myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
-		// 	let jsonData = {
-		// 	  httpStatus: 200,
-		// 	  data: {
-		// 	    url: `${Global.cdnHost}/${res0.name}`
-		// 	  }
-		// 	}
-		// 	console.log(res0, 22222222222222)
-		// 	console.log(jsonData, 111111111111111)
-		// 	res.json(jsonData)
-		// }).catch(e => {
-		// 	console.log(e, 33)
-		// })
+		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
+		let dataBuffer = Buffer.from(base64Data, 'base64');
+		let path = `${public}/files/${req.query.vkey}.jpg`
+		fs.writeFileSync(path, dataBuffer)
+		console.log('开始上传')
+		myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
+			let jsonData = {
+			  httpStatus: 200,
+			  data: {
+			    url: `${Global.cdnHost}/${res0.name}`
+			  }
+			}
+			console.log(res0, 22222222222222)
+			console.log(jsonData, 111111111111111)
+			res.json(jsonData)
+		}).catch(e => {
+			console.log(e, 33)
+		})
 			// res.render('index',{
-    //     title:'study book' ,
-    //     jpeg:jpeg,
-    //     description:'照片墙'
-    //  })
+   //      title:'study book' ,
+   //      jpeg:jpeg,
+   //      description:'照片墙'
+   //   })
   });
 })
 
