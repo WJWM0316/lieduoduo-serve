@@ -10,7 +10,9 @@ var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
 router.post('/delicate', async function(req, res, next) {
-
+	try {
+		
+	
   const canvas = createCanvas(750, 1334);
   const ctx = canvas.getContext('2d');
   ctx.textBaseline = "top"
@@ -67,6 +69,9 @@ router.post('/delicate', async function(req, res, next) {
    //      description:'照片墙'
    //   })
   });
+	} catch (e) {
+		console.log(e, 222222222222)
+	}
 })
 
 module.exports = router;
