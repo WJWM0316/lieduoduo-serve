@@ -58,7 +58,8 @@ router.get('/delicate', async function(req, res, next) {
 			console.log(jsonData, 111111111111111)
 			res.json(jsonData)
 		}).catch(e => {
-			console.log(e, 333333333333)
+			console.log(e, 33)
+		})
 			// res.render('index',{
     //     title:'study book' ,
     //     jpeg:jpeg,
