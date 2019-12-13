@@ -10,6 +10,7 @@ var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
 router.get('/delicate', async function(req, res, next) {
+	res.json(1111111111111111111)
   const canvas = createCanvas(750, 1334);
   const ctx = canvas.getContext('2d');
   ctx.textBaseline = "top"
@@ -48,7 +49,7 @@ router.get('/delicate', async function(req, res, next) {
         posterData: info
     	}
     }
-    res.json(data)
+    
 		
 		// var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
 		// let dataBuffer = Buffer.from(base64Data, 'base64');
