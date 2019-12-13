@@ -41,25 +41,33 @@ router.get('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
-    
-		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
-		let dataBuffer = Buffer.from(base64Data, 'base64');
-		let path = `${public}/files/${req.query.vkey}.jpg`
-		fs.writeFileSync(path, dataBuffer)
-		console.log('开始上传')
-		myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
-			let jsonData = {
-			  httpStatus: 200,
-			  data: {
-			    url: `${Global.cdnHost}/${res0.name}`
-			  }
-			}
-			console.log(res0, 22222222222222)
-			console.log(jsonData, 111111111111111)
-			res.json(jsonData)
-		}).catch(e => {
-			console.log(e, 33)
-		})
+    let data = {
+    	httpStatus: 200,
+    	data: {
+    		url: jpeg,
+        posterData: info
+    	}
+    }
+    res.json(data)
+		
+		// var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
+		// let dataBuffer = Buffer.from(base64Data, 'base64');
+		// let path = `${public}/files/${req.query.vkey}.jpg`
+		// fs.writeFileSync(path, dataBuffer)
+		// console.log('开始上传')
+		// myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
+		// 	let jsonData = {
+		// 	  httpStatus: 200,
+		// 	  data: {
+		// 	    url: `${Global.cdnHost}/${res0.name}`
+		// 	  }
+		// 	}
+		// 	console.log(res0, 22222222222222)
+		// 	console.log(jsonData, 111111111111111)
+		// 	res.json(jsonData)
+		// }).catch(e => {
+		// 	console.log(e, 33)
+		// })
 			// res.render('index',{
     //     title:'study book' ,
     //     jpeg:jpeg,
