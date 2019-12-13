@@ -4,14 +4,14 @@ var path = require('path');
 var fs = require('fs');
 
 var public = path.resolve('./public')
-var {createCanvas, loadImage, registerFont} = require('canvas');
+var {createCanvas, loadImage} = require('canvas');
 var Global = require("../../config/global.js"); //根据环境变量，获取对应的IP
 var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
-registerFont(public + '/font/PingFangSC.ttf', { family: 'PingFangSC' })
-registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
-registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light' })
+router.get('/test', async function(req, res, next) {
+	res.json(11111111111111111111)
+})
 
 router.post('/delicate', async function(req, res, next) {
 	try {
