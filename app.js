@@ -9,7 +9,7 @@ var canvasRoute = require('./routes/canvas/index.js');
 
 var files = require('./routes/files/index.js');
 var app = express();
-
+var NODE_ENV = process.env.NODE_ENV;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -22,16 +22,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 自定义跨域中间件
 var allowCors = function(req, res, next) {
-  if(req.headers.origin === "https://www.lieduoduo.com"
-  	|| req.headers.origin === "http://www.lieduoduo.ziwork.com"
-  	|| req.headers.origin === "https://h5.lieduoduo.com"
-  	|| req.headers.origin === "https://h5.lieduoduo.ziwork.com"
-  	|| req.headers.origin === "https://m.lieduoduo.com"
-  	|| req.headers.origin === "https://m.lieduoduo.ziwork.com"
-  	) {
-  	//设置允许跨域的域名，*代表允许任意域名跨域
-  	res.header("Access-Control-Allow-Origin", req.headers.origin);
-  }
+	if (NODE_ENV === 'pro') {
+		if(req.headers.origin === "https://www.lieduoduo.com"
+			|| req.headers.origin === "http://www.lieduoduo.ziwork.com"
+			|| req.headers.origin === "https://h5.lieduoduo.com"
+			|| req.headers.origin === "https://h5.lieduoduo.ziwork.com"
+			|| req.headers.origin === "https://m.lieduoduo.com"
+			|| req.headers.origin === "https://m.lieduoduo.ziwork.com"
+			) {
+			//设置允许跨域的域名，*代表允许任意域名跨域
+			res.header("Access-Control-Allow-Origin", req.headers.origin);
+		}
+	} else {
+		res.header("Access-Control-Allow-Origin", "*");
+	}
 	res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -39,7 +43,6 @@ var allowCors = function(req, res, next) {
   res.header("Content-Type", "text/html"); 
   next()
 };
-
 app.use(allowCors)
 
 app.use('/frontEnd', canvasRoute);
