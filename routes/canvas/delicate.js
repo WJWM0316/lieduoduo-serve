@@ -47,7 +47,6 @@ router.get('/delicate', async function(req, res, next) {
 		let path = `${public}/files/${req.query.vkey}.jpg`,
 				fileName = `${req.query.vkey}_${new Date().getTime()}.jpg`
 		fs.writeFileSync(path, dataBuffer)
-		console.log('开始上传')
 		myUpload({fileName, files: path}).then(res0 => {
 			let jsonData = {
 			  httpStatus: 200,
@@ -55,8 +54,6 @@ router.get('/delicate', async function(req, res, next) {
 			    url: `${Global.cdnHost}/${res0.name}`
 			  }
 			}
-			console.log(res0, 22222222222222)
-			console.log(jsonData, 111111111111111)
 			res.json(jsonData)
 		}).catch(e => {
 			console.log(e, 33)
