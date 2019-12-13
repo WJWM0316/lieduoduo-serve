@@ -31,12 +31,12 @@ server.on('listening', onListening);
 
 
 server.on('request', function(req,res){
-	if(	 req.headers.origin.toLowerCase() === "https://www.lieduoduo.com"
-		|| req.headers.origin.toLowerCase() === "http://www.lieduoduo.ziwork.com"
-		|| req.headers.origin.toLowerCase() === "https://h5.lieduoduo.com"
-		|| req.headers.origin.toLowerCase() === "https://h5.lieduoduo.ziwork.com"
-		|| req.headers.origin.toLowerCase() === "https://m.lieduoduo.com"
-		|| req.headers.origin.toLowerCase() === "https://m.lieduoduo.ziwork.com"
+	if(	 req.headers.origin === "https://www.lieduoduo.com"
+		|| req.headers.origin === "http://www.lieduoduo.ziwork.com"
+		|| req.headers.origin === "https://h5.lieduoduo.com"
+		|| req.headers.origin === "https://h5.lieduoduo.ziwork.com"
+		|| req.headers.origin === "https://m.lieduoduo.com"
+		|| req.headers.origin === "https://m.lieduoduo.ziwork.com"
 		) {
 		//设置允许跨域的域名，*代表允许任意域名跨域
 		res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
@@ -99,8 +99,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening(req,res) {
-	console.log(req, res, 2222222222222)
+function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
