@@ -42,6 +42,8 @@ router.post('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
+		res.json(111111111)
+		return
 		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
 		let dataBuffer = Buffer.from(base64Data, 'base64');
 		let path = `${public}/files/${req.query.vkey}.jpg`,
