@@ -4,10 +4,14 @@ var path = require('path');
 var fs = require('fs');
 
 var public = path.resolve('./public')
-var {createCanvas, loadImage} = require('canvas');
+var {createCanvas, loadImage, registerFont} = require('canvas');
 var Global = require("../../config/global.js"); //根据环境变量，获取对应的IP
 var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
+
+registerFont(public + '/font/PingFangSC.ttf', { family: 'PingFangSC' })
+registerFont(public + '/font/PingFangSC-bold.ttf', { family: 'PingFangSC-bold' })
+registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light' })
 
 router.post('/delicate', async function(req, res, next) {
 	try {
@@ -35,7 +39,6 @@ router.post('/delicate', async function(req, res, next) {
     res,
     next
   })
-
   if (qrCodeData.data.url) {
 		ctx.arc(509 + 143 / 2, 1109 + 143 / 2,  143 / 2, 0, Math.PI * 2);
 		ctx.clip();
@@ -44,8 +47,6 @@ router.post('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
-		res.json(111111111)
-		return
 		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
 		let dataBuffer = Buffer.from(base64Data, 'base64');
 		let path = `${public}/files/${req.query.vkey}.jpg`,
