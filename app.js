@@ -32,9 +32,10 @@ var allowCors = function(req, res, next) {
   	//设置允许跨域的域名，*代表允许任意域名跨域
   	res.header("Access-Control-Allow-Origin", req.headers.origin);
   }
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By",' 3.2.1');
+  res.header("X-Powered-By", 'Express');
   res.header("Content-Type", "text/html"); 
   next()
 };
