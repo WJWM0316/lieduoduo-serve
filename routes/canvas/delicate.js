@@ -46,6 +46,7 @@ router.get('/delicate', async function(req, res, next) {
 		let dataBuffer = Buffer.from(base64Data, 'base64');
 		let path = `${public}/files/${req.query.vkey}.jpg`
 		fs.writeFileSync(path, dataBuffer)
+		console.log('开始上传')
 		myUpload({fileName: `${req.query.vkey}.jpg`, files: path}).then(res0 => {
 			let jsonData = {
 			  httpStatus: 200,
@@ -56,8 +57,9 @@ router.get('/delicate', async function(req, res, next) {
 			console.log(res0, 22222222222222)
 			console.log(jsonData, 111111111111111)
 			res.json(jsonData)
-		})
-    // res.render('index',{
+		}).catch(e => {
+			console.log(e, 333333333333)
+			// res.render('index',{
     //     title:'study book' ,
     //     jpeg:jpeg,
     //     description:'照片墙'

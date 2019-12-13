@@ -28,12 +28,12 @@ module.exports = myUpload = function ({fileName, files}) {
 				
 		let fileFullPath = `/front-assets/delicate/${fileName}`
 		return store.put(fileFullPath, files).then(result => {
-			if (fs.existsSync(files)) fs.unlinkSync(files)
 			console.log(result)
+			if (fs.existsSync(files)) fs.unlinkSync(files)
 			resolve(result)
 		}).catch(err => {
-			if (fs.existsSync(files)) fs.unlinkSync(files)
 			console.log(err)
+			if (fs.existsSync(files)) fs.unlinkSync(files)
 			reject(err)
 		})
 	})
