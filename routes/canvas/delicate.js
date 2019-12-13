@@ -9,7 +9,7 @@ var Global = require("../../config/global.js"); //根据环境变量，获取对
 var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
-router.get('/test', async function(req, res, next) {
+router.get('/test', function(req, res, next) {
 	res.json(11111111111111111111)
 })
 
