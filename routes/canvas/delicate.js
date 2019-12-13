@@ -9,7 +9,7 @@ var Global = require("../../config/global.js"); //根据环境变量，获取对
 var myUpload = require("../../api/myUpload.js");
 var httpRequest = require('../../config/httpRequest.js')
 
-router.get('/delicate', async function(req, res, next) {
+router.post('/delicate', async function(req, res, next) {
 
   const canvas = createCanvas(750, 1334);
   const ctx = canvas.getContext('2d');
