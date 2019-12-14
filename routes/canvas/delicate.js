@@ -44,23 +44,32 @@ router.get('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
-		var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
-		let dataBuffer = Buffer.from(base64Data, 'base64');
-		let path = `${public}/files/${req.query.vkey}.jpg`,
-				fileName = `${req.query.vkey}_${new Date().getTime()}.jpg`
-		fs.writeFileSync(path, dataBuffer)
-		myUpload({fileName, files: path}).then(res0 => {
-			let jsonData = {
-			  httpStatus: 200,
-			  data: {
-			    url: `${Global.cdnHost}/${res0.name}`
-			  }
-			}
-			res.json(jsonData)
-		}).catch(e => {
-			res.json(e)
-			console.log(e, 33)
-		})
+		let jsonData = {
+		  httpStatus: 200,
+		  data: {
+		    url: jpeg
+		  }
+		}
+		res.json(jsonData)
+		
+		
+		// var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
+		// let dataBuffer = Buffer.from(base64Data, 'base64');
+		// let path = `${public}/files/${req.query.vkey}.jpg`,
+		// 		fileName = `${req.query.vkey}_${new Date().getTime()}.jpg`
+		// fs.writeFileSync(path, dataBuffer)
+		// myUpload({fileName, files: path}).then(res0 => {
+		// 	let jsonData = {
+		// 	  httpStatus: 200,
+		// 	  data: {
+		// 	    url: `${Global.cdnHost}/${res0.name}`
+		// 	  }
+		// 	}
+		// 	res.json(jsonData)
+		// }).catch(e => {
+		// 	res.json(e)
+		// 	console.log(e, 33)
+		// })
 			// res.render('index',{
    //      title:'study book' ,
    //      jpeg:jpeg,
