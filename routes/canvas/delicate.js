@@ -44,13 +44,13 @@ router.get('/delicate', async function(req, res, next) {
   }
 
   canvas.toDataURL('image/jpeg', (err, jpeg) => {
-		let jsonData = {
-		  httpStatus: 200,
-		  data: {
-		    url: jpeg
-		  }
+		let data = {
+			httpStatus: 200,
+			data: {
+				url: jpeg
+			}
 		}
-		res.json(jsonData)
+		res.json(data)
 		
 		
 		// var base64Data = jpeg.replace(/^data:image\/\w+;base64,/, "");
