@@ -15,8 +15,8 @@ switch (NODE_ENV) {
         GLOBALCONFIG.zpApi   = "https://zhaopin-api.lieduoduo.ziwork.com"
         GLOBALCONFIG.pubApi  = "https://pub-api.lieduoduo.ziwork.com"
         GLOBALCONFIG.webHost = "https://h5.lieduoduo.ziwork.com"
-				GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.ziwork.com'
-				GLOBALCONFIG.bucket  = 'lieduoduo-uploads-test'
+		GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.ziwork.com'
+		GLOBALCONFIG.bucket  = 'lieduoduo-uploads-test'
         break;
     case 'pro': // 正式
         GLOBALCONFIG.nodeApi = "https://node.lieduoduo.com"
@@ -24,8 +24,8 @@ switch (NODE_ENV) {
         GLOBALCONFIG.zpApi   = "https://zhaopin-api.lieduoduo.com"
         GLOBALCONFIG.pubApi  = "https://pub-api.lieduoduo.com"
         GLOBALCONFIG.webHost = "https://h5.lieduoduo.com"
-				GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.com'
-				GLOBALCONFIG.bucket  = 'lieduoduo-uploads-pro'
+    	GLOBALCONFIG.cdnHost = 'https://attach.lieduoduo.com'
+    	GLOBALCONFIG.bucket  = 'lieduoduo-uploads-pro'
         break
 }
 
