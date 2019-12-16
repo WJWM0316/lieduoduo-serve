@@ -43,7 +43,7 @@ var allowCors = function(req, res, next) {
   res.header("Content-Type", "text/html"); 
   next()
 };
-app.use(allowCors)
+// app.use(allowCors)
 
 app.use('/frontEnd', canvasRoute);
 app.use('/frontEnd', frontEndRoute);
