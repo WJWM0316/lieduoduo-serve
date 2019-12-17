@@ -12,7 +12,9 @@ registerFont(public + '/font/PingFangSC-light.ttf', { family: 'PingFangSC-light'
 
 var httpRequest = require('../../config/httpRequest.js')
 var pocessor = require('../../utils/canvasPocessor.js')
-
+router.get('/test', function(req, res, next) {
+  res.json(111)
+})
 router.get('/wantYou', async function(req, res, next) {
   const canvas = createCanvas(750, 1334);
   const ctx = canvas.getContext('2d');
