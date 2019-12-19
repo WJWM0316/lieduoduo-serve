@@ -39,13 +39,13 @@ router.get('/wantActivityPoster', async function(req, res, next) {
     next
   })
   let info = data.data || null
-
+  console.log(info, 11)
   // 头像
   ctx.save();
   ctx.arc(287 + 87, 184 + 87, 87, 0, Math.PI * 2);
   
   ctx.clip();
-  let avatarUrl = await loadImage(info.avatar.smallUrl)
+  let avatarUrl = await loadImage(info.avatarInfo.smallUrl)
   ctx.drawImage(avatarUrl, 287, 184, 174, 174)
   ctx.restore()
 
