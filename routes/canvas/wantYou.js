@@ -32,7 +32,7 @@ router.get('/wantActivityPoster', async function(req, res, next) {
   let data = await httpRequest({
     hostType: 'zpApi', 
     method: 'GET', 
-    url: `/recruiter/detail`, 
+    url: `/cur/user_info`, 
     data: req.query, 
     req,
     res,
@@ -50,7 +50,8 @@ router.get('/wantActivityPoster', async function(req, res, next) {
   ctx.restore()
 
 
-  let p = `${Global.webHost}/wantYou_b?vkey=sdfcxfe&uid=${req.query.uid}`
+  let p = req.query.type === 'activity3' ? `${Global.webHost}/wantYou_b?uid=${info.uid}&type=platformEntry` : `${Global.webHost}/wantYou_b?uid=${info.uid}`
+
   let qrCodeData = await httpRequest({
     hostType: 'pubApi', 
     method: 'POST', 
@@ -60,6 +61,8 @@ router.get('/wantActivityPoster', async function(req, res, next) {
     res,
     next
   })
+
+
   ctx.arc(270 + 105, 1007 + 105,  105, 0, Math.PI * 2);
   ctx.clip();
   if (qrCodeData.data.url) {
