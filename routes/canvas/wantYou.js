@@ -49,8 +49,7 @@ router.get('/wantActivityPoster', async function(req, res, next) {
   ctx.drawImage(avatarUrl, 287, 184, 174, 174)
   ctx.restore()
 
-
-  let p = req.query.type === 'activity3' ? `${Global.webHost}/wantYou_b?uid=${info.uid}&type=platformEntry` : `${Global.webHost}/wantYou_b?uid=${info.uid}`
+  let p = req.query.type === 'activity3' ? `${Global.webHost}/wantYou_b?uid=${info.id}&type=platformEntry` : `${Global.webHost}/wantYou_b?uid=${info.id}`
 
   let qrCodeData = await httpRequest({
     hostType: 'pubApi', 
