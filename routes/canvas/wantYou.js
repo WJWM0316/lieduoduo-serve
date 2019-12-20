@@ -50,12 +50,12 @@ router.get('/wantActivityPoster', async function(req, res, next) {
   ctx.restore()
 
   let p = req.query.type === 'activity3' ? `${Global.webHost}/wantYou_b?uid=${info.id}&type=platformEntry` : `${Global.webHost}/wantYou_b?uid=${info.id}`
-
+  let knacks = req.query.type === 'activity3' ? 3 : 2
   let qrCodeData = await httpRequest({
     hostType: 'pubApi', 
     method: 'POST', 
     url: `/share/mini/program/qr/code`, 
-    data: {path: 'page/common/pages/webView/webView', params: `p=${encodeURIComponent(p)}`, type: 'want_you_activity'}, 
+    data: {path: 'page/common/pages/webView/webView', params: `p=${encodeURIComponent(p)}`, type: 'want_you_activity', knacks}, 
     req,
     res,
     next
