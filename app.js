@@ -41,8 +41,6 @@ var allowCors = function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization, Wechat-Version, Admin-Version, Authorization-Admin, Authorization-Wechat, Authorization-Official, Channel-Code, Channel-Url, Act-Code, Act-Pid, Location, Notify-Appid, Authorization-App, Authorization-App-Wechat, App, App-Model, App-Version, Device-Id, App-Channel, Msg-Id, Source, Idfa-IOS, Exquisite-Code");
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By", 'Express');
-  res.header("Content-Type", 'text/html; charset=UTF-8; application/json');
-  console.log(new Date())
   next()
 };
 app.use(allowCors)
