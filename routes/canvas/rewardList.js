@@ -37,13 +37,13 @@ router.get('/rewardList', async function(req, res, next) {
     next
   })
   let info = data.data || null
-  
+  console.log(info)
 
-  ctx.arc(270 + 105, 1007 + 105,  105, 0, Math.PI * 2);
-  ctx.clip();
-  if (data.positionQrCodeUrl) {
-    let qrCode = await loadImage(data.positionQrCodeUrl)
-    ctx.drawImage(qrCode, 270, 1007, 210, 210);
+  // ctx.arc(270 + 105, 1007 + 105,  105, 0, Math.PI * 2);
+  // ctx.clip();
+  if (info.positionQrCodeUrl) {
+    let qrCode = await loadImage(info.positionQrCodeUrl)
+    ctx.drawImage(qrCode, 284, 832, 174, 174);
   }
   
   
