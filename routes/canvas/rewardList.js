@@ -49,12 +49,18 @@ router.get('/rewardList', async function(req, res, next) {
   
 
   canvas.toDataURL('image/png', (err, jpeg) => {
-   // res.json(jsonData)
-   res.render('index',{
-      title:'study book' ,
-      jpeg:jpeg,
-      description:'照片墙'
-    })
+  let jsonData = {
+     httpStatus: 200,
+     data: {
+       url: jpeg
+     }
+   }
+   res.json(jsonData)
+   // res.render('index',{
+   //    title:'study book' ,
+   //    jpeg:jpeg,
+   //    description:'照片墙'
+   //  })
   })
 
 })
