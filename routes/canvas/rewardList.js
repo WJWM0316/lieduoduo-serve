@@ -24,7 +24,7 @@ router.get('/rewardList', async function(req, res, next) {
     req.headers['Authorization'] = req.headers['authorization-app']
   }
   // 画背景
-  let imgUrl = await loadImage(public + '/images/poster1.jpg')
+  let imgUrl = await loadImage(public + '/images/rewardList.jpg')
   ctx.drawImage(imgUrl, 0, 0, 750, 1334);
 
   let data = await httpRequest({
@@ -37,10 +37,10 @@ router.get('/rewardList', async function(req, res, next) {
     next
   })
   let info = data.data || null
-  console.log(info)
+  console.log(data, info.positionQrCodeUrl)
 
-  // ctx.arc(270 + 105, 1007 + 105,  105, 0, Math.PI * 2);
-  // ctx.clip();
+  ctx.arc(284 + 87, 832 + 87,  87, 0, Math.PI * 2);
+  ctx.clip();
   if (info.positionQrCodeUrl) {
     let qrCode = await loadImage(info.positionQrCodeUrl)
     ctx.drawImage(qrCode, 284, 832, 174, 174);
