@@ -34,7 +34,7 @@ function parseWord(filePath, res) {
       })
       newArr.forEach((item, index) => {
         item.forEach((item0, index0) => {
-          newArr[index][index0] = item0.trim().replace('\： /g', '：').split('"')
+          newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
           
         })
       })
