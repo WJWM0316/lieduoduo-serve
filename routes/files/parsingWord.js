@@ -21,9 +21,9 @@ function parseWord(filePath, res) {
       });
     } else {
       
-      // let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      // let newArr = [],
-      //     arr    = []
+      let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
+      let newArr = [],
+          arr    = []
 
       // array.forEach((item, index) => {
       //   if (item.trim() === '' && arr.length) {
@@ -38,12 +38,12 @@ function parseWord(filePath, res) {
           
       //   })
       // })
-      // console.log(newArr,  3333333333333)
+      console.log(newArr,  3333333333333)
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: text
+            result: array
         },
         returnValue: 1
       });
