@@ -25,19 +25,19 @@ function parseWord(filePath, res) {
       let newArr = [],
           arr    = []
 
-      // array.forEach((item, index) => {
-      //   if (item.trim() === '' && arr.length) {
-      //     newArr.push(arr)
-      //     arr = []
-      //   }
-      //   if (item.trim() !== '') arr.push(item)
-      // })
-      // newArr.forEach((item, index) => {
-      //   item.forEach((item0, index0) => {
-      //     newArr[index][index0] = item0.trim().replace('\： /g', '：').split('"')
+      array.forEach((item, index) => {
+        if (item.trim() === '' && arr.length) {
+          newArr.push(arr)
+          arr = []
+        }
+        if (item.trim() !== '') arr.push(item)
+      })
+      newArr.forEach((item, index) => {
+        item.forEach((item0, index0) => {
+          newArr[index][index0] = item0.trim().replace('\： /g', '：').split('"')
           
-      //   })
-      // })
+        })
+      })
       console.log(newArr,  3333333333333)
       res.status(200).json({
         httpCode: 200,
