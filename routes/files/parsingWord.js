@@ -22,23 +22,23 @@ function parseWord(filePath, res) {
     } else {
       
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      let newArr = [],
-          arr    = []
+      // let newArr = [],
+      //     arr    = []
 
-      array.forEach((item, index) => {
-        if (item.trim() === '' && arr.length) {
-          newArr.push(arr)
-          arr = []
-        }
-        if (item.trim() !== '') arr.push(item)
-      })
-      newArr.forEach((item, index) => {
-        item.forEach((item0, index0) => {
-          newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
+      // array.forEach((item, index) => {
+      //   if (item.trim() === '' && arr.length) {
+      //     newArr.push(arr)
+      //     arr = []
+      //   }
+      //   if (item.trim() !== '') arr.push(item)
+      // })
+      // newArr.forEach((item, index) => {
+      //   item.forEach((item0, index0) => {
+      //     newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
           
-        })
-      })
-      console.log(newArr,  3333333333333)
+      //   })
+      // })
+      console.log(array,  3333333333333)
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
@@ -53,7 +53,7 @@ function parseWord(filePath, res) {
 
 
 router.get('/parsingWord', async function(req, res, next) {
-	parseWord(`${public}/files/【客户经理 _ 北京 5k-10k】杨阳 4年.doc`, res)
+	parseWord(`${public}/files/${req.query.fileName}`, res)
 })
 
 module.exports = router;
