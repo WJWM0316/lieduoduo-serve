@@ -53,7 +53,7 @@ function parseWord(filePath, res) {
 
 
 router.get('/parsingWord', async function(req, res, next) {
-	parseWord(`${public}/files/【Python爬虫工程师 _ 广州 10k-15k】邓栩枫 2年.pdf`, res)
+	parseWord(`${public}/files/【客户经理 _ 北京 5k-10k】杨阳 4年.doc`, res)
 })
 
 module.exports = router;
