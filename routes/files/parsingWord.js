@@ -22,28 +22,28 @@ function parseWord(filePath, res) {
     } else {
       
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      let newArr = [],
-          arr    = []
+      // let newArr = [],
+      //     arr    = []
 
-      array.forEach((item, index) => {
-        if (item.trim() === '' && arr.length) {
-          newArr.push(arr)
-          arr = []
-        }
-        if (item.trim() !== '') arr.push(item)
-      })
-      newArr.forEach((item, index) => {
-        item.forEach((item0, index0) => {
-          newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
+      // array.forEach((item, index) => {
+      //   if (item.trim() === '' && arr.length) {
+      //     newArr.push(arr)
+      //     arr = []
+      //   }
+      //   if (item.trim() !== '') arr.push(item)
+      // })
+      // newArr.forEach((item, index) => {
+      //   item.forEach((item0, index0) => {
+      //     newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
           
-        })
-      })
-      console.log(array,  3333333333333)
+      //   })
+      // })
+      // console.log(array,  3333333333333)
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: newArr
+            result: array
         },
         returnValue: 1
       });
