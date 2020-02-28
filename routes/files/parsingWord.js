@@ -12,6 +12,7 @@ function parseWord(filePath, res) {
   switch (suffix) {
     case 'docx':
       config.preserveLineBreaks = true
+      config.preserveOnlyMultipleLineBreaks = true
       break
     case 'pdf':
       config.preserveLineBreaks = false
@@ -38,7 +39,7 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
-          newArr = newArr.concat(item.trim().split(' '))
+          newArr = newArr.concat(array.trim().split(' '))
           break
       }
      
