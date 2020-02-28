@@ -9,7 +9,8 @@ const textract = require('textract')
 function parseWord(filePath, res) {
   let suffix = filePath.split('.')[filePath.split('.').length - 1]
   let config = {
-    preserveLineBreaks: true
+    preserveLineBreaks: true,
+    preserveOnlyMultipleLineBreaks: true
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
     if (error) {
