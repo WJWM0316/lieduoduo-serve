@@ -7,6 +7,7 @@ var public = path.resolve('./public')
 const textract = require('textract')
 
 function parseWord(filePath, res) {
+  let suffix = filePath.split('.')[filePath.split('.').length - 1]
   let config = {
     preserveLineBreaks: true
   }
@@ -20,30 +21,20 @@ function parseWord(filePath, res) {
         returnValue: 0
       });
     } else {
-      
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      // let newArr = [],
-      //     arr    = []
-
-      // array.forEach((item, index) => {
-      //   if (item.trim() === '' && arr.length) {
-      //     newArr.push(arr)
-      //     arr = []
-      //   }
-      //   if (item.trim() !== '') arr.push(item)
-      // })
-      // newArr.forEach((item, index) => {
-      //   item.forEach((item0, index0) => {
-      //     newArr[index][index0] = item0.trim().replace('\： /g', '：').split(' ')
-          
-      //   })
-      // })
-      // console.log(array,  3333333333333)
+      let newArr = []
+     array.forEach((item, index) => {
+        switch (suffix) {
+          case 'docx':
+            newArr = newArr.concat(item.trim().split('"'))
+            break
+        }
+      })
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: array
+            result: newArr
         },
         returnValue: 1
       });
