@@ -28,23 +28,25 @@ function parseWord(filePath, res) {
         returnValue: 0
       });
     } else {
-      let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
+      let array = text.trim()
       let newArr = []
-     array.forEach((item, index) => {
-        switch (suffix) {
-          case 'docx':
+      switch (suffix) {
+        case 'docx':
+          array = array.replace(/[\r\n]/g, '<br>').split('<br>')
+          array.forEach((item, index) => {
             newArr = newArr.concat(item.trim().split('"'))
-            break
-          case 'pdf':
-            newArr = newArr.concat(item.trim().split(' '))
-            break
-        }
-      })
+          })
+          break
+        case 'pdf':
+          newArr = newArr.concat(item.trim().split(' '))
+          break
+      }
+     
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: array
+            result: newArr
         },
         returnValue: 1
       });
