@@ -14,6 +14,10 @@ function parseWord(filePath, res) {
       config.preserveLineBreaks = true
       config.preserveOnlyMultipleLineBreaks = true
       break
+    case 'doc':
+      config.preserveLineBreaks = true
+      config.preserveOnlyMultipleLineBreaks = true
+      break
     case 'pdf':
       // config.preserveLineBreaks = true
       // config.preserveOnlyMultipleLineBreaks = true
@@ -38,6 +42,11 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
+          array.forEach((item, index) => {
+            newArr = newArr.concat(item.trim().split(' '))
+          })
+          break
+        case 'doc':
           array.forEach((item, index) => {
             newArr = newArr.concat(item.trim().split(' '))
           })
