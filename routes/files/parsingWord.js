@@ -12,7 +12,7 @@ function parseWord(filePath, res) {
   switch (suffix) {
     case 'docx':
       config.preserveLineBreaks = true
-      // config.preserveOnlyMultipleLineBreaks = true
+      config.preserveOnlyMultipleLineBreaks = true
       break
     case 'doc':
       config.preserveLineBreaks = true
