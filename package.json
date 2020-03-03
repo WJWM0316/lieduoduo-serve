@@ -21,6 +21,7 @@
     "officegen": "^0.6.3",
     "puppeteer-core": "^2.1.1",
     "qrcode": "^1.4.2",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "textract": "^2.5.0"
   }
 }

@@ -4,7 +4,8 @@
 /yarn-error.log
 /node_modules
 /dist
-/public/files
+yarn.lock
+
 # local env files
 
 # Log files
@@ -20,4 +21,3 @@
 *.njsproj
 *.sln
 *.sw*
-yarn.lock

@@ -37,14 +37,13 @@ var allowCors = function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 	}
 	res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization, Wechat-Version, Admin-Version, Authorization-Admin, Authorization-Wechat, Authorization-Official, Channel-Code, Channel-Url, Act-Code, Act-Pid, Location, Notify-Appid, Authorization-App, Authorization-App-Wechat, App, App-Model, App-Version, Device-Id, App-Channel, Msg-Id, Source, Idfa-IOS, Exquisite-Code");
-  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  // res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization,Authorization-Wechat,Wechat-Version,Authorization-Admin,Admin-Version,Authorization-Official,Channel-Code,Channel-Url,Act-Code,Act-Pid,Location,Notify-Appid,Authorization-App,Authorization-App-Wechat,App,App-Model,App-Version,Device-Id,App-Channel,Msg-Id,Source,Idfa-IOS");
+	res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization, Wechat-Version, Admin-Version, Authorization-Admin, Authorization-Wechat, Authorization-Official, Channel-Code, Channel-Url, Act-Code, Act-Pid, Location, Notify-Appid, Authorization-App, Authorization-App-Wechat, App, App-Model, App-Version, Device-Id, App-Channel, Msg-Id, Source, Idfa-IOS, Exquisite-Code");
+	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By", 'Express');
-  res.header("Content-Type", 'application/x-www-form-urlencoded');
-  console.log(new Date())
   next()
 };
-app.use(allowCors)
+//app.use(allowCors)
 
 app.use('/frontEnd', canvasRoute);
 app.use('/frontEnd', frontEndRoute);
