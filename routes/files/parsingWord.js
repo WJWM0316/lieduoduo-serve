@@ -47,7 +47,7 @@ function parseWord(filePath, res) {
           break
         case 'doc':
           array.forEach((item, index) => {
-            newArr = newArr.concat(item.trim().split(' '))
+            newArr = newArr.concat(item.trim().split('"'))
           })
           break
       }
