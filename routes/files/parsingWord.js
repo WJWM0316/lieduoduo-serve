@@ -40,10 +40,10 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
-        newArr = text
-          // array.forEach((item, index) => {
-          //   newArr = newArr.concat(item.trim().split(" "))
-          // })
+       //  newArr = text
+          array.forEach((item, index) => {
+            newArr = newArr.concat(item.trim().split(" "))
+          })
           break
         case 'doc':
           array.forEach((item, index) => {
