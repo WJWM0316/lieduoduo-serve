@@ -15,8 +15,8 @@ function parseWord(filePath, res) {
       config.preserveOnlyMultipleLineBreaks = true
       break
     case 'pdf':
-      config.preserveLineBreaks = true
-      config.preserveOnlyMultipleLineBreaks = true
+      // config.preserveLineBreaks = true
+      // config.preserveOnlyMultipleLineBreaks = true
       break
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
