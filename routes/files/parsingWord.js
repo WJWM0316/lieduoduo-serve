@@ -19,6 +19,7 @@ function parseWord(filePath, res) {
       break
     case 'pdf':
       config.preserveLineBreaks = true
+      config.preserveOnlyMultipleLineBreaks = true
       // config.layout = 'raw'
       // config.pdftotextOption = {
       //   layout: 'raw'
