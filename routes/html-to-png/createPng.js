@@ -14,10 +14,10 @@ router.get('/render', async(req, res, next) => {
 
 router.get('/pngs', async(req, res, next) => {
     // http://127.0.0.1:3100/json/version
-    let version = await request({
-        uri:  "http://127.0.0.1:3100/json/version",
-        json: true
-    });
+    // let version = await request({
+    //     uri:  "http://127.0.0.1:3100/json/version",
+    //     json: true
+    // });
     // let browser = await puppeteer.connect({
     //     ignoreHTTPSErrors: true,
     //     browserWSEndpoint: version.webSocketDebuggerUrl
@@ -32,7 +32,7 @@ router.get('/pngs', async(req, res, next) => {
         encoding: 'base64',
     });
     await page.close(); */
-    res.json(version)
+    res.json(200)
     // res.render('index', {
     //     title:'study book',
     //     jpeg:`data:image/png;base64,${results}` ,
