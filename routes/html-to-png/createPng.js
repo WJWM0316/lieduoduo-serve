@@ -21,7 +21,7 @@ router.get('/pngs', async(req, res, next) => {
     // version.webSocketDebuggerUrl
     let browser = await puppeteer.connect({
         ignoreHTTPSErrors: true,
-        browserWSEndpoint: 'ws:127.0.0.1:3100'
+        browserWSEndpoint: 'ws://127.0.0.1:3100'
     });
     const page = await browser.newPage();
     // 模拟一个 iPhone X
