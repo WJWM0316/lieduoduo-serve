@@ -57,7 +57,7 @@ function parseWord(filePath, res) {
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: text
+            result: newArr
         },
         returnValue: 1
       });
