@@ -19,7 +19,9 @@ function parseWord(filePath, res) {
       break
     case 'pdf':
       config.preserveLineBreaks = true
-      
+      config.pdftotextOption = {
+        layout: 'raw'
+      }
       break
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
