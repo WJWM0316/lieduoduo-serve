@@ -40,9 +40,10 @@ function parseWord(filePath, res) {
       let newArr = []
       switch (suffix) {
         case 'docx':
-          array.forEach((item, index) => {
-            newArr = newArr.concat(item.trim().split('"'))
-          })
+          newArr = array
+          // array.forEach((item, index) => {
+          //   newArr = newArr.concat(item.trim().split('"'))
+          // })
           break
         case 'pdf':
           newArr = array
@@ -51,7 +52,7 @@ function parseWord(filePath, res) {
           // })
           break
         case 'doc':
-          newArr = text
+          newArr = array
           // array.forEach((item, index) => {
           //   newArr = newArr.concat(item.trim().split('"'))
           // })
