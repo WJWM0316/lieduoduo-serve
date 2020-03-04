@@ -19,6 +19,7 @@ function parseWord(filePath, res) {
       break
     case 'pdf':
       config.preserveLineBreaks = true
+      config.preserveOnlyMultipleLineBreaks = false
       break
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
@@ -40,7 +41,7 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
-          newArr = array
+          newArr = text
           // array.forEach((item, index) => {
           //   newArr = newArr.concat(item.trim().split(" "))
           // })
