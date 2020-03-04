@@ -25,7 +25,7 @@ router.get('/pngs', async(req, res, next) => {
     // 模拟一个 iPhone X
     await page.emulate(deviceModel);
     // await page.setViewport({ width: 375, height: 812 });
-    await page.goto('https://javascript.ruanyifeng.com/nodejs/express.html#toc15');
+    await page.goto('https://juejin.im/post/5d5f40c5e51d456213203129#heading-6');
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
