@@ -19,7 +19,6 @@ function parseWord(filePath, res) {
       break
     case 'pdf':
       config.preserveLineBreaks = true
-      
       config.layout = 'raw'
       config.pdftotextOption = {
         layout: 'raw'
@@ -41,9 +40,9 @@ function parseWord(filePath, res) {
       switch (suffix) {
         case 'docx':
           newArr = array
-          // array.forEach((item, index) => {
-          //   newArr = newArr.concat(item.trim().split('"'))
-          // })
+          array.forEach((item, index) => {
+            newArr = newArr.concat(item.trim().split('"'))
+          })
           break
         case 'pdf':
           newArr = array
