@@ -5,19 +5,19 @@ const puppeteer = require('puppeteer-core');
 const { 'iPhone X': deviceModel } = require('puppeteer-core/DeviceDescriptors');
 const request = require('request-promise-native');
 
-// ws://127.0.0.1:9222/devtools/browser/b83498c7-c449-409f-800a-08603659b0b9
+const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
 
 // 渲染HTML
 router.get('/render', async(req, res, next) => {
     res.sendfile(path.resolve('./public/html-to-png/poster/1.html'))
 })
 
+
 router.get('/pngs', async(req, res, next) => {
     let version = await request({
         uri:  "http://127.0.0.1:3100/json/version",
         json: true
     });
-    console.log(version)
     let browser = await puppeteer.connect({
         ignoreHTTPSErrors: true,
         browserWSEndpoint: version.webSocketDebuggerUrl
@@ -26,7 +26,7 @@ router.get('/pngs', async(req, res, next) => {
     // 模拟一个 iPhone X
     await page.emulate(deviceModel);
     // await page.setViewport({ width: 375, height: 812 });
-    await page.goto('http://127.0.0.1:3000/frontEnd/render');
+    await page.goto(`${BaseURL}/frontEnd/render`);
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
