@@ -14,9 +14,11 @@ function parseWord(filePath, res) {
       config.preserveLineBreaks = true
       config.preserveOnlyMultipleLineBreaks = true
       break
-    case 'pdf':
+    case 'doc':
       config.preserveLineBreaks = true
-      //config.preserveOnlyMultipleLineBreaks = true
+      break
+    case 'pdf':
+      config.preserveOnlyMultipleLineBreaks = true
       break
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
@@ -38,7 +40,16 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
-          newArr = newArr.concat(array.trim().replace(/[\r\n]/g, '<br>').split('<br>'))
+          newArr = text
+          // array.forEach((item, index) => {
+          //   newArr = newArr.concat(item.trim().split(" "))
+          // })
+          break
+        case 'doc':
+          newArr = text
+          // array.forEach((item, index) => {
+          //   newArr = newArr.concat(item.trim().split('"'))
+          // })
           break
       }
      
@@ -46,7 +57,7 @@ function parseWord(filePath, res) {
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: newArr
+            result: text
         },
         returnValue: 1
       });
