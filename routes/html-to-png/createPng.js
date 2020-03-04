@@ -26,7 +26,7 @@ router.get('/pngs', async(req, res, next) => {
     // 模拟一个 iPhone X
     await page.emulate(deviceModel);
     // await page.setViewport({ width: 375, height: 812 });
-    await page.goto('https://127.0.0.1:3000/frontEnd/render');
+    await page.goto('http://127.0.0.1:3000/frontEnd/render');
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
