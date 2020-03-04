@@ -41,7 +41,7 @@ function parseWord(filePath, res) {
           })
           break
         case 'pdf':
-          newArr = text
+          newArr = array
           // array.forEach((item, index) => {
           //   newArr = newArr.concat(item.trim().split(" "))
           // })
@@ -58,7 +58,7 @@ function parseWord(filePath, res) {
         httpCode: 200,
         message: '导入成功',
         data: {
-            result: newArr
+          result: newArr
         },
         returnValue: 1
       });
