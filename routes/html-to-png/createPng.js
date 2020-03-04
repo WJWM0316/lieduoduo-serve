@@ -13,13 +13,14 @@ router.get('/render', async(req, res, next) => {
 })
 
 router.get('/pngs', async(req, res, next) => {
-    let { browserWSEndpoint } = await request({
+    let version = await request({
         uri:  "http://127.0.0.1:3100/json/version",
         json: true
     });
+    console.log(version)
     let browser = await puppeteer.connect({
         ignoreHTTPSErrors: true,
-        browserWSEndpoint
+        browserWSEndpoint: version.webSocketDebuggerUrl
     });
     const page = await browser.newPage();
     // 模拟一个 iPhone X
