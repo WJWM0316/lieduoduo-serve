@@ -29,11 +29,10 @@ function parseWord(filePath, res) {
         returnValue: 0
       });
     } else {
-      let array = text.trim()
+      let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
       let newArr = []
       switch (suffix) {
         case 'docx':
-          array = array.replace(/[\r\n]/g, '<br>').split('<br>')
           array.forEach((item, index) => {
             newArr = newArr.concat(item.trim().split('"'))
           })
