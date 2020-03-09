@@ -60,6 +60,7 @@ const middle =  async(req, res, next) => {
     if(!(type && config)) {
         return res.json({httpStatus: 400, msg: '参数错误'})
     }
+    if(req.headers['authorization'] && !token) req.query.token = req.headers['authorization']
     if (token) req.headers['Authorization'] = req.query.token
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
