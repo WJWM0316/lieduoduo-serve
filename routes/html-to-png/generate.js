@@ -37,17 +37,17 @@ router.get('/position', (req, res, next) => {
     req.query = {...req.query, type: 'position'}
     middle(req, res, next)
 })
-router.get('/position_min', (req, res) => {
+router.get('/position_min', (req, res, next) => {
     req.query = {...req.query, type: 'hot_position'}
     middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
-router.get('/recruiter', (req, res) => {
-    lreq.query = {...req.query, id: req.query.uid, type: 'recruiter'}
-    middle(req, res, next)
+router.get('/recruiter', async (req, res, next) => {
+    req.query = {...req.query, id: req.query.uid, type: 'recruiter'}
+    await middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
-router.get('/resume', (req, res) => {
+router.get('/resume', (req, res, next) => {
     req.query = {...req.query, id: req.query.uid, type: 'resume'}
     middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
