@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>分享招聘官</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/stylesheets/icons.css">
+    <link rel="stylesheet" href="/stylesheets/s-recruiter.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="profile-header">
+                <div class="profile-wrapper">
+                    <img src=<%=avatar.smallUrl %> alt="">
+                </div>
+                <i class="icon icon-vip"></i>
+            </div>
+            <div class="recruiter-name"><%=name %></div>
+            <div class="recruiter-position"><%=position %></div>
+            <div class="recruiter-company">Ta属于【<%=companyShortname %>】星球</div>
+        </div>
+        <div class="content">
+            <div class="content-wrapper">
+                <div class="content-title">
+                    <i class="icon-image icon-title-label"></i><span>个人简介</span>
+                </div>
+                <div class="content-desc"><%= brief %></div>
+                <div class="content-title">
+                    <i class="icon-image icon-title-label"></i><span>在招职位</span>
+                </div>
+                <div class="position-lists">
+                    <% for(var i = 0; i < positions.length; i++) { %>
+                    <div class="position-list">
+                        <div>
+                            <div class="ellipsis position-name"><%=positions[i].positionName%></div>
+                            <div class="position-details">
+                                <%=positions[i].city%> 
+                                <% if(positions[i].district) { %> -<%= positions[i].district %>  <%}%>  · <%=positions[i].workExperienceName%> · <%=positions[i].educationName%></div>
+                        </div>
+                        <div class="position-treatment"><%= positions[i].emolumentMin %>k~<%= positions[i].emolumentMax %>k</div>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="conntent-footer">长按识别查看全部在招职位</div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="recruiter-qrcode">
+                <img src=<%= qrCode %> alt="">
+            </div>
+            <div class="footer-text">
+                <div>像我这么Nice的招聘官已经不多见了！</div>
+                <div>长按识别，查看Ta的详情</div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="wrapper-image wrapper-header-image"><img src="/images/recruiter/bg_recruiter1.png" alt=""></div>
+    <div class="wrapper-image wrapper-footer-image"><img src="/images/recruiter/bg_recruiter2.png" alt=""></div>
+</body>
+<script>
+(function(){
+    var calc = function(){
+        var docElement = document.documentElement;
+        var clientWidthValue = docElement.clientWidth > 750 ? 750 : docElement.clientWidth;
+        docElement.style.fontSize = 100*(clientWidthValue/750) + 'px';
+    }
+    calc();
+    window.addEventListener('resize', calc);
+})();
+</script>
+</html>

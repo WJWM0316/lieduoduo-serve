@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const CreatePng = require('./createPng')
+const Generate = require('./generate')
+const Render = require('./render')
 
-router.use('/', CreatePng)
+router.use('/', Generate)
+router.use('/', Render)
 
 
 module.exports = router;

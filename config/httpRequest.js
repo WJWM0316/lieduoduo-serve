@@ -4,7 +4,6 @@ var request = require('request');
 function httpRequest({hostType, method, url, data, req, res, next}) {
 	var host = ''
 	let headers = req.headers
-	console.log(url, req.query)
 	delete headers.host
 	delete headers.Host
 	switch (hostType) {

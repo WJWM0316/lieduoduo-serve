@@ -1,4 +1,4 @@
-var NODE_ENV = process.env.NODE_ENV;
+var NODE_ENV = process.env.NODE_ENV || 'dev';
 var GLOBALCONFIG = {
 	nodeApi : "", // nodeJs 代理转发的域名
 	qzApi   : "", // 求职端的域名

@@ -1,0 +1,56 @@
+.icon {
+    height: 0.3rem;
+    width: 0.3rem;
+    display: inline-block;
+    text-align: center;
+    line-height: 0.3rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    vertical-align: middle;
+}
+.icon-image {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.icon-experience {
+    background-image: url('/images/experience.png');
+}
+.icon-experience-white {
+    background-image: url('/images/icons/experience_white.png');
+}
+.icon-birthday {
+    background-image: url('/images/birthday.png');
+}
+.icon-degree {
+    background-image: url('/images/degree.png');
+}
+.icon-degree-white {
+    background-image: url('/images/icons/degree_white.png');
+}
+.icon-address {
+    background-image: url('/images/adress.png');
+}
+.icon-address-white {
+    background-image: url('/images/icons/address_white.png');
+}
+
+.icon-vip {
+    background-image: url('/images/recruiter5.png');
+    height: 0.46rem;
+    width: 0.46rem;
+}
+/* 标题 标签 */
+.icon-title-label {
+    background-image: url('/images/icons/title_label.png');
+}
+/* 球体 */
+.icon-global {
+    background-image: url('/images/position6.png');
+}
+/* 机器人 */
+.icon-robot {
+    background-image: url('/images/robot.png');
+}
