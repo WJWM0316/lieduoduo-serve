@@ -33,29 +33,37 @@ const RenderConfing = {
 // /frontEnd/pngs?type=recruiter&id=1635&token=e822e1acafea2111af2a009e1ab4eab1
 // /frontEnd/pngs?type=resume&id=1211&token=e822e1acafea2111af2a009e1ab4eab1
 
-router.get('/position', (req, res) => {
-    let query = {...req.query, type: 'position'}
-    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+router.get('/position', (req, res, next) => {
+    req.query = {...req.query, type: 'position'}
+    middle(req, res, next)
 })
 router.get('/position_min', (req, res) => {
-    let query = {...req.query, type: 'hot_position'}
-    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+    req.query = {...req.query, type: 'hot_position'}
+    middle(req, res, next)
+    // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
 router.get('/recruiter', (req, res) => {
-    let query = {...req.query, id: req.query.uid, type: 'recruiter'}
-    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+    lreq.query = {...req.query, id: req.query.uid, type: 'recruiter'}
+    middle(req, res, next)
+    // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
 router.get('/resume', (req, res) => {
-    let query = {...req.query, id: req.query.uid, type: 'resume'}
-    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+    req.query = {...req.query, id: req.query.uid, type: 'resume'}
+    middle(req, res, next)
+    // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
 
-router.get('/pngs', async(req, res, next) => {
+
+const middle =  async(req, res, next) => {
     const {type, token} = req.query
     const config = RenderConfing[type]
-    if(!(type && config && token)) {
-        return res.json({code: 400, message: '参数错误'})
+    if(!(type && config)) {
+        return res.json({httpStatus: 400, msg: '参数错误'})
     }
+    if (token) req.headers['Authorization'] = req.query.token
+	if (req.headers['authorization-app']) {
+		req.headers['Authorization'] = req.headers['authorization-app']
+	}
     let version = await request({
         uri:  "http://127.0.0.1:3100/json/version",
         json: true
@@ -89,7 +97,7 @@ router.get('/pngs', async(req, res, next) => {
             url: `data:image/png;base64,${results}`
         }
     })
-})
+}
 
 // 关闭浏览器内所有标签页
 router.put('/browser/close', async (req, res, next) => {
