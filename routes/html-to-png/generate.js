@@ -5,7 +5,7 @@ const { 'iPhone 6': deviceModel } = require('puppeteer-core/DeviceDescriptors');
 const request = require('request-promise-native');
 const qs = require('qs')
 
-// const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
+const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
 const RenderConfing = {
     'hot_position': {
         url: 'frontEnd/s-hot-position',
@@ -80,7 +80,7 @@ const middle =  async(req, res, next) => {
     } else {
         await page.setViewport({ width: 750, height: 1180 });
     }
-    await page.goto(`http://127.0.0.1:3000/${config.url}?${qs.stringify(req.query)}`);
+    await page.goto(`${BaseURL}/${config.url}?${qs.stringify(req.query)}`);
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
