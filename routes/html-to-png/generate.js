@@ -5,7 +5,7 @@ const { 'iPhone 6': deviceModel } = require('puppeteer-core/DeviceDescriptors');
 const request = require('request-promise-native');
 const qs = require('qs')
 
-const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
+// const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
 const RenderConfing = {
     'hot_position': {
         url: 'frontEnd/s-hot-position',
@@ -33,6 +33,23 @@ const RenderConfing = {
 // /frontEnd/pngs?type=recruiter&id=1635&token=e822e1acafea2111af2a009e1ab4eab1
 // /frontEnd/pngs?type=resume&id=1211&token=e822e1acafea2111af2a009e1ab4eab1
 
+router.get('/position', (req, res) => {
+    let query = {...req.query, type: 'position'}
+    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+})
+router.get('/position_min', (req, res) => {
+    let query = {...req.query, type: 'hot_position'}
+    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+})
+router.get('/recruiter', (req, res) => {
+    let query = {...req.query, id: req.query.uid, type: 'recruiter'}
+    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+})
+router.get('/resume', (req, res) => {
+    let query = {...req.query, id: req.query.uid, type: 'resume'}
+    res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+})
+
 router.get('/pngs', async(req, res, next) => {
     const {type, token} = req.query
     const config = RenderConfing[type]
@@ -54,17 +71,23 @@ router.get('/pngs', async(req, res, next) => {
     } else {
         await page.setViewport({ width: 750, height: 1180 });
     }
-    await page.goto(`${BaseURL}/${config.url}?${qs.stringify(req.query)}`);
+    await page.goto(`http://127.0.0.1:3000/${config.url}?${qs.stringify(req.query)}`);
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
         fullPage: true
     });
     await page.close();
-    res.render('index', {
-        title:'study book',
-        jpeg:`data:image/png;base64,${results}` ,
-        description:'照片墙'
+    // res.render('index', {
+    //     title:'study book',
+    //     jpeg:`data:image/png;base64,${results}` ,
+    //     description:'照片墙'
+    // })
+    res.json({
+        httpStatus: 200,
+        data: {
+            url: `data:image/png;base64,${results}`
+        }
     })
 })
 
@@ -80,10 +103,9 @@ router.put('/browser/close', async (req, res, next) => {
     });
     const pages = await browser.pages()
     for(let i= 0; i < pages.length; i ++) {
-        await pages[i].goto('http://www.baidu.com')
         await pages[i].close()
     }
-    res.send({code: 200})
+    res.json({httpStatus: 200})
 })
 
 module.exports = router;
