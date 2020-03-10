@@ -43,12 +43,14 @@ router.get('/position_min', (req, res, next) => {
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
 router.get('/recruiter', async (req, res, next) => {
-    req.query = {...req.query, id: req.query.uid, type: 'recruiter'}
+    const id = req.query.uid || req.query.id
+    req.query = {...req.query, id, type: 'recruiter'}
     await middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
 router.get('/resume', (req, res, next) => {
-    req.query = {...req.query, id: req.query.uid, type: 'resume'}
+    const id = req.query.uid || req.query.id
+    req.query = {...req.query, id, type: 'resume'}
     middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
@@ -61,10 +63,6 @@ const middle =  async(req, res, next) => {
         return res.json({httpStatus: 400, msg: '参数错误'})
     }
     if(req.headers['authorization'] && !token) req.query.token = req.headers['authorization']
-    if (token) req.headers['Authorization'] = req.query.token
-	if (req.headers['authorization-app']) {
-		req.headers['Authorization'] = req.headers['authorization-app']
-	}
     let version = await request({
         uri:  "http://127.0.0.1:3100/json/version",
         json: true
@@ -87,17 +85,17 @@ const middle =  async(req, res, next) => {
         fullPage: true
     });
     await page.close();
-    res.render('index', {
-        title:'study book',
-        jpeg:`data:image/png;base64,${results}` ,
-        description:'照片墙'
-    })
-    // res.json({
-    //     httpStatus: 200,
-    //     data: {
-    //         url: `data:image/png;base64,${results}`
-    //     }
+    // res.render('index', {
+    //     title:'study book',
+    //     jpeg:`data:image/png;base64,${results}` ,
+    //     description:'照片墙'
     // })
+    res.json({
+        httpStatus: 200,
+        data: {
+            url: `data:image/png;base64,${results}`
+        }
+    })
 }
 
 // 关闭浏览器内所有标签页
