@@ -50,27 +50,27 @@ router.get('/s-resume', async(req, res, next) => {
 router.get('/s-position', async(req, res, next) => {
     const {token, id} = req.query
     if (token) {
-		req.headers['Authorization'] = token
+		  req.headers['Authorization'] = token
     }
-    let {data: data} = await httpRequest({
-		hostType: 'qzApi',
-		method: 'GET', 
-		url: `/position/${id}`, 
-		data: req.query,
-		req,
-		res,
-		next
+    const getDatas = httpRequest({
+      hostType: 'qzApi',
+      method: 'GET', 
+      url: `/position/${id}`, 
+      data: req.query,
+      req,
+      res,
+      next
     })
-    // 请求数据
-	let {data: {positionQrCodeUrl}} = await httpRequest({
-		hostType: 'pubApi', 
-		method: 'GET', 
-		url: `/share/position_share`, 
-		data: {positionId : id, type: 'qrpl'}, 
-		req,
-		res,
-		next
+    const getQrCode = httpRequest({
+      hostType: 'pubApi', 
+      method: 'GET', 
+      url: `/share/position_share`, 
+      data: {positionId : id, type: 'qrpl'}, 
+      req,
+      res,
+      next
     })
+    const [{data: data}, {data: {positionQrCodeUrl}}] = await Promise.all([getDatas, getQrCode])
     data.qrCode = positionQrCodeUrl
     res.render('html-to-png/s-position', data)
 })
