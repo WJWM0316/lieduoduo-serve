@@ -85,6 +85,7 @@ const middle =  async(req, res, next) => {
         fullPage: true
     });
     await page.close();
+    await browser.disconnect()
     // res.render('index', {
     //     title:'study book',
     //     jpeg:`data:image/png;base64,${results}` ,

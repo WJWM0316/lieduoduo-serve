@@ -80,7 +80,7 @@ router.get('/s-recruiter', async(req, res, next) => {
     let getDatas = httpRequest({ hostType: 'zpApi', method: 'GET', url: `/recruiter/detail/uid/${id}`, data: req.query, req, res,next })
     let getPositions = httpRequest({ hostType: 'zpApi', method: 'GET', url: `/position/list`, data: {recruiter: id, count: 2, is_online: 1}, req, res, next })
     let getQrCode = httpRequest({  hostType: 'pubApi', method: 'GET', url: `/share/recruiter_share`, data: {recruiterUid: req.query.uid}, req, res,next })
-    let [{data: data}, positionData, {data: {positionQrCodeUrl}}] = await Promise.all[getDatas, getPositions, getQrCode]
+    let [{data: data}, positionData, {data: {positionQrCodeUrl}}] = await Promise.all([getDatas, getPositions, getQrCode])
     data.positions = positionData.data || []
     data.qrCode = positionQrCodeUrl
     res.render('html-to-png/s-recruiter', data)

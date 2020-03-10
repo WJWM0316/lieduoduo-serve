@@ -20,6 +20,8 @@ body {
 .profile-wrapper {
     display: inline-block;
     border: 0.06rem solid #fff;
+    width: 1.68rem;
+    height: 1.68rem;
 }
 .profile-header {
     display: inline-block;
