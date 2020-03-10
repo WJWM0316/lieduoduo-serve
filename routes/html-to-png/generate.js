@@ -80,7 +80,7 @@ const middle =  async(req, res, next) => {
     } else {
         await page.setViewport({ width: 750, height: 1180 });
     }
-    await page.goto(`http://127.0.0.1:300/${config.url}?${qs.stringify(req.query)}`);
+    await page.goto(`http://127.0.0.1:3000/${config.url}?${qs.stringify(req.query)}`);
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
