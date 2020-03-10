@@ -1,8 +1,13 @@
+@font-face {
+    font-family: "PingFangSC";
+    src: url("../font/PingFangSC.ttf")
+}
 body {
     background-color: #01C5CB;
     font-size: 0.24rem;
     color: #282828;
     max-width: 7.5rem;
+    font-family: "PingFangSC";
 }
 .profile-wrapper {
     border: 0.04rem solid #303E41;
