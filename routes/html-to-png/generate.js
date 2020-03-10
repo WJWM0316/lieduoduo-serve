@@ -85,17 +85,17 @@ const middle =  async(req, res, next) => {
         fullPage: true
     });
     await page.close();
-    // res.render('index', {
-    //     title:'study book',
-    //     jpeg:`data:image/png;base64,${results}` ,
-    //     description:'照片墙'
-    // })
-    res.json({
-        httpStatus: 200,
-        data: {
-            url: `data:image/png;base64,${results}`
-        }
+    res.render('index', {
+        title:'study book',
+        jpeg:`data:image/png;base64,${results}` ,
+        description:'照片墙'
     })
+    // res.json({
+    //     httpStatus: 200,
+    //     data: {
+    //         url: `data:image/png;base64,${results}`
+    //     }
+    // })
 }
 
 // 关闭浏览器内所有标签页
