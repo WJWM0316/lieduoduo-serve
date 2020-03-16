@@ -39,7 +39,7 @@ router.get('/s-position', async(req, res, next) => {
     if (req.headers['authorization-app']) {
       req.headers['Authorization'] = req.headers['authorization-app']
     }
-    console.log(req, 111)
+    console.log(req.headers, 111)
     const {id} = req.query
     const getDatas = httpRequest({ hostType: 'qzApi', method: 'GET',  url: `/position/${id}`, data: req.query, req, res, next })
     const getQrCode = httpRequest({ hostType: 'pubApi', method: 'GET', url: `/share/position_share`, data: {positionId : id, type: 'qrpl'}, req,res, next })
