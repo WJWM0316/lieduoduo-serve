@@ -59,7 +59,6 @@ router.get('/resume', (req, res, next) => {
 
 const middle =  async(req, res, next) => {
     if (!req.query.token) req.query.token = req.headers['authorization'] ? req.headers['authorization'] : req.headers['authorization-app']
-    console.log(req.headers, 33)
     const {type} = req.query
     const config = RenderConfing[type]
     if(!(type && config)) {
