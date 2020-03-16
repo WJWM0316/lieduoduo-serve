@@ -37,7 +37,8 @@ router.get('/position', (req, res, next) => {
     if (req.query.token) req.headers['Authorization'] = req.query.token
 	if (req.headers['authorization-app']) {
 		req.headers['Authorization'] = req.headers['authorization-app']
-	}
+    }
+    console.log(req.headers, 222)
     req.query = {...req.query, type: 'position'}
     middle(req, res, next)
 })
