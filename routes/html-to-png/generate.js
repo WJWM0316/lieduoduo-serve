@@ -34,10 +34,6 @@ const RenderConfing = {
 // /frontEnd/pngs?type=resume&id=1211&token=e822e1acafea2111af2a009e1ab4eab1
 
 router.get('/position', (req, res, next) => {
-    if (req.query.token) req.headers['Authorization'] = req.query.token
-	if (req.headers['authorization-app']) {
-		req.headers['Authorization'] = req.headers['authorization-app']
-    }
     console.log(req.headers, 222)
     req.query = {...req.query, type: 'position'}
     middle(req, res, next)
@@ -62,12 +58,16 @@ router.get('/resume', (req, res, next) => {
 
 
 const middle =  async(req, res, next) => {
-    const {type, token} = req.query
+    if (req.query.token) req.headers['Authorization'] = req.query.token
+	if (req.headers['authorization-app']) {
+		req.headers['Authorization'] = req.headers['authorization-app']
+    }
+    console.log(req.headers, 33)
+    const {type} = req.query
     const config = RenderConfing[type]
     if(!(type && config)) {
         return res.json({httpStatus: 400, msg: '参数错误'})
     }
-    if(req.headers['authorization']) req.query.token = req.headers['authorization']
     let version = await request({
         uri:  "http://127.0.0.1:3100/json/version",
         json: true
