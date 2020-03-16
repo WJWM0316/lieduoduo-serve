@@ -36,8 +36,9 @@ router.get('/s-resume', async(req, res, next) => {
 
 // 渲染职位
 router.get('/s-position', async(req, res, next) => {
-    if (req.headers['authorization-app']) {
-      req.headers['Authorization'] = req.headers['authorization-app']
+    if (req.query.token) {
+      req.headers['Authorization'] = req.query.token
+      req.headers['Authorization-App'] = req.query.token
     }
     console.log(req.headers, 111)
     const {id} = req.query
