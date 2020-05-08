@@ -27,6 +27,7 @@ function parseWord(filePath, res) {
       break
   }
   textract.fromUrl(filePath, config, function (error, text) {
+
     if (error) {
       res.status(200).json({
         httpCode: 200,
@@ -67,8 +68,7 @@ function parseWord(filePath, res) {
 
 
 router.get('/parsingWord', async function(req, res, next) {
-  console.log(req.query.filePath, 3333333333333)
-	parseWord(req.query.filePath, res)
+	parseWord(decodeURIComponent(req.query.filePath), res)
 })
 
 module.exports = router;
