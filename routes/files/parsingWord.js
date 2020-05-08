@@ -7,6 +7,7 @@ var public = path.resolve('./public')
 const textract = require('textract')
 
 function parseWord(filePath, res) {
+  console.log(filePath, 1111111111)
   let suffix = filePath.split('.')[filePath.split('.').length - 1]
   let config = {}
   switch (suffix) {
@@ -25,7 +26,7 @@ function parseWord(filePath, res) {
       }
       break
   }
-  textract.fromFileWithPath(filePath, config, function (error, text) {
+  textract.fromUrl(filePath, config, function (error, text) {
     if (error) {
       res.status(200).json({
         httpCode: 200,
@@ -33,6 +34,7 @@ function parseWord(filePath, res) {
         data: error,
         returnValue: 0
       });
+      console.log(error, 222)
     } else {
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
       // let newArr = []
@@ -65,6 +67,7 @@ function parseWord(filePath, res) {
 
 
 router.get('/parsingWord', async function(req, res, next) {
+  console.log(req.query.filePath, 3333333333333)
 	parseWord(req.query.filePath, res)
 })
 
