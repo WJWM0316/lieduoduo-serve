@@ -27,7 +27,6 @@ function parseWord(filePath, res) {
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
     if (error) {
-    	console.log(error, 111111111111111)
       res.status(200).json({
         httpCode: 200,
         message: '导入解析失败',
@@ -36,33 +35,27 @@ function parseWord(filePath, res) {
       });
     } else {
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      let newArr = []
-      switch (suffix) {
-        case 'docx':
-          newArr = array
-          array.forEach((item, index) => {
-            newArr = newArr.concat(item.trim().split('"'))
-          })
-          break
-        case 'pdf':
-          newArr = array
-          // array.forEach((item, index) => {
-          //   newArr = newArr.concat(item.trim().split(" "))
-          // })
-          break
-        case 'doc':
-          newArr = array
-          // array.forEach((item, index) => {
-          //   newArr = newArr.concat(item.trim().split('"'))
-          // })
-          break
-      }
+      // let newArr = []
+      // switch (suffix) {
+      //   case 'docx':
+      //     newArr = array
+      //     array.forEach((item, index) => {
+      //       newArr = newArr.concat(item.trim().split('"'))
+      //     })
+      //     break
+      //   case 'pdf':
+      //     newArr = array
+      //     break
+      //   case 'doc':
+      //     newArr = array
+      //     break
+      // }
      
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
         data: {
-          result: newArr
+          result: array
         },
         returnValue: 1
       });
@@ -72,7 +65,7 @@ function parseWord(filePath, res) {
 
 
 router.get('/parsingWord', async function(req, res, next) {
-	parseWord(`${public}/files/${req.query.fileName}`, res)
+	parseWord(req.query.filePath, res)
 })
 
 module.exports = router;
