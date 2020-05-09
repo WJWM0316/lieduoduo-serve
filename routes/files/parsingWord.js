@@ -7,13 +7,12 @@ var public = path.resolve('./public')
 const textract = require('textract')
 
 function parseWord(filePath, res) {
-  console.log(filePath, 1111111111)
   let suffix = filePath.split('.')[filePath.split('.').length - 1]
   let config = {}
   switch (suffix) {
     case 'docx':
       config.preserveLineBreaks = true
-      config.preserveOnlyMultipleLineBreaks = true
+      // config.preserveOnlyMultipleLineBreaks = true
       break
     case 'doc':
       config.preserveLineBreaks = true
@@ -26,8 +25,7 @@ function parseWord(filePath, res) {
       }
       break
   }
-  textract.fromUrl(filePath, config, function (error, text) {
-
+  let action = (error, text) => {
     if (error) {
       res.status(200).json({
         httpCode: 200,
@@ -38,22 +36,6 @@ function parseWord(filePath, res) {
       console.log(error, 222)
     } else {
       let array = text.trim().replace(/[\r\n]/g, '<br>').split('<br>')
-      // let newArr = []
-      // switch (suffix) {
-      //   case 'docx':
-      //     newArr = array
-      //     array.forEach((item, index) => {
-      //       newArr = newArr.concat(item.trim().split('"'))
-      //     })
-      //     break
-      //   case 'pdf':
-      //     newArr = array
-      //     break
-      //   case 'doc':
-      //     newArr = array
-      //     break
-      // }
-     
       res.status(200).json({
         httpCode: 200,
         message: '导入成功',
@@ -63,6 +45,9 @@ function parseWord(filePath, res) {
         returnValue: 1
       });
     }
+  }
+  textract.fromUrl(filePath, config, function (error, text) {
+    action(error, text)
   })
 }
 
