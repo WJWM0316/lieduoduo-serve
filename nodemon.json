@@ -13,7 +13,7 @@
  
     ],
     "env": {
-        "NODE_ENV": "dev"
+        "NODE_ENV": "test"
     },
     "ext": "js json"
 }

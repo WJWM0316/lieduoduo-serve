@@ -27,7 +27,6 @@ function parseWord(filePath, res) {
   }
   textract.fromFileWithPath(filePath, config, function (error, text) {
     if (error) {
-    	console.log(error, 111111111111111)
       res.status(200).json({
         httpCode: 200,
         message: '导入解析失败',

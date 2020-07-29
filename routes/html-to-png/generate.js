@@ -4,7 +4,9 @@ const puppeteer = require('puppeteer-core');
 const { 'iPhone 6': deviceModel } = require('puppeteer-core/DeviceDescriptors');
 const request = require('request-promise-native');
 const qs = require('qs')
+var fs = require('fs');
 
+var multiparty = require("multiparty");
 const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
 const RenderConfing = {
     'hot_position': {
@@ -25,6 +27,10 @@ const RenderConfing = {
     },
     'resume': {
         url: 'frontEnd/s-resume',
+        isDevice: true
+    },
+    'youngBeast_act': {
+        url: 'frontEnd/s-youngBeast-act',
         isDevice: true
     }
 }
@@ -55,12 +61,27 @@ router.get('/resume', (req, res, next) => {
     middle(req, res, next)
     // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
 })
-
+router.post('/youngBeast_act',  (req, res, next) => {
+    var form = new multiparty.Form({ uploadDir: './public/images/cropper' });
+    form.parse(req, async function(err, fields, files) {
+        console.log(fields, files,' fields2')
+        if (err) {
+        } else {
+            req.query = {type: 'youngBeast_act', imgSrc: files.croppedImage[0].path, name: fields.name[0], desc: fields.desc[0]}
+            await middle(req, res, next)
+            // fs.unlinkSync(files.croppedImage[0].path)
+        }
+    });
+    
+    
+    // res.redirect(`/frontEnd/pngs?${qs.stringify(query)}`)
+})
 
 const middle =  async(req, res, next) => {
     if (!req.query.token) req.query.token = req.headers['authorization'] ? req.headers['authorization'] : req.headers['authorization-app']
     const {type} = req.query
     const config = RenderConfing[type]
+    console.log(type, config)
     if(!(type && config)) {
         return res.json({httpStatus: 400, msg: '参数错误'})
     }

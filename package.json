@@ -24,5 +24,8 @@
     "request": "^2.88.0",
     "request-promise-native": "^1.0.8",
     "textract": "^2.5.0"
+  },
+  "devDependencies": {
+    "multiparty": "^4.2.2"
   }
 }

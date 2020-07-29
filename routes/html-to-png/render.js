@@ -78,4 +78,10 @@ router.get('/s-recruiter', async(req, res, next) => {
   res.render('html-to-png/s-recruiter', data)
 })
 
+router.get('/s-youngBeast-act', async(req, res, next) => {
+  req.query.imgSrc = req.query.imgSrc.replace('public', '..')
+  console.log(req.query, 22)
+  res.render('html-to-png/s-youngBeast-activict', req.query)
+})
+
 module.exports = router;
