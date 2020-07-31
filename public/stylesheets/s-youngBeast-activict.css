@@ -3,51 +3,28 @@ body{
 }
 .youngBeast-activict{
   width: 100%;
-}
-.img-wrap{
-  width: 100%;
-  height: 20.8125rem;
-  background-color: black;
+  height: 100vh;
+  background: url('http://attach.youngbeast.ziwork.com/artTemplate/YouthLifeHome/img_poster.png') no-repeat;
+  background-size: 100% 100%;
   position: relative;
 }
+
 .img{
-  width: 19.1875rem;
-  height: 18.125rem;
-  box-sizing: border-box;
-  border-radius: 1.3125rem;
-  border: .1875rem solid #FFFFFF;
+  width: 19rem;
+  height: 18.4rem;
   position: absolute;
-  left: 1.875rem;
   top: 1.875rem;
-  z-index: 1;
-  background: blueviolet;
+  left: 2rem;
+  border-radius: 21px;
 }
 
-.img-bottom{
-  width: 19.1875rem;
-  height: 18.125rem;
-  box-sizing: border-box;
-  border-radius: 1.3125rem;
-  border: .1875rem solid #FFFFFF;
-  background: #E41625;
-  position: absolute;
-  left: 2.3125rem;
-  top: 2.3125rem;
-  z-index: 0;
-}
 .main{
-  margin-top: 1.4375rem;
-  width: 100%;
-  padding-left: 2.03125rem;
-  box-sizing: border-box;
+  position: absolute;
   color: #FFFFFF;
-}
-.title{
-  font-size: 2.5rem;
-  font-weight: 600;
+  top: 25.6875rem;
+  left: 2.125rem;
 }
 .text{
-  margin-top: 1.09375rem;
   font-size: .9375rem;
   font-weight: 300;
   line-height: 1.5rem;
