@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <title>分享职位</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/stylesheets/icons.css">
+    <link rel="stylesheet" href="/stylesheets/s-hot-position.css">
+</head>
+<body>
+    <div class="wrapper">
+        <img class="bg-image" src="/images/position/hot.png" alt="">
+        <div class="content-wrapper">
+            <div class="ellipsis posotion-name"><%= positionName %></div>
+            <div class="position-treatment"><%= emolumentMin %>k~<%= emolumentMax %>k<% if(annualSalary > 12) { %>·<%= annualSalary %>薪<% } %>
+            </div>
+            <div class="position-desc">
+                <span><i class="icon icon-address-white"></i><%= city %></span>
+                <span><i class="icon icon-experience-white"></i><%=  workExperienceName %></span>
+                <span><i class="icon icon-degree-white"></i><%=  educationName  %></span>
+            </div>
+            <div class="content-middel-wrapper">
+                <% if(cardType || lightspotInfo.length > 0) { %>
+                    <div class="position-labels">
+                        <% for(var i=0; i< lightspotInfo.length; i++) { %>
+                        <span class="tag-label-radius"><%= lightspotInfo[i] %></span>
+                        <% } %>
+                    </div>
+                <% } else { %>
+                    <div class="position-intro">
+                        <div>公司福利：</div>
+                        <div>晋升快福利多，欢迎来撩！</div>
+                    </div>
+                <% } %>
+            </div>
+            <!-- 招聘官信息 -->
+            <div class="recruiter">
+                <div class="profile-wrapper recruiter-profile">
+                    <img src=<%=recruiterInfo.avatar.smallUrl %> alt="">
+                </div>
+                <div>
+                    <div class="recruiter-name"><%= recruiterInfo.name %></div>
+                    <div class="recruiter-info"><%= companyInfo.companyShortname %> | <%= recruiterInfo.position %></div>
+                </div>
+            </div>
+            <% if(recruiterInfo.oneSentenceIntro) { %>
+                <div class="recruiter-intro"><%= recruiterInfo.oneSentenceIntro %></div>
+            <% } %>
+            <div class="footer">
+                <div class="footer-text">Ta还有
+                    <% for(var i = 0; i< recruiterInfo.recruiterTypes.length; i++ ) { %>
+                        <%= recruiterInfo.recruiterTypes[i].name %>
+                        <% if(i!= recruiterInfo.recruiterTypes.length -1){ %> 、 <% } %>
+                    <% } %>
+                    等<%= recruiterInfo.positionNum %>个职位在招!</div>
+                <div class="footer-qrcode">
+                    <img src=<%= qrCode %> alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+(function(){
+    var calc = function(){
+        var docElement = document.documentElement;
+        var clientWidthValue = docElement.clientWidth > 750 ? 750 : docElement.clientWidth;
+        docElement.style.fontSize = 100*(clientWidthValue/750) + 'px';
+    }
+    calc();
+    window.addEventListener('resize', calc);
+})();
+</script>
+</html>

@@ -1,0 +1,182 @@
+body {
+    padding: 1.04rem 0.3rem 1.5rem;
+    position: relative;
+}
+.wrapper {
+    background-color: #fff;
+    border-radius: 0.2rem;
+    position: relative;
+    padding-top: 1.2rem;
+}
+.wrapper-image {
+    left: 0;
+    z-index: -3;
+}
+.wrapper-image-header {
+    top: 0;
+}
+.wrapper-image-footer {
+    bottom: 0;
+}
+
+.icon-global {
+    height: 0.92rem;
+    width: 0.74rem;
+    bottom: 4.15rem;
+    z-index: 2;
+}
+.icon-robot {
+    width: 3rem;
+    height: 2.3rem;
+    left: initial;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-position: 0 0.07rem;
+}
+.wrapper::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 0.2rem;
+    opacity: 0.6;
+    background: #fff;
+    top: 0.16rem;
+    left: 0.1rem;
+    position: absolute;
+    z-index: -2;
+}
+.profile-wrapper {
+    width: 1.30rem;
+    height: 1.30rem;
+    position: absolute;
+    top: -0.65rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.username {
+    font-size: 0.42rem;
+    font-weight: 500;
+    color:#282828;
+    text-align: center;
+}
+.work-experience {
+    margin: 0.16rem 0 0.28rem;
+    text-align: center;
+    font-size: 0.26rem; 
+}
+.work-status {
+    text-align: center;
+}
+.user-desc {
+    margin-top: 0.28rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    text-align: center;
+}
+.user-desc i {
+    margin-right: 0.12rem;
+}
+.user-desc > span + span{
+    margin-left: 0.4rem;
+}
+.base-desc {
+    padding: 0.44rem 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+.base-desc-labels {
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 0.2rem;
+}
+.base-desc-text {
+    white-space: pre-line;
+    font-size: 0.28rem;
+    font-weight: 300;
+    line-height: 0.42rem;
+}
+.resume-label {
+    padding: 0 0.5rem;
+    margin-bottom: 0.3rem;
+}
+.resume-label-header .title-name {
+    width: 1.93rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    border-left: 0.08rem #00C4CD solid;
+    color: #4CD5DB;
+    font-size: 0.28rem;
+    background: #303E41;
+    font-weight:500;
+    position: relative;
+}
+.title-name::after {
+    content: "";
+    position: absolute;
+    left: 2.11rem;
+    border: 0.01rem dashed #939093;
+    width: 3.70rem;
+    top: 0.25rem;
+}
+.resume-label .label-item {
+    padding: 0.3rem 0;
+}
+.resume-label .label-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    font-size: 0.32rem;
+}
+.resume-label .label-title div:first-child {
+    max-width: 3.92rem;
+}
+.resume-label .label-title div:last-child {
+    margin-left: auto;
+}
+.label-treatment {
+    color: #FF7F4C;
+    font-size: 0.34rem;
+}
+.label-time {
+    color: #626262;
+    font-weight:300;
+    font-size: 0.24rem;
+}
+.label-desc {
+    font-size: 0.28rem;
+    font-weight:300;
+}
+.resume-label .label-tags {
+    margin-top: 0.1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.resume-label .tag-label {
+    margin-top: 0.12rem;
+    margin-right: 0.12rem;
+}
+.label-items .label-item:not(:last-child) {
+    border-bottom: 0.02rem dashed #CED7DC;
+}
+.resume-education .label-items{
+    padding-bottom: 0.1rem;
+    border-bottom: 0.02rem dashed #959394 !important;
+}
+.resume-footer {
+    display: flex;
+    align-items: center;
+    color: #03B3BB;
+    height: 2.6rem;
+    font-size: 0.28rem;
+    padding-left: 0.83rem;
+}
+.resume-qrcode {
+    width: 1.68rem;
+    height: 1.68rem;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+}
+.resume-qrcode img {
+    max-width: 100%;
+}

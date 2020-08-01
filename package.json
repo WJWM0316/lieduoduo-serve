@@ -12,15 +12,20 @@
     "canvas": "^2.5.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^3.0.1",
     "express": "~4.16.1",
     "fs": "^0.0.1-security",
     "http-errors": "^1.7.3",
-    "jade": "~1.11.0",
     "jspdf": "^1.5.3",
     "morgan": "^1.9.1",
     "officegen": "^0.6.3",
+    "puppeteer-core": "^2.1.1",
     "qrcode": "^1.4.2",
     "request": "^2.88.0",
+    "request-promise-native": "^1.0.8",
     "textract": "^2.5.0"
+  },
+  "devDependencies": {
+    "multiparty": "^4.2.2"
   }
 }

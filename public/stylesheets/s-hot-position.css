@@ -1,0 +1,132 @@
+.wrapper {
+    position: relative;
+    max-width: 7.5rem;
+}
+.bg-image {
+    width: 100%;
+}
+.content-wrapper{
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 1.61rem 0.7rem 0.95rem 0.8rem;
+    width: 100%;
+    color: #fff;
+}
+.posotion-name {
+    line-height: 0.7rem;
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+.position-treatment {
+    font-size: 0.5rem;
+    margin-top: 0.13rem;
+}
+.position-desc {
+    margin-top: 0.27rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+}
+.position-desc i {
+    margin-right: 0.12rem;
+}
+.position-desc > span + span {
+    margin-left: 0.4rem;
+}
+.content-middel-wrapper {
+    padding-top: 0.36rem;
+    height: 2.4rem;
+    box-sizing: border-box;
+    margin-bottom: 0.32rem;
+}
+.position-labels {
+    max-height: 1.9rem;
+    overflow: hidden;
+}
+.position-labels .tag-label-radius {
+    display: inline-block;
+    color: #fff;
+    border-color: #fff;
+    margin-bottom: 0.16rem;
+}
+.position-intro {
+    height: 1.46rem;
+    border-left: 0.02rem solid #fff;
+    background:rgba(0,0,0,0.06);
+    border-radius: 0.04rem;
+    box-sizing: border-box;
+    padding: 0.34rem 0 0.34rem 0.48rem;
+    font-size: 0.26rem;
+    line-height: 0.37rem;
+    width: 5.2rem;
+}
+.position-intro div + div {
+    margin-top: 0.04rem;
+}
+.recruiter {
+    display: flex;
+    align-items: center;
+}
+.recruiter-profile {
+    width: 1.16rem;
+    height: 1.16rem;
+    border-color: #fff;
+    margin-top: -0.01rem;
+    min-width: 1.16rem;
+    margin-right: 0.3rem;
+}
+.recruiter-name {
+    font-weight: 500;
+    font-size: 0.34rem;
+}
+.recruiter-info {
+    font-size: 0.24rem;
+    margin-top: 0.13rem
+}
+.recruiter-intro {
+    background:rgba(0,0,0, 0.06);
+    padding: 0.17rem 0.24rem;
+    border-radius: 0 0.29rem 0.29rem  0;
+    font-weight: 500;
+    width: 4.32rem;
+    position: relative;
+    margin-top: 0.21rem;
+}
+.recruiter-intro::after {
+    content: "";
+    background: #01AAB0;
+    width: 0.15rem;
+    height: 0.15rem;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -0.07rem;
+    left: 0.5rem;
+    z-index: 0;
+}
+.footer {
+    display: flex;
+    margin-top: 0.96rem;
+}
+.footer-text {
+    margin-right: 0.46rem;
+    padding-left: 0.33rem;
+    top: 9.7rem;
+    font-weight: 300;
+    line-height: 0.32rem;
+    position: absolute;
+    max-width: 3.5rem;
+}
+.footer-qrcode {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-left: auto;
+    margin-top: 0.8rem;
+    min-width: 1.72rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.footer-qrcode img {
+    max-width: 100%;
+}

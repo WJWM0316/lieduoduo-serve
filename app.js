@@ -8,15 +8,23 @@ var frontEndRoute = require('./routes/frontEnd/index.js');
 var canvasRoute = require('./routes/canvas/index.js');
 
 var files = require('./routes/files/index.js');
+var htmlToPng = require('./routes/html-to-png/index')
+
 var app = express();
 var NODE_ENV = process.env.NODE_ENV;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());//数据JSON类型
+app.use(bodyParser.urlencoded({ extended: false }));//解析post请求数据
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,17 +45,17 @@ var allowCors = function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 	}
 	res.header("Access-Control-Allow-Credentials", true);
-  // res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization,Authorization-Wechat,Wechat-Version,Authorization-Admin,Admin-Version,Authorization-Official,Channel-Code,Channel-Url,Act-Code,Act-Pid,Location,Notify-Appid,Authorization-App,Authorization-App-Wechat,App,App-Model,App-Version,Device-Id,App-Channel,Msg-Id,Source,Idfa-IOS");
 	res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, X-Requested-With, Authorization, Wechat-Version, Admin-Version, Authorization-Admin, Authorization-Wechat, Authorization-Official, Channel-Code, Channel-Url, Act-Code, Act-Pid, Location, Notify-Appid, Authorization-App, Authorization-App-Wechat, App, App-Model, App-Version, Device-Id, App-Channel, Msg-Id, Source, Idfa-IOS, Exquisite-Code");
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-  res.header("X-Powered-By", 'Express');
-  next()
+  	res.header("X-Powered-By", 'Express');
+  	next()
 };
-//app.use(allowCors)
+app.use(allowCors)
 
 app.use('/frontEnd', canvasRoute);
 app.use('/frontEnd', frontEndRoute);
 app.use('/frontEnd', files);
+app.use('/frontEnd', htmlToPng)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
