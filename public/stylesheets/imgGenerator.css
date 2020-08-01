@@ -62,6 +62,7 @@ body {
   margin: 0 2px;
   font-family:Source Han Sans CN;
   font-weight:300;
+  z-index: 2;
 }
 .box::after {
   content: '';
@@ -70,7 +71,7 @@ body {
   background-color: #E41625;
   position: absolute;
   left: 0;
-  bottom: 3px;
+  bottom: 2px;
   z-index: -1;
 }
 .tis {
