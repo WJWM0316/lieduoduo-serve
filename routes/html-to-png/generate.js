@@ -101,13 +101,17 @@ const middle =  async(req, res, next) => {
         await page.setViewport({ width: 750, height: 1180 });
     }
     await page.goto(`${BaseURL}/${config.url}?${qs.stringify(req.query)}`);
+    console.log('开始截图')
     let results = await page.screenshot({
         type: 'png',
         encoding: 'base64',
         fullPage: true
     });
+    console.log('截图成功')
     await page.close();
+    console.log('关闭窗口')
     await browser.disconnect()
+    console.log('断开')
     // res.render('index', {
     //     title:'study book',
     //     jpeg:`data:image/png;base64,${results}` ,
