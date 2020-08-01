@@ -69,7 +69,7 @@ router.post('/youngBeast_act',  (req, res, next) => {
         } else {
             req.query = {type: 'youngBeast_act', img: files.img[0].path, name: fields.name[0], introduce: fields.introduce[0], desc1: fields.desc1[0], desc2: fields.desc2[0], desc3: fields.desc3[0], desc4: fields.desc4[0]}
             await middle(req, res, next)
-            fs.unlinkSync(files.croppedImage[0].path)
+            fs.unlinkSync(files.img[0].path)
         }
     });
     
