@@ -7,7 +7,7 @@ const qs = require('qs')
 var fs = require('fs');
 
 var multiparty = require("multiparty");
-const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'http://node.lieduoduo.com' : 'http://127.0.0.1:3000'
+const BaseURL= process.env.NODE_ENV === 'dev' ? 'http://node.lieduoduo.ziwork.com' : process.env.NODE_ENV === 'pro' ? 'https://node.lieduoduo.com' : 'http://127.0.0.1:3000'
 const RenderConfing = {
     'hot_position': {
         url: 'frontEnd/s-hot-position',
