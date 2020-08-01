@@ -79,10 +79,8 @@ router.get('/s-recruiter', async(req, res, next) => {
 })
 
 router.get('/s-youngBeast-act', async(req, res, next) => {
-  if (req.query.img) req.query.img = req.query.img.replace('public', '..')
-  
+  req.query.img = req.query.img.replace('public', '..')
   res.render('html-to-png/s-youngBeast-activict', req.query)
 })
 
 module.exports = router;
-
