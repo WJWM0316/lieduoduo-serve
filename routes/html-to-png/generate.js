@@ -108,8 +108,8 @@ const middle =  async(req, res, next) => {
         fullPage: true
     });
     console.log('截图成功')
-    await page.close();
-    console.log('关闭窗口')
+    // await page.close();
+    // console.log('关闭窗口')
     // await browser.disconnect()
     console.log('断开')
     // res.render('index', {
