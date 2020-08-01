@@ -37,6 +37,7 @@ var allowCors = function(req, res, next) {
 			|| req.headers.origin === "https://h5.lieduoduo.ziwork.com"
 			|| req.headers.origin === "https://m.lieduoduo.com"
 			|| req.headers.origin === "https://m.lieduoduo.ziwork.com"
+			|| req.headers.origin	=== "https://h5.youngbeast.cn"
 			) {
 			//设置允许跨域的域名，*代表允许任意域名跨域
 			res.header("Access-Control-Allow-Origin", req.headers.origin);
