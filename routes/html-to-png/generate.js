@@ -86,7 +86,7 @@ const middle =  async(req, res, next) => {
         return res.json({httpStatus: 400, msg: '参数错误'})
     }
     let version = await request({
-        uri:  "http://127.0.0.1:3100/json/version",
+        uri:  process.env.NODE_ENV === 'dev' ? "http://127.0.0.1:3100/json/version" : "http://192.168.3.151:3100/json/version",
         json: true
     });
     let browser = await puppeteer.connect({
