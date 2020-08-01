@@ -110,7 +110,7 @@ const middle =  async(req, res, next) => {
     console.log('截图成功')
     await page.close();
     console.log('关闭窗口')
-    await browser.disconnect()
+    // await browser.disconnect()
     console.log('断开')
     // res.render('index', {
     //     title:'study book',
