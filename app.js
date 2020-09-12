@@ -8,7 +8,7 @@ var frontEndRoute = require('./routes/frontEnd/index.js');
 var canvasRoute = require('./routes/canvas/index.js');
 
 var files = require('./routes/files/index.js');
-var htmlToPng = require('./routes/html-to-png/index')
+// var htmlToPng = require('./routes/html-to-png/index')
 
 var app = express();
 var NODE_ENV = process.env.NODE_ENV;
@@ -56,7 +56,7 @@ app.use(allowCors)
 app.use('/frontEnd', canvasRoute);
 app.use('/frontEnd', frontEndRoute);
 app.use('/frontEnd', files);
-app.use('/frontEnd', htmlToPng)
+// app.use('/frontEnd', htmlToPng)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
